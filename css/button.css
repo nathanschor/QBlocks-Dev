@@ -1,0 +1,81 @@
+.button{
+	display: block;
+	width:60px;
+	height:60px;
+  	line-height: 60px;
+	color:#FFF;
+	border-radius:50%;
+  	font-size: 13px;
+	text-align: center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.button-clearAll{
+	display: block;
+	width:140px;
+	height:60px;
+  line-height: 60px;
+	color:#FFF;
+	border-radius:5%;
+  font-size: 15px;
+	text-align: center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.black-ball{
+  background-color:black;
+}
+
+.black-ball:hover{
+  background-color:#2A2A2A;
+}
+
+.white-ball{
+  background-color: white;
+  color: black;
+}
+
+.white-ball:hover{
+  background-color: #F5F5F5;
+}
+
+.non-quantum{
+	background-color:#003399;
+}
+
+.non-quantum:hover {
+  background-color: #001A4D;
+}
+
+.quantum{
+	background-color:#EE220C;
+}
+
+.quantum:hover {
+  background-color: #A51808;
+}
+
+.start{
+  background-color: #7cfc00;
+  color: black;
+}
+
+.start:hover{
+  background-color: #6fe300;
+}
+
+.CNOT{
+}
+
+.SWAP{
+}
+
+.NOT{
+}
+
+.PETE{
+}
+
+.my-float{
+	margin-top:22px;
+}

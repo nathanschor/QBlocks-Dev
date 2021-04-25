@@ -1,0 +1,41 @@
+#desc {
+  position : absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.box{
+  height: 790px;
+}
+
+.min-well{
+  min-width: 50vw;
+}
+
+.right-box{
+  text-decoration: underline;
+  text-align: center;
+  font-weight: bold;
+}
+
+.left-box{
+  font-size: 68%;
+}
+
+.canvas-width{
+}
+
+.expand-child-past-parent {
+  width: 90vw;
+  position: relative;
+  left: calc(-40vw + 45%);
+}
+
+.expand-child-marginally-past-parent {
+  width: 70vw;
+  position: relative;
+  left: calc(-25vw + 35%);
+}
+
+.row-bottom-margin { margin-bottom: 0px; }
+.row-top-margin { margin-top: 30px; }
