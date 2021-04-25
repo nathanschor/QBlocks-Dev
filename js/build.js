@@ -182,7 +182,7 @@ var stage = new Konva.Stage({
 });
 
 var gridLayer = new Konva.Layer();
-var padding = blockSnapSize;
+var padding = blockSnapSize*2;
 
 for (var i = 0; i < width / padding; i++) {
   gridLayer.add(new Konva.Line({
@@ -197,7 +197,7 @@ for (var j = 0; j < height / padding; j++) {
   gridLayer.add(new Konva.Line({
     points: [0, Math.round(j * padding), width, Math.round(j * padding)],
     stroke: '#ddd',
-    strokeWidth: 0.5,
+    strokeWidth: 1,
   }));
 }
 
