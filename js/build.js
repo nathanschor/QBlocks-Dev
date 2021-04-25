@@ -365,8 +365,8 @@ function getShapes() {
     });
   });
 
-  if(document.getElementById("start-button").innerText.toLowerCase() === "start"){
-    document.getElementById("start-button").innerText = "Continue";
+  if(document.getElementById("start-button-tag").innerText.toLowerCase() === "start"){
+    document.getElementById("start-button-tag").innerText = "Continue";
     hideUsergenerated();
   }
 

@@ -8,6 +8,7 @@
   	font-size: 13px;
 	text-align: center;
 	box-shadow: 2px 2px 3px #999;
+	vertical-align: top;
 }
 
 .button-clearAll{

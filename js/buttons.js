@@ -56,7 +56,7 @@ function start(){
 
 function reset(){
   console.log("Clearing simulation objects");
-  document.getElementById("start-button").innerText = "Start";
+  document.getElementById("start-button-tag").innerText = "Start";
   showUsergenerated();
   clearSimulations();
 }
