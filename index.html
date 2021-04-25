@@ -731,7 +731,7 @@
                                                                                         <li>So it's IMPORTANT you move that object onto the canvas prior to creating the next object. You can do this by drag/drop.<br></li>
                                                                                         <li>If you don’t move the clicked object the next one you click will appear over it, and you can drag/drop it to make one beneath it appear.<br></li>
                                                                                         <li>To remove an object from canvas, right click the object.<br></li>
-                                                                                        <li>Once objects on canvas you can stack them accordingly, being careful to not overlap them as you finalize the position of the incoming one.<br></li>
+                                                                                        <li>Once objects are on canvas you can stack them accordingly, being careful to not overlap them as you finalize the position of the incoming one.<br></li>
                                                                                         <li>To start the simulation, press the 'Play' button on the right side. (TBD)<br></li>
                                                                                         <li>To undo the simulation, press the 'Stop' button.<br></li>
                                                                                         <li>To remove ALL objects, press the 'Clear All' button.<br></li>
@@ -826,12 +826,12 @@
                                                                                 <div class="row">
                                                                                     <div class="col-sm-6 col-md-6 col-lg-6">
                                                                                         <a class="button start" onclick = "start()" id="start-button">
-                                                                                            <p class="fa fa-plus my-float">Start</p>
+                                                                                            <p id="start-button" class="fa fa-plus my-float">Start</p>
                                                                                         </a>
                                                                                     </div>
                                                                                     <div class="col-sm-6 col-md-6 col-lg-6" id="stop-button">
-                                                                                        <a class="button start" onclick = "stop()">
-                                                                                            <p class="fa fa-plus my-float">Stop</p>
+                                                                                        <a class="button start" onclick = "reset()">
+                                                                                            <p class="fa fa-plus my-float">Reset</p>
                                                                                         </a>
                                                                                     </div>
                                                                                     <div class="col-sm-12 col-md-12 col-lg-12" id="clear-button">

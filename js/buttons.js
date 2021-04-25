@@ -54,9 +54,11 @@ function start(){
   getShapes();
 }
 
-function stop(){
+function reset(){
   console.log("Clearing simulation objects");
-  clearShapesCreatedDuringSimulation();
+  document.getElementById("start-button").innerText = "Start";
+  showUsergenerated();
+  clearSimulations();
 }
 
 function clearAll(){

@@ -8,6 +8,7 @@ console.log("Height: " + height + " | Width: " + width);
 var shadowOffset = 20;
 var tween = null;
 var blockSnapSize = 30;
+var userGeneratedParticles = [];
 
 /*############################################################################*/
 /*####################### Ball Definition ####################################*/
@@ -295,7 +296,7 @@ layer.on('dragmove', function (e) {
 /*####################### Simulation Code ####################################*/
 /*############################################################################*/
 
-function clearShapesCreatedDuringSimulation() {
+function clearSimulations() {
   // select shapes by name
   var objects = stage.find('#simulation');
 
@@ -303,6 +304,30 @@ function clearShapesCreatedDuringSimulation() {
       object.destroy();
       layer.draw();
   });
+};
+
+function hideUsergenerated() {
+  // select shapes by name
+  var objects = stage.find('#user');
+
+  objects.each(function (object) {
+    if(!object.attrs.shapeType.toLowerCase().includes("shadow")) {
+      if (object.attrs.shapeType.toLowerCase().includes("circle") ||
+          object.attrs.shapeType.toLowerCase().includes("mist")) {
+        userGeneratedParticles.push(createObject(object))
+        object.destroy();
+        layer.draw();
+      }
+    }
+  });
+};
+
+function showUsergenerated() {
+  // select shapes by name
+
+  drawObjects(userGeneratedParticles, true);
+  console.log(userGeneratedParticles);
+  userGeneratedParticles = [];
 };
 
 function clearAllObjects(){
@@ -340,13 +365,21 @@ function getShapes() {
     });
   });
 
+  if(document.getElementById("start-button").innerText.toLowerCase() === "start"){
+    document.getElementById("start-button").innerText = "Continue";
+    hideUsergenerated();
+  }
+
   var matchedObjects = findAbove(gates, particles);
 
   matchedObjects = removeSingleObjects(matchedObjects);
 
+  if(matchedObjects.length === 0){
+    return ;
+  }
   let simulationOutcome = simulate(matchedObjects);
 
-  clearShapesCreatedDuringSimulation();
+  clearSimulations();
 
   drawObjects(simulationOutcome);
 };
@@ -539,15 +572,16 @@ function createObject(object) {
   }
 }
 
-function drawObjects(objects){
+function drawObjects(objects, userGen=false){
+  let generationType = userGen ? "user" : "simulation";
   objects.forEach((object, i) => {
     if(object.constructor.name.toLowerCase() === 'ball'){
-      newBall(object.x, object.y, 0.5, layer, stage, ((object.color === 1) ? 'white' : 'black'), 'simulation');
+      newBall(object.x, object.y, 0.5, layer, stage, ((object.color === 1) ? 'white' : 'black'), generationType);
     } else if(object.constructor.name.toLowerCase() === 'mist'){
       if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
-        newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'simulation');
+        newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType);
       } else {
-        newGate(object.x, object.y, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'simulation');
+        newGate(object.x, object.y, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', generationType);
       }
     } else {
       console.log("Something went wrong: " + object.toString());
