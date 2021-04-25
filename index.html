@@ -719,7 +719,7 @@
                                                               <div class="container-flex">
                                                                 <div class="row">
 
-                                                                    <div class="col-sm-3 col-md-3 col-lg-3">
+                                                                    <div class="hidden-sm hidden-md col-lg-3">
                                                                         <div class="well well-lg">
                                                                             <div class="">
                                                                                 <div class="right-box">
@@ -742,7 +742,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="canvas-width col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="col-sm-6 col-md-6 col-lg-6">
                                                                     <div class=" well">
                                                                       <div class="" id="canvas-div" >
                                                                         <div id="canvas"></div>
@@ -750,7 +750,7 @@
                                                                     </div>
                                                                   </div>
 
-                                                                    <div class="col-sm-2 col-md-2 col-lg-2" style="flex-grow: 1; width: 210px;">
+                                                                    <div class="col-sm-3 col-md-3 col-lg-3" style="flex-grow: 1; width: 240px;">
                                                                         <div class="well well-lg">
                                                                             <div class="box right-box">
 
@@ -769,54 +769,64 @@
                                                                                             <p class="fa fa-plus my-float">B</p>
                                                                                         </a>
                                                                                     </div>
+
                                                                                 </div>
 
                                                                                 <!-- Gates -->
-                                                                                <div class="row row-bottom-margin row-top-margin">
+                                                                                <div class="row row-top-margin">
                                                                                     Gates
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                                                                        <a class="button NOT non-quantum" onclick = "createNOT_Gate()">
-                                                                                            <p class="fa fa-plus my-float">NOT</p>
+                                                                                <div class="row row-bottom-margin">
+                                                                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                                                                        <a class="" onclick = "createNOT_Gate()">
+                                                                                            <!-- <p class="fa fa-plus my-float">NOT</p>-->
+                                                                                            <img class="button-img-top" src="https://julianBeaulieu.com/QBlocks-Dev/img/not.png">
                                                                                         </a>
-                                                                                        <a class="button SWAP non-quantum" onclick = "createSWAP_Gate()">
-                                                                                            <p class="fa fa-plus my-float">SWAP</p>
-                                                                                        </a>
-                                                                                        <a class="button PETE quantum" onclick = "createPETE_Gate()">
-                                                                                            <p class="fa fa-plus my-float">PETE</p>
-                                                                                        </a>
-
-
-                                                                                    </div>
-                                                                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                                                                        <a class="button CNOT non-quantum" onclick = "createCNOT_Gate()">
-                                                                                            <p class="fa fa-plus my-float">CNOT</p>
-                                                                                        </a>
-                                                                                        <a class="button SWAP non-quantum" onclick = "createCSWAP_Gate()">
-                                                                                            <p class="fa fa-plus my-float">CSWAP</p>
-                                                                                        </a>
-                                                                                        <a class="button SWAP non-quantum" onclick = "createCCSWAP_Gate()">
-                                                                                            <p class="fa fa-plus my-float">CCSWAP</p>
+                                                                                        <a class="" onclick = "createPETE_Gate()">
+                                                                                            <!--                                                                                            <p class="fa fa-plus my-float">PETE</p>-->
+                                                                                            <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Dev/img/pete.png">
                                                                                         </a>
                                                                                     </div>
+                                                                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                                        <a class="" onclick = "createCNOT_Gate()">
+                                                                                            <!-- <p class="fa fa-plus my-float">CNOT</p>-->
+                                                                                            <img class="button-img-top" src="https://julianBeaulieu.com/QBlocks-Dev/img/cnot.png">
+                                                                                        </a>
+                                                                                        <a class="" onclick = "createSWAP_Gate()">
+                                                                                            <!-- <p class="fa fa-plus my-float">SWAP</p>-->
+                                                                                            <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Dev/img/swap.png">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row row-bottom-margin">
+                                                                                    <a class="" onclick = "createCSWAP_Gate()">
+                                                                                        <!--                                                                                            <p class="fa fa-plus my-float">CSWAP</p>-->
+                                                                                        <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Dev/img/cswap.png">
+                                                                                    </a>
+                                                                                </div>
+                                                                                <div class="row row-bottom-margin">
+                                                                                    <a class="" onclick = "createCCSWAP_Gate()">
+                                                                                        <!--                                                                                            <p class="fa fa-plus my-float">CCSWAP</p>-->
+                                                                                        <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Dev/img/ccswap.png">
+                                                                                    </a>
                                                                                 </div>
 
                                                                                 <!-- Mists -->
                                                                                 <div class="row row-bottom-margin row-top-margin">
                                                                                     Mists
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                                                                        <a class="button white-ball" onclick = "createWBMist()">
-                                                                                            <p class="fa fa-plus my-float">W, B</p>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="col-sm-6 col-md-6 col-lg-6">
-                                                                                        <a class="button white-ball" onclick = "createWNegBMist()">
-                                                                                            <p class="fa fa-plus my-float">W, -B</p>
-                                                                                        </a>
-                                                                                    </div>
+                                                                                <div class="row row-bottom-margin">
+                                                                                    <a class="" onclick = "createWBMist()">
+<!--                                                                                            <p class="fa fa-plus my-float">W, B</p>-->
+                                                                                        <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Dev/img/wb.png">
+                                                                                    </a>
+                                                                                </div>
+                                                                                <div class="row row-bottom-margin">
+                                                                                    <a class="" onclick = "createWNegBMist()">
+<!--                                                                                            <p class="fa fa-plus my-float">W, -B</p>-->
+                                                                                        <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Dev/img/wnegb.png">
+                                                                                    </a>
                                                                                 </div>
 
                                                                                 <!-- Simulation Controls -->
@@ -830,7 +840,7 @@
                                                                                         </a>
                                                                                     </div>
                                                                                     <div class="col-sm-6 col-md-6 col-lg-6" id="stop-button">
-                                                                                        <a class="button start" onclick = "reset()">
+                                                                                        <a class="button reset" onclick = "reset()">
                                                                                             <p class="fa fa-plus my-float">Reset</p>
                                                                                         </a>
                                                                                     </div>

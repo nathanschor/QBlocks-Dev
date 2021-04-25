@@ -11,14 +11,34 @@
 	vertical-align: top;
 }
 
+.button-img{
+	width: auto;
+	height: 60px;
+	padding: 5px 5px 5px 5px;
+}
+
+.button-img-top{
+	width: auto;
+	height: 60px;
+	padding: 0px 5px 5px 5px;
+}
+
+.button-img:hover{
+	opacity: 0.7;
+}
+
+.left-space{
+	margin-left: 10px !important;
+}
+
 .button-clearAll{
 	display: block;
 	width:140px;
 	height:60px;
-  line-height: 60px;
+  	line-height: 60px;
 	color:#FFF;
 	border-radius:5%;
-  font-size: 15px;
+  	font-size: 15px;
 	text-align: center;
 	box-shadow: 2px 2px 3px #999;
 }
@@ -40,19 +60,11 @@
   background-color: #F5F5F5;
 }
 
-.non-quantum{
-	background-color:#003399;
-}
-
-.non-quantum:hover {
-  background-color: #001A4D;
-}
-
-.quantum{
+.reset{
 	background-color:#EE220C;
 }
 
-.quantum:hover {
+.reset:hover {
   background-color: #A51808;
 }
 
@@ -65,18 +77,21 @@
   background-color: #6fe300;
 }
 
-.CNOT{
-}
-
-.SWAP{
-}
-
-.NOT{
-}
-
 .PETE{
 }
 
 .my-float{
 	margin-top:22px;
 }
+
+
+HTML CSS JSResult Skip Results Iframe
+EDIT ON
+	/* external css: flickity.css */
+
+* {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body { font-family: sans-serif; }

@@ -4,7 +4,7 @@
   left: 5px;
 }
 
-.box{
+.box-controlls{
   height: 790px;
 }
 
@@ -22,13 +22,10 @@
   font-size: 68%;
 }
 
-.canvas-width{
-}
-
 .expand-child-past-parent {
   width: 90vw;
   position: relative;
-  left: calc(-40vw + 45%);
+  left: calc(-38vw + 45%);
 }
 
 .expand-child-marginally-past-parent {
