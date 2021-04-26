@@ -19,3 +19,38 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+$('#howToCarousel').bind('slid.bs.carousel', function (e)
+{
+    var $this = $(this);
+
+    $this.children('.carousel-control').show();
+
+    if ($('.carousel-inner .item:last').hasClass('active'))
+    {
+        closeModal(7.5);
+        $this.children('.right.carousel-control').hide();
+    } else if ($('.carousel-inner .item:first').hasClass('active')) {
+        $this.children('.left.carousel-control').hide();
+    } else {
+        redirect(10);
+    }
+});
+
+$("#howToCarousel").carousel({interval: false});
+
+function redirect(time)
+{
+    let newTime = time * 1000;
+    window.setTimeout(function() {
+        $("#howToCarousel").carousel("next");
+    }, newTime);
+}
+
+function closeModal(time)
+{
+    let newTime = time * 1000;
+    window.setTimeout(function() {
+        modal.style.display = "none";
+    }, newTime);
+}
