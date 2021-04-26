@@ -19,12 +19,13 @@ function CCSwap(x, y, width, height){
       //Not first object if second object is white
       this.left.y += 2 * this.height;
       this.center_left.y += 2 * this.height;
+      this.center_right.y += 2 * this.height;
       this.right.y += 2 * this.height;
 
-      if(this.left.color === 1){
+      if(this.left.color === 0 && this.center_left.color === 0){
         console.log("\n\nCSwap IF");
-        tmp = this.center_left.x;
-        this.center_left.x = this.right.x;
+        tmp = this.center_right.x;
+        this.center_right.x = this.right.x;
         this.right.x = tmp;
 
         return [this.left, this.center_left, this.center_right, this.right];

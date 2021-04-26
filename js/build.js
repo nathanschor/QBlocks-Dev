@@ -391,7 +391,13 @@ function findAbove(gates, particles) {
   //this.center.constructor.name ===
   gates.forEach((gate, i) => {
     console.log("Gate: " + gate.constructor.name.toLowerCase());
-    if(gate.constructor.name.toLowerCase().includes("cswap")){
+
+    if(gate.constructor.name.toLowerCase().includes("ccswap") ||
+        gate.constructor.name.toLowerCase().includes("ccnot")){
+      let temp = matchQuadrupleGate(gate, particles);
+      particles = temp[1];
+      matchedObjects.push(temp[0]);
+    } else if(gate.constructor.name.toLowerCase().includes("cswap")){
       let temp = matchTrippleGate(gate, particles);
       particles = temp[1];
       matchedObjects.push(temp[0]);
@@ -535,6 +541,81 @@ function matchTrippleGate(gate, particles) {
   return [gateObject, newParticles];
 }
 
+function matchQuadrupleGate(gate, particles) {
+  console.log("matchTrippleGate");
+  let x1 = parseInt(gate.x);
+  let x2 = parseInt(gate.x + gate.width/4);
+  let x3 = parseInt(gate.x + (gate.width*2) /4);
+  let x4 = parseInt(gate.x + (gate.width*3) /4);
+  let x5 = parseInt(gate.x + gate.width);
+  let y1 = parseInt(gate.y - gate.height);
+  let y2 = parseInt(gate.y);
+
+  var tempParticles = particles;
+  var newParticles = [];
+  var gateObject = gate;
+
+  for (var i = 0; i < tempParticles.length; i++) {
+    let particle = tempParticles[i];
+    let x = parseInt(particle.x);
+    let y = parseInt(particle.y);
+
+    if((x1 <= x) && (x < x2) && (y1 <= y) && (y <= y2)){
+      gateObject.left = particle;
+    } else {
+      newParticles.push(particle)
+    }
+    console.log(i)
+  }
+
+  tempParticles = newParticles;
+  newParticles = [];
+
+  for (var i = 0; i < tempParticles.length; i++) {
+    let particle = tempParticles[i];
+    let x = parseInt(particle.x);
+    let y = parseInt(particle.y);
+
+    if((x2 <= x) && (x <= x3) && (y1 <= y) && (y <= y2)){
+      gateObject.center_left = particle;
+    } else {
+      newParticles.push(particle)
+    }
+  }
+
+  tempParticles = newParticles;
+  newParticles = [];
+
+  for (var i = 0; i < tempParticles.length; i++) {
+    let particle = tempParticles[i];
+    let x = parseInt(particle.x);
+    let y = parseInt(particle.y);
+
+    if((x3 <= x) && (x <= x4) && (y1 <= y) && (y <= y2)){
+      gateObject.center_right = particle;
+    } else {
+      newParticles.push(particle)
+    }
+  }
+
+  tempParticles = newParticles;
+  newParticles = [];
+
+  for (var i = 0; i < tempParticles.length; i++) {
+    let particle = tempParticles[i];
+    let x = parseInt(particle.x);
+    let y = parseInt(particle.y);
+
+    if((x4 < x) && (x <= x5) && (y1 <= y) && (y <= y2)){
+      gateObject.right = particle;
+    } else {
+      newParticles.push(particle)
+    }
+  }
+
+  return [gateObject, newParticles];
+}
+
 function removeSingleObjects(objects) {
   var convertedObjects = [];
 
@@ -548,7 +629,9 @@ function removeSingleObjects(objects) {
 };
 
 function createObject(object) {
-  if(object.attrs.type.toLowerCase().includes("cswap")){
+  if(object.attrs.type.toLowerCase().includes("ccswap")){
+    return new CCSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+  } else if(object.attrs.type.toLowerCase().includes("cswap")){
     return new CSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
   } else if(object.attrs.type.toLowerCase().includes("cnot")){
     return new CNot(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
