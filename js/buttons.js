@@ -33,6 +33,11 @@ function createNOT_Gate(){
   stage.add(layer);
 }
 
+function createPIPE_Gate(){
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Dev/img/pipe.png', 'pipeGate', 'user');
+  stage.add(layer);
+}
+
 function createBLACK_BALL(){
   newBall(blockSnapSize * ballX, blockSnapSize * ballY, 0.5, layer, stage, 'black', 'user');
   stage.add(layer);

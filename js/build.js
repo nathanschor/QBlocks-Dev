@@ -407,7 +407,8 @@ function findAbove(gates, particles) {
       particles = temp[1];
       matchedObjects.push(temp[0]);
     } else if(gate.constructor.name.toLowerCase().includes("not") ||
-        gate.constructor.name.toLowerCase().includes("pete")){
+        gate.constructor.name.toLowerCase().includes("pete") ||
+        gate.constructor.name.toLowerCase().includes("pipe")){
       let temp = matchSingleGate(gate, particles);
       particles = temp[1];
       matchedObjects.push(temp[0]);
@@ -639,6 +640,8 @@ function createObject(object) {
     return new Swap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
   } else if(object.attrs.type.toLowerCase().includes("not")){
     return new Not(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+  } else if(object.attrs.type.toLowerCase().includes("pipe")){
+    return new Pipe(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
   } else if(object.attrs.type.toLowerCase().includes("pete")){
     return new Pete(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
   } else if(object.attrs.type.toLowerCase().includes("black")){
