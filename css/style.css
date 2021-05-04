@@ -4,23 +4,16 @@
   left: 5px;
 }
 
-.box-controlls{
-  height: 790px;
-}
-
 .min-well{
   min-width: 50vw;
 }
 
-.right-box{
+.controll-box{
   text-decoration: underline;
   text-align: center;
   font-weight: bold;
 }
 
-.left-box{
-  font-size: 68%;
-}
 
 .expand-child-past-parent {
   width: 90vw;
@@ -32,6 +25,10 @@
   width: 70vw;
   position: relative;
   left: calc(-25vw + 35%);
+}
+
+.canvas-box{
+  height: 50%;
 }
 
 .row-bottom-margin { margin-bottom: 0px; }
