@@ -1,3 +1,6 @@
+// TODO: https://konvajs.org/docs/sandbox/Drop_DOM_Element.html
+
+
 // var width = window.innerWidth;
 // var height = window.innerHeight;
 // window.onresize = function(){ location.reload(); }
@@ -234,7 +237,10 @@ helpButton.add(new Konva.Text({
 }));
 
 helpButton.on('click', () => {
-  alert('This is a tutorial');
+  document.getElementById('#headerVideoLink').magnificPopup({
+    type:'inline',
+    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+  });
 })
 
 helpButton.on('mouseover', function () {

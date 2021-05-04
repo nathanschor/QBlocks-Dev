@@ -54,3 +54,4 @@ function closeModal(time)
         modal.style.display = "none";
     }, newTime);
 }
+
