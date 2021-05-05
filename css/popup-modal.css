@@ -1,79 +1,38 @@
+/* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 10%; /* Location of the box */
+    z-index: 600; /* Sit on top */
+    padding-top: 30%; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    padding: 0px;
     border: 1px solid #888;
-    width: 60vw;
-}
-
-.gif-width{
-    width: 55vw;
+    width: 80%;
 }
 
 /* The Close Button */
-.close {
-    color: #000000;
-    float: right;
-    font-size: 28px;
+.close-modal {
+    position: absolute;
+    right: 2%;
+    color: rgba(0,0,0,0.0);
+    z-index: 100001;
+    font-size: 40px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.carousel-inner-headline{
-    text-align: center;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    height: 100px;
-    width: 100px;
-    outline: black;
-    background-size: 100%, 100%;
-    border-radius: 50%;
-    border: 1px solid black;
-    background-image: none;
-}
-
-.carousel-control.left, .carousel-control.right {
-    background: none !important;
-    outline: 0;
-}
-
-.black{
-    color: black;
-}
-
-.rigth{
-    right: -60px;
-}
-
-#headerPopup{
-    width:75%;
-    margin:0 auto;
-}
-
-#headerPopup iframe{
-    width:100%;
-    margin:0 auto;
+/* The Close Button */
+.iframe-modal {
+    z-index: 100000;
 }
