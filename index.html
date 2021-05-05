@@ -562,9 +562,9 @@
     <!-- ############################################################################################################ -->
     <!-- ############################################################################################################ -->
     <meta charset="utf-8">
-
-    <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Beta/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Dev/css/style.css">
     <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Beta/css/button.css">
+    <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Dev/css/popup-modal.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -715,68 +715,26 @@
 <!-- ############################################################################################################ -->
 
                                                                 <!-- The Modal -->
-<!--                                                                <div id="myModal" class="modal">-->
+                                                                <div id="myModal" class="modal">
 
-<!--                                                                    &lt;!&ndash; Modal content &ndash;&gt;-->
-<!--                                                                    <div class="modal-content">-->
-<!--                                                                        <span class="close">&times;</span>-->
-<!--                                                                        <div class="container">-->
-<!--                                                                            <div id="howToCarousel" class="carousel slide" data-ride="carousel" data-wrap="false">-->
-<!--                                                                                &lt;!&ndash; Indicators &ndash;&gt;-->
-<!--                                                                                <ol class="carousel-indicators">-->
-<!--                                                                                    <li data-target="#howToCarousel" data-slide-to="0" class="active"></li>-->
-<!--                                                                                    <li data-target="#howToCarousel" data-slide-to="1"></li>-->
-<!--                                                                                    <li data-target="#howToCarousel" data-slide-to="2"></li>-->
-<!--                                                                                </ol>-->
+                                                                    <!-- Modal content -->
+                                                                    <div class="modal-content">
+                                                                        <span class="close-modal">&times;</span>
+                                                                        <iframe class="iframe-modal embed-responsive-item" width="100%" height="480" src="https://www.youtube.com/embed/qN3OueBm9F4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                                    </div>
 
-<!--                                                                                &lt;!&ndash; Wrapper for slides &ndash;&gt;-->
-<!--                                                                                <div class="carousel-inner">-->
-<!--                                                                                    <div class="item active carousel-inner-headline">-->
-<!--                                                                                        <h3>This is how you create Gates</h3>-->
-<!--                                                                                        <img class="gif-width" src="img/gate.gif" onload="redirect(7.3);">-->
-<!--                                                                                    </div>-->
-
-<!--                                                                                    <div class="item carousel-inner-headline">-->
-<!--                                                                                        <h3>This is how you create Balls</h3>-->
-<!--                                                                                        <img class="gif-width" src="img/ball.gif">-->
-<!--                                                                                    </div>-->
-
-<!--                                                                                    <div class="item carousel-inner-headline">-->
-<!--                                                                                        <h3>Finally, this is how you run the simulation</h3>-->
-<!--                                                                                        <img class="gif-width" src="img/simulate.gif">-->
-<!--                                                                                    </div>-->
-<!--                                                                                </div>-->
-
-<!--                                                                                &lt;!&ndash; Left and right controls &ndash;&gt;-->
-<!--                                                                                <a class="left carousel-control" href="#howToCarousel" data-slide="prev">-->
-<!--                                                                                    <span class="glyphicon glyphicon-chevron-left black"></span>-->
-<!--                                                                                    <span class="sr-only">Previous</span>-->
-<!--                                                                                </a>-->
-<!--                                                                                <a class="right carousel-control carousel-control-next" href="#howToCarousel" data-slide="next">-->
-<!--                                                                                    <span class="glyphicon glyphicon-chevron-right black"></span>-->
-<!--                                                                                    <span class="sr-only">Next</span>-->
-<!--                                                                                </a>-->
-<!--                                                                            </div>-->
-<!--                                                                        </div>-->
-
-<!--                                                                </div>-->
-
-<!--                                                                </div>-->
-
-                                                                <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9">
-                                                                    <iframe class="embed-responsive-item" width="854" height="480" src="https://www.youtube.com/embed/qN3OueBm9F4?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                                                 </div>
 
                                                                 <div class="expand-child-marginally-past-parent"><!-- To make child exceed parent, add  'expand-child-past-parent' to class-->
                                                                   <div class="container-flex">
-                                                                    <div class="row">
+                                                                    <div class="row vertical-divider">
                                                                         <div class="col-sm-12 col-md-12 col-lg-12">
 
                                                                             <div class="well" style="flex-grow: 1; height: 260px;">
                                                                                 <div class="box">
 
                                                                                         <!-- Balls -->
-                                                                                        <div class="col-sm-3 col-md-3 col-lg-3" style="flex-grow: 1; width: 100px;">
+                                                                                        <div class="col-sm-3 col-md-3 col-lg-3 border-right center" style="flex-grow: 1; width: 100px;">
                                                                                             <div class="row row-bottom-margin  controll-box">
                                                                                                 Balls
                                                                                             </div>
@@ -788,20 +746,21 @@
                                                                                                     <a class="button black-ball" onclick = "createBLACK_BALL()">
                                                                                                         <p class="fa fa-plus my-float">B</p>
                                                                                                     </a>
+                                                                                                    <div class="content-divider"> </div>
                                                                                                 </div>
 
                                                                                             </div>
                                                                                         </div>
 
                                                                                         <!-- Gates -->
-                                                                                        <div class="col-sm-4 col-md-4 col-lg-4">
-                                                                                            <div class="row  controll-box">
+                                                                                        <div class="col-sm-4 col-md-4 col-lg-4 border-right center">
+                                                                                            <div class="row controll-box">
                                                                                                 Classical Sates
                                                                                             </div>
-                                                                                            <div class="row row-bottom-margin">
+                                                                                            <div class="row row-bottom-margin ">
                                                                                                 <div class="col-sm-4 col-md-4 col-lg-4">
                                                                                                     <a class="" onclick = "createNOT_Gate()">
-                                                                                                        <img class="button-img-top" src="https://julianbeaulieu.com/QBlocks-Beta/img/not.png">
+                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/not.png">
                                                                                                     </a>
                                                                                                     <a class="" onclick = "createSWAP_Gate()">
                                                                                                         <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/swap.png">
@@ -809,7 +768,7 @@
                                                                                                 </div>
                                                                                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                                                                                     <a class="" onclick = "createCNOT_Gate()">
-                                                                                                        <img class="button-img-top" src="https://julianbeaulieu.com/QBlocks-Beta/img/cnot.png">
+                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/cnot.png">
                                                                                                     </a>
                                                                                                     <a class="" onclick = "createCSWAP_Gate()">
                                                                                                         <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/cswap.png">
@@ -824,30 +783,32 @@
                                                                                         </div>
 
                                                                                         <!-- Mists -->
-                                                                                        <div class="col-sm-3 col-md-3 col-lg-3">
+                                                                                        <div class="col-sm-3 col-md-3 col-lg-3 border-right center">
                                                                                             <div class="row  controll-box">
                                                                                                 Misty States
                                                                                             </div>
                                                                                             <div class="row row-bottom-margin">
-                                                                                                <a class="" onclick = "createPETE_Gate()">
-                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/pete.png">
-                                                                                                </a>
-                                                                                                <a class="" onclick = "createWBMist()">
-                                                                                                    <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Beta/img/wb.png">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                            <div class="row row-bottom-margin">
-                                                                                                <a class="" onclick = "createPIPE_Gate()">
-                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/pipe.png">
-                                                                                                </a>
-                                                                                                <a class="" onclick = "createWNegBMist()">
-                                                                                                    <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Beta/img/wnegb.png">
-                                                                                                </a>
+                                                                                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                                                                                    <a class="" onclick = "createPETE_Gate()">
+                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/pete.png">
+                                                                                                    </a>
+                                                                                                    <a class="" onclick = "createPIPE_Gate()">
+                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/pipe.png">
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                                                                                    <a class="" onclick = "createWBMist()">
+                                                                                                        <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Beta/img/wb.png">
+                                                                                                    </a>
+                                                                                                    <a class="" onclick = "createWNegBMist()">
+                                                                                                        <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Beta/img/wnegb.png">
+                                                                                                    </a>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
 
                                                                                         <!-- Simulation Controls -->
-                                                                                        <div class="col-sm-3 col-md-3 col-lg-3" style="flex-grow: 1; width: 160px;">
+                                                                                        <div class="col-sm-3 col-md-3 col-lg-3 center" style="flex-grow: 1; width: 160px;">
                                                                                             <div class="row row-bottom-margin controll-box">
                                                                                                 Controls
                                                                                             </div>
@@ -897,9 +858,9 @@
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/GatesAndParticles/Pete.js"></script>
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/GatesAndParticles/Mist.js"></script>
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/GatesAndParticles/Pipe.js"></script>
-                                                                <script src="https://julianbeaulieu.com/QBlocks-Beta/js/build.js"></script>
+                                                                <script src="https://julianbeaulieu.com/QBlocks-Dev/js/build.js"></script>
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/buttons.js"></script>
-                                                                <script src="https://julianbeaulieu.com/QBlocks-Beta/js/popup-modal.js"></script>
+                                                                <script src="https://julianbeaulieu.com/QBlocks-Dev/js/popup-modal.js"></script>
 
 
 
