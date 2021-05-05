@@ -246,6 +246,14 @@ helpButton.on('clmouseoutick', function () {
   gridLayer.draw();
 });
 
+helpButton.on('mouseenter', function () {
+  stage.container().style.cursor = 'pointer';
+});
+
+helpButton.on('mouseleave', function () {
+  stage.container().style.cursor = 'default';
+});
+
 layer.add(helpButton)
 gridLayer.add(helpButton);
 
