@@ -562,9 +562,9 @@
     <!-- ############################################################################################################ -->
     <!-- ############################################################################################################ -->
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Dev/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Beta/css/style.css">
     <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Beta/css/button.css">
-    <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Dev/css/popup-modal.css">
+    <link rel="stylesheet" type="text/css" href="https://julianbeaulieu.com/QBlocks-Beta/css/popup-modal.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -730,85 +730,12 @@
                                                                     <div class="row vertical-divider">
                                                                         <div class="col-sm-12 col-md-12 col-lg-12">
 
-                                                                            <div class="well" style="flex-grow: 1; height: 260px;">
+                                                                            <div class="well spacer" style="flex-grow: 1; height: 260px;">
                                                                                 <div class="box">
 
-                                                                                        <!-- Balls -->
-                                                                                        <div class="col-sm-3 col-md-3 col-lg-3 border-right center" style="flex-grow: 1; width: 100px;">
-                                                                                            <div class="row row-bottom-margin  controll-box">
-                                                                                                Balls
-                                                                                            </div>
-                                                                                            <div class="row ">
-                                                                                                <div class="col-sm-6 col-md-6 col-lg-6" >
-                                                                                                    <a class="button white-ball" onclick = "createWHITE_BALL()">
-                                                                                                        <p class="fa fa-plus my-float">W</p>
-                                                                                                    </a>
-                                                                                                    <a class="button black-ball" onclick = "createBLACK_BALL()">
-                                                                                                        <p class="fa fa-plus my-float">B</p>
-                                                                                                    </a>
-                                                                                                    <div class="content-divider"> </div>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <!-- Gates -->
-                                                                                        <div class="col-sm-4 col-md-4 col-lg-4 border-right center">
-                                                                                            <div class="row controll-box">
-                                                                                                Classical Sates
-                                                                                            </div>
-                                                                                            <div class="row row-bottom-margin ">
-                                                                                                <div class="col-sm-4 col-md-4 col-lg-4">
-                                                                                                    <a class="" onclick = "createNOT_Gate()">
-                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/not.png">
-                                                                                                    </a>
-                                                                                                    <a class="" onclick = "createSWAP_Gate()">
-                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/swap.png">
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-sm-6 col-md-6 col-lg-6">
-                                                                                                    <a class="" onclick = "createCNOT_Gate()">
-                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/cnot.png">
-                                                                                                    </a>
-                                                                                                    <a class="" onclick = "createCSWAP_Gate()">
-                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/cswap.png">
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-sm-6 col-md-6 col-lg-6">
-                                                                                                    <a class="" onclick = "createCCSWAP_Gate()">
-                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/ccswap.png">
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <!-- Mists -->
-                                                                                        <div class="col-sm-3 col-md-3 col-lg-3 border-right center">
-                                                                                            <div class="row  controll-box">
-                                                                                                Misty States
-                                                                                            </div>
-                                                                                            <div class="row row-bottom-margin">
-                                                                                                <div class="col-sm-4 col-md-4 col-lg-4">
-                                                                                                    <a class="" onclick = "createPETE_Gate()">
-                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/pete.png">
-                                                                                                    </a>
-                                                                                                    <a class="" onclick = "createPIPE_Gate()">
-                                                                                                        <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/pipe.png">
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-sm-6 col-md-6 col-lg-6">
-                                                                                                    <a class="" onclick = "createWBMist()">
-                                                                                                        <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Beta/img/wb.png">
-                                                                                                    </a>
-                                                                                                    <a class="" onclick = "createWNegBMist()">
-                                                                                                        <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Beta/img/wnegb.png">
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <!-- Simulation Controls -->
-                                                                                        <div class="col-sm-3 col-md-3 col-lg-3 center" style="flex-grow: 1; width: 160px;">
+                                                                                    <!-- Simulation Controls -->
+                                                                                    <div class="col-sm-3 col-md-3 col-lg-3 border-right " >
+                                                                                        <div style="flex-grow: 1; width: 160px;">
                                                                                             <div class="row row-bottom-margin controll-box">
                                                                                                 Controls
                                                                                             </div>
@@ -832,6 +759,83 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+
+                                                                                    <!-- Balls -->
+                                                                                    <div class="col-sm-2 col-md-2 col-lg-2 border-right " >
+                                                                                        <div style="flex-grow: 1; width: 100px; padding-left: 30%">
+                                                                                            <div class="row row-bottom-margin controll-box" >
+                                                                                                Balls
+                                                                                            </div>
+                                                                                            <div class="row ">
+                                                                                                <div class="col-sm-6 col-md-6 col-lg-6" >
+                                                                                                    <a class="button white-ball" onclick = "createWHITE_BALL()">
+                                                                                                        <p class="fa fa-plus my-float">W</p>
+                                                                                                    </a>
+                                                                                                    <a class="button black-ball" onclick = "createBLACK_BALL()">
+                                                                                                        <p class="fa fa-plus my-float">B</p>
+                                                                                                    </a>
+                                                                                                    <div class="content-divider"> </div>
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <!-- Gates -->
+                                                                                    <div class="col-sm-4 col-md-4 col-lg-4 border-right ">
+                                                                                        <div class="row controll-box">
+                                                                                            Classical Sates
+                                                                                        </div>
+                                                                                        <div class="row row-bottom-margin ">
+                                                                                            <div class="col-sm-4 col-md-4 col-lg-4 center-divs">
+                                                                                                <a class="" onclick = "createNOT_Gate()">
+                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/not.png">
+                                                                                                </a>
+                                                                                                <a class="" onclick = "createSWAP_Gate()">
+                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/swap.png">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6 col-md-6 col-lg-6 center-divs">
+                                                                                                <a class="" onclick = "createCNOT_Gate()">
+                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/cnot.png">
+                                                                                                </a>
+                                                                                                <a class="" onclick = "createCSWAP_Gate()">
+                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/cswap.png">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6 col-md-6 col-lg-6 center-divs">
+                                                                                                <a class="" onclick = "createCCSWAP_Gate()">
+                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/ccswap.png">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <!-- Mists -->
+                                                                                    <div class="col-sm-3 col-md-3 col-lg-3 ">
+                                                                                        <div class="row  controll-box">
+                                                                                            Misty States
+                                                                                        </div>
+                                                                                        <div class="row row-bottom-margin">
+                                                                                            <div class="col-sm-4 col-md-4 col-lg-4 center-divs">
+                                                                                                <a class="" onclick = "createPETE_Gate()">
+                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/pete.png">
+                                                                                                </a>
+                                                                                                <a class="" onclick = "createPIPE_Gate()">
+                                                                                                    <img class="button-img" src="https://julianbeaulieu.com/QBlocks-Beta/img/pipe.png">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6 col-md-6 col-lg-6 center-divs">
+                                                                                                <a class="" onclick = "createWBMist()">
+                                                                                                    <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Beta/img/wb.png">
+                                                                                                </a>
+                                                                                                <a class="" onclick = "createWNegBMist()">
+                                                                                                    <img class="button-img" src="https://julianBeaulieu.com/QBlocks-Beta/img/wnegb.png">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div class="min-well well">
@@ -858,9 +862,9 @@
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/GatesAndParticles/Pete.js"></script>
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/GatesAndParticles/Mist.js"></script>
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/GatesAndParticles/Pipe.js"></script>
-                                                                <script src="https://julianbeaulieu.com/QBlocks-Dev/js/build.js"></script>
+                                                                <script src="https://julianbeaulieu.com/QBlocks-Beta/js/build.js"></script>
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/buttons.js"></script>
-                                                                <script src="https://julianbeaulieu.com/QBlocks-Dev/js/popup-modal.js"></script>
+                                                                <script src="https://julianbeaulieu.com/QBlocks-Beta/js/popup-modal.js"></script>
 
 
 

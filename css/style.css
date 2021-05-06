@@ -14,7 +14,6 @@
   font-weight: bold;
 }
 
-
 .expand-child-past-parent {
   width: 90vw;
   position: relative;
@@ -37,4 +36,13 @@
 .border-right {
   border-right: 1px solid #A9A9A9;
   height: 220px;
+}
+
+.center-divs{
+  position: absolute;
+  left: 15%;
+}
+
+.green-line{
+  border: 3px solid green;
 }
