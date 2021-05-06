@@ -259,8 +259,70 @@ gridLayer.add(helpButton);
 
 gridLayer.draw();
 
+/*############################################################################*/
+/*####################### Drag and Drop ######################################*/
+/*############################################################################*/
 
+// what is url of dragging element?
+var type = '';
+var listOfObjects = ['not', 'cnot', 'white', 'black', 'swap', 'cswap', 'ccswap', 'pete', 'pipe', 'wbmist', 'wnegbmist'];
 
+for (i = 0; i < listOfObjects.length; i++) {
+  let obj = listOfObjects[i];
+  let id = 'drag-' + obj;
+  console.log(id);
+  document.getElementById(id).addEventListener('dragstart', function (e) {
+    type = obj;
+  });
+}
+
+var con = stage.container();
+con.addEventListener('dragover', function (e) {
+  e.preventDefault(); // !important
+});
+
+con.addEventListener('drop', function (e) {
+  e.preventDefault();
+  // now we need to find pointer position
+  // we can't use stage.getPointerPosition() here, because that event
+  // is not registered by Konva.Stage
+  // we can register it manually:
+  stage.setPointersPositions(e);
+  console.log("TYPE OF DROP: " + type);
+  x = stage.getPointerPosition().x;
+  y = stage.getPointerPosition().y;
+  gateY = Math.round(y/blockSnapSize, 0) - 1;
+  gateX = Math.round(x/blockSnapSize, 0);
+
+  console.log("X: " + gateX + " | Y: " + gateY);
+
+  if(type === 'cnot'){
+    newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cnot.png', 'cnotGate', 'user');
+  } else if(type === 'not'){
+    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/not.png', 'notGate', 'user');
+  } else if(type === 'ccswap'){
+    newGate(blockSnapSize * (gateX - 4), blockSnapSize * gateY, 8, 2, layer, stage, 'https://raw.githubusercontent.com/JulianBeaulieu/QBlocks-Beta/main/img/ccswap.png', 'ccswapGate', 'user');
+  } else if(type === 'cswap'){
+    newGate(blockSnapSize * (gateX - 3), blockSnapSize * gateY, 6, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cswap.png', 'cswapGate', 'user');
+  } else if(type === 'swap'){
+    newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/swap.png', 'swapGate', 'user');
+  } else if(type === 'pete'){
+    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pete.png', 'peteGate', 'user');
+  } else if(type === 'pipe'){
+    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pipe.png', 'pipeGate', 'user');
+  } else if(type === 'white'){
+    newBall(blockSnapSize * (gateX), blockSnapSize * (gateY + 1), 0.5, layer, stage, 'white', 'user');
+  } else if(type === 'black'){
+    newBall(blockSnapSize * (gateX), blockSnapSize * (gateY + 1), 0.5, layer, stage, 'black', 'user');
+  } else if(type === 'wbmist'){
+    newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wb.png', 'wbMist', 'user');
+  } else if(type === 'wnegbmist'){
+    newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wnegb.png', 'w-bMist', 'user');
+  }
+
+  stage.add(layer);
+  type = '';
+});
 
 /*############################################################################*/
 /*####################### Colision Detection #################################*/
