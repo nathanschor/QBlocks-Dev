@@ -11,6 +11,7 @@ console.log("Height: " + height + " | Width: " + width);
 var shadowOffset = 20;
 var tween = null;
 var blockSnapSize = 30;
+var gridSnapSize = 60;
 var userGeneratedParticles = [];
 
 /*############################################################################*/
@@ -44,7 +45,9 @@ function newBall(x, y, radius, layer, stage, color, createdBy) {
     id: createdBy,
     radius: blockSnapSize * radius,
     fill: color,
-    stroke: '#ddd',
+    borderSize: 5,
+    borderColor: 'black',
+    stroke: 'black',
     strokeWidth: 1,
     shadowColor: 'black',
     shadowBlur: 2,
@@ -64,19 +67,24 @@ function newBall(x, y, radius, layer, stage, color, createdBy) {
   });
 
   circle.on('dragend', (e) => {
+    let tempX = Math.round(circle.x() / gridSnapSize) * gridSnapSize;
+    let tempY = Math.round(circle.y() / gridSnapSize) * gridSnapSize; // blockSnapSize
     circle.position({
-      x: Math.round(circle.x() / blockSnapSize) * blockSnapSize,
-      y: Math.round(circle.y() / blockSnapSize) * blockSnapSize
+      x: tempX,
+      y: tempY
     });
     stage.batchDraw();
     shadowCircle.hide();
   });
 
   circle.on('dragmove', (e) => {
+    let tempX = Math.round(circle.x() / gridSnapSize) * gridSnapSize;
+    let tempY = Math.round(circle.y() / gridSnapSize) * gridSnapSize; // blockSnapSize
     shadowCircle.position({
-      x: Math.round(circle.x() / blockSnapSize) * blockSnapSize,
-      y: Math.round(circle.y() / blockSnapSize) * blockSnapSize
+      x: tempX,
+      y: tempY
     });
+    console.log("x: " + tempX + " | y: " + tempY);
     stage.batchDraw();
   });
 
@@ -93,12 +101,12 @@ function newBall(x, y, radius, layer, stage, color, createdBy) {
 /*####################### Gate Definition ####################################*/
 /*############################################################################*/
 
-function newGate(x, y, width, height, layer, stage, filepath, type, createdBy) {
-
+function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, shapetype = 'rectangle') {
+  let tempShadowShapeType = 'shadow' + shapetype;
   var shadowRectangle = new Konva.Rect({
     x: x,
     y: y,
-    shapeType: 'shadowRectangle',
+    shapeType: tempShadowShapeType,
     type: type,
     id: createdBy,
     width: blockSnapSize * width,
@@ -118,7 +126,7 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy) {
       y: y,
       x_prev: x,
       y_prev: y,
-      shapeType: 'rectangle',
+      shapeType: shapetype,
       type: type,
       id: createdBy,
       width: blockSnapSize * width,
@@ -142,8 +150,8 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy) {
 
     rectangle.on('dragend', (e) => {
       rectangle.position({
-        x: Math.round(rectangle.x() / blockSnapSize) * blockSnapSize,
-        y: Math.round(rectangle.y() / blockSnapSize) * blockSnapSize
+        x: Math.round(rectangle.x() / gridSnapSize) * gridSnapSize,
+        y: Math.round(rectangle.y() / gridSnapSize) * gridSnapSize
       });
       stage.batchDraw();
       shadowRectangle.hide();
@@ -151,8 +159,8 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy) {
 
     rectangle.on('dragmove', (e) => {
       shadowRectangle.position({
-        x: Math.round(rectangle.x() / blockSnapSize) * blockSnapSize,
-        y: Math.round(rectangle.y() / blockSnapSize) * blockSnapSize
+        x: Math.round(rectangle.x() / gridSnapSize) * gridSnapSize,
+        y: Math.round(rectangle.y() / gridSnapSize) * gridSnapSize
       });
       stage.batchDraw();
     });
@@ -311,9 +319,9 @@ con.addEventListener('drop', function (e) {
   } else if(type === 'pipe'){
     newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pipe.png', 'pipeGate', 'user');
   } else if(type === 'white'){
-    newBall(blockSnapSize * (gateX), blockSnapSize * (gateY + 1), 0.5, layer, stage, 'white', 'user');
+    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/white.png', 'white', 'user', 'circle');
   } else if(type === 'black'){
-    newBall(blockSnapSize * (gateX), blockSnapSize * (gateY + 1), 0.5, layer, stage, 'black', 'user');
+    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/black.png', 'black', 'user', 'circle');
   } else if(type === 'wbmist'){
     newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wb.png', 'wbMist', 'user');
   } else if(type === 'wnegbmist'){
@@ -335,14 +343,14 @@ function haveIntersection(r1, r2) {
   }
 
   y1 = r1.attrs.y
-  h1 = (r1.attrs.shapeType === 'circle') ? r1.attrs.radius +1: r1.attrs.height;
+  h1 = r1.attrs.height;
   x1 = r1.attrs.x
-  w1 = (r1.attrs.shapeType === 'circle') ? r1.attrs.radius +1: r1.attrs.width
+  w1 = r1.attrs.width
 
   x2 = r2.attrs.x
-  w2 = (r2.attrs.shapeType === 'circle') ? r2.attrs.radius +1: r2.attrs.width
+  w2 = r2.attrs.width
   y2 = r2.attrs.y
-  h2 = (r2.attrs.shapeType === 'circle') ? r2.attrs.radius +1 : r2.attrs.height;
+  h2 = r2.attrs.height;
 
 
   let colision = !(
@@ -359,10 +367,10 @@ function haveIntersection(r1, r2) {
 
 function calcNewY(r1, r2){
   y1 = r1.attrs.y
-  h1 = (r1.attrs.shapeType === 'circle') ? r1.attrs.radius +1: r1.attrs.height;
+  h1 = r1.attrs.height;
 
   y2 = r2.attrs.y
-  h2 = (r2.attrs.shapeType === 'circle') ? r2.attrs.radius +1 : r2.attrs.height;
+  h2 = r2.attrs.height;
 
   if ((y1 + h1/2) > (y2 + h2/2) > y1){
     return y1 - h2;
@@ -373,10 +381,14 @@ function calcNewY(r1, r2){
 
 function calcNewX(r1, r2){
   x1 = r1.attrs.x
-  w1 = (r1.attrs.shapeType === 'circle') ? r1.attrs.radius +1: r1.attrs.width;
+  w1 = r1.attrs.width;
+  console.log("x1: " + x1)
+  console.log("w1: " + w1)
 
   x2 = r2.attrs.x
-  w2 = (r2.attrs.shapeType === 'circle') ? r2.attrs.radius +1: r2.attrs.width;
+  w2 = r2.attrs.width;
+  console.log("x2: " + x2)
+  console.log("w2: " + w2)
 
   if ((x1 + w1/2) > (x2 + w2/2) > x1){
     return (x1 - w2);
@@ -393,11 +405,12 @@ layer.on('dragmove', function (e) {
     if (shape === target) {
       return;
     }
+
     else if (haveIntersection(shape, target)) {
       newX = calcNewX(shape, target)
       newY = calcNewY(shape, target)
-      // console.log("X: ", newX);
-      // console.log("Y: ", newY);
+      console.log("X: ", newX);
+      console.log("Y: ", newY);
       target.position({
         x: newX,
         y: newY
@@ -480,6 +493,7 @@ function getShapes() {
     });
   });
 
+  // #### This will remove intermittent balls for the animation to be smooth
   // if(document.getElementById("start-button-tag").innerText.toLowerCase() === "start"){
   //   document.getElementById("start-button-tag").innerText = "Continue";
   //   hideUsergenerated();
@@ -760,9 +774,9 @@ function createObject(object) {
   } else if(object.attrs.type.toLowerCase().includes("pete")){
     return new Pete(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
   } else if(object.attrs.type.toLowerCase().includes("black")){
-    return new Ball(0, '+', object.attrs.x, object.attrs.y, object.attrs.radius);
+    return new Ball(0, '+', object.attrs.x, object.attrs.y, object.attrs.height/2);
   } else if(object.attrs.type.toLowerCase().includes("white")){
-    return new Ball(1, '+', object.attrs.x, object.attrs.y, object.attrs.radius);
+    return new Ball(1, '+', object.attrs.x, object.attrs.y, object.attrs.height/2);
   } else if(object.attrs.type.toLowerCase().includes("wb")){
     return new Mist(1, '+', 0, '+', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
   } else if(object.attrs.type.toLowerCase().includes("w-b")){
@@ -777,7 +791,7 @@ function drawObjects(objects, userGen=false){
   let generationType = userGen ? "user" : "simulation";
   objects.forEach((object, i) => {
     if(object.constructor.name.toLowerCase() === 'ball'){
-      newBall(object.x, object.y, 0.5, layer, stage, ((object.color === 1) ? 'white' : 'black'), generationType);
+      newGate(object.x, object.y, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/' + ((object.color === 1) ? 'white' : 'black') + '.png', ((object.color === 1) ? 'white' : 'black'), generationType, 'circle');
     } else if(object.constructor.name.toLowerCase() === 'mist'){
       if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
         newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType);
