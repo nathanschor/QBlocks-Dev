@@ -354,10 +354,10 @@ function haveIntersection(r1, r2) {
 
 
   let colision = !(
-    x2 > x1 + w1 ||
-    x2 + w2 < x1 ||
-    y2 > y1 + h1 ||
-    y2 + h2 < y1
+    x2 > x1 + w1/2 ||
+    x2 + w2/2 < x1 ||
+    y2 > y1 + h1/2 ||
+    y2 + h2/2 < y1
   )
 
   return colision;
