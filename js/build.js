@@ -360,8 +360,6 @@ function haveIntersection(r1, r2) {
     y2 + h2 < y1
   )
 
-  //console.log(colision);
-
   return colision;
 }
 
@@ -382,13 +380,9 @@ function calcNewY(r1, r2){
 function calcNewX(r1, r2){
   x1 = r1.attrs.x
   w1 = r1.attrs.width;
-  console.log("x1: " + x1)
-  console.log("w1: " + w1)
 
   x2 = r2.attrs.x
   w2 = r2.attrs.width;
-  console.log("x2: " + x2)
-  console.log("w2: " + w2)
 
   if ((x1 + w1/2) > (x2 + w2/2) > x1){
     return (x1 - w2);
@@ -409,8 +403,6 @@ layer.on('dragmove', function (e) {
     else if (haveIntersection(shape, target)) {
       newX = calcNewX(shape, target)
       newY = calcNewY(shape, target)
-      console.log("X: ", newX);
-      console.log("Y: ", newY);
       target.position({
         x: newX,
         y: newY
@@ -774,9 +766,9 @@ function createObject(object) {
   } else if(object.attrs.type.toLowerCase().includes("pete")){
     return new Pete(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
   } else if(object.attrs.type.toLowerCase().includes("black")){
-    return new Ball(0, '+', object.attrs.x, object.attrs.y, object.attrs.height/2);
+    return new Ball(0, '+', object.attrs.x + object.attrs.height/2, object.attrs.y + object.attrs.height/2, object.attrs.height/2);
   } else if(object.attrs.type.toLowerCase().includes("white")){
-    return new Ball(1, '+', object.attrs.x, object.attrs.y, object.attrs.height/2);
+    return new Ball(1, '+', object.attrs.x + object.attrs.height/2, object.attrs.y + object.attrs.height/2, object.attrs.height/2);
   } else if(object.attrs.type.toLowerCase().includes("wb")){
     return new Mist(1, '+', 0, '+', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
   } else if(object.attrs.type.toLowerCase().includes("w-b")){
@@ -791,7 +783,7 @@ function drawObjects(objects, userGen=false){
   let generationType = userGen ? "user" : "simulation";
   objects.forEach((object, i) => {
     if(object.constructor.name.toLowerCase() === 'ball'){
-      newGate(object.x, object.y, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/' + ((object.color === 1) ? 'white' : 'black') + '.png', ((object.color === 1) ? 'white' : 'black'), generationType, 'circle');
+      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/' + ((object.color === 1) ? 'white' : 'black') + '.png', ((object.color === 1) ? 'white' : 'black'), generationType, 'circle');
     } else if(object.constructor.name.toLowerCase() === 'mist'){
       if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
         newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType);
