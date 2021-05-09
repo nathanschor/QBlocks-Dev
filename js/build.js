@@ -177,7 +177,6 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
     rectangle.on('stop-button', (e) => {
       // rectangle.destroy();
       // layer.draw();
-      console.log("\n\nPENIS\n\n");
     });
   });
 }
@@ -299,33 +298,33 @@ con.addEventListener('drop', function (e) {
   console.log("TYPE OF DROP: " + type);
   x = stage.getPointerPosition().x;
   y = stage.getPointerPosition().y;
-  gateY = Math.round(y/blockSnapSize, 0) - 1;
-  gateX = Math.round(x/blockSnapSize, 0);
+  gateY = Math.round(y / gridSnapSize) * gridSnapSize - 60;
+  gateX = Math.round(x / gridSnapSize) * gridSnapSize - 60;
 
   console.log("X: " + gateX + " | Y: " + gateY);
 
   if(type === 'cnot'){
-    newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cnot.png', 'cnotGate', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cnot.png', 'cnotGate', 'user');
   } else if(type === 'not'){
-    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/not.png', 'notGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/not.png', 'notGate', 'user');
   } else if(type === 'ccswap'){
-    newGate(blockSnapSize * (gateX - 4), blockSnapSize * gateY, 8, 2, layer, stage, 'https://raw.githubusercontent.com/JulianBeaulieu/QBlocks-Beta/main/img/ccswap.png', 'ccswapGate', 'user');
+    newGate(gateX,  gateY, 8, 2, layer, stage, 'https://raw.githubusercontent.com/JulianBeaulieu/QBlocks-Beta/main/img/ccswap.png', 'ccswapGate', 'user');
   } else if(type === 'cswap'){
-    newGate(blockSnapSize * (gateX - 3), blockSnapSize * gateY, 6, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cswap.png', 'cswapGate', 'user');
+    newGate(gateX,  gateY, 6, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cswap.png', 'cswapGate', 'user');
   } else if(type === 'swap'){
-    newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/swap.png', 'swapGate', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/swap.png', 'swapGate', 'user');
   } else if(type === 'pete'){
-    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pete.png', 'peteGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pete.png', 'peteGate', 'user');
   } else if(type === 'pipe'){
-    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pipe.png', 'pipeGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pipe.png', 'pipeGate', 'user');
   } else if(type === 'white'){
-    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/white.png', 'white', 'user', 'circle');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/white.png', 'white', 'user', 'circle');
   } else if(type === 'black'){
-    newGate(blockSnapSize * (gateX - 1), blockSnapSize * gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/black.png', 'black', 'user', 'circle');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/black.png', 'black', 'user', 'circle');
   } else if(type === 'wbmist'){
-    newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wb.png', 'wbMist', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wb.png', 'wbMist', 'user');
   } else if(type === 'wnegbmist'){
-    newGate(blockSnapSize * (gateX - 2), blockSnapSize * gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wnegb.png', 'w-bMist', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wnegb.png', 'w-bMist', 'user');
   }
 
   stage.add(layer);
