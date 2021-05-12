@@ -39,8 +39,13 @@
 }
 
 .border-bottom {
-  border-bottom: 1px dashed #A9A9A9;
+  border-bottom: 1px dashed black;
   width: 100%;
+}
+
+.border-middle {
+  border-left: 1px dashed black;
+  height: 170px;
 }
 
 .center-divs{
