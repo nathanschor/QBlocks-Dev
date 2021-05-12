@@ -108,3 +108,12 @@
 .my-float{
 	margin-top:22px;
 }
+
+.instruction{
+	background-color: orange;
+	color: black;
+}
+
+.instruction:hover{
+	background-color: darkorange;
+}
