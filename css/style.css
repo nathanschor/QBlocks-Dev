@@ -38,6 +38,11 @@
   height: 220px;
 }
 
+.border-bottom {
+  border-bottom: 1px dashed #A9A9A9;
+  width: 100%;
+}
+
 .center-divs{
   position: absolute;
   left: 15%;
