@@ -219,50 +219,50 @@ stage.on('contentContextmenu', (e) => {
   e.evt.preventDefault();
 });
 
-var helpButton = new Konva.Label({
-  x: 0,
-  y: 0,
-  opacity: 0.75
-});
-
-helpButton.add(new Konva.Tag({
-  fill: '#b1b1b1',
-  lineJoin: 'round',
-  shadowColor: '#b1b1b1',
-  shadowBlur: 5,
-  shadowOffset: 10,
-  shadowOpacity: 0.5,
-  cornerRadius: 5
-}));
-
-helpButton.add(new Konva.Text({
-  text: 'Instructions',
-  fontFamily: 'Calibri',
-  fontSize: 18,
-  padding: 5,
-  fill: 'black'
-}));
-
-helpButton.on('click', () => {
-  modal.style.display = "block";
-})
-
-helpButton.on('clmouseoutick', function () {
-  this.fill = 'red';
-  layer.draw();
-  gridLayer.draw();
-});
-
-helpButton.on('mouseenter', function () {
-  stage.container().style.cursor = 'pointer';
-});
-
-helpButton.on('mouseleave', function () {
-  stage.container().style.cursor = 'default';
-});
-
-layer.add(helpButton)
-gridLayer.add(helpButton);
+// var helpButton = new Konva.Label({
+//   x: 0,
+//   y: 0,
+//   opacity: 0.75
+// });
+//
+// helpButton.add(new Konva.Tag({
+//   fill: '#b1b1b1',
+//   lineJoin: 'round',
+//   shadowColor: '#b1b1b1',
+//   shadowBlur: 5,
+//   shadowOffset: 10,
+//   shadowOpacity: 0.5,
+//   cornerRadius: 5
+// }));
+//
+// helpButton.add(new Konva.Text({
+//   text: 'Instructions',
+//   fontFamily: 'Calibri',
+//   fontSize: 18,
+//   padding: 5,
+//   fill: 'black'
+// }));
+//
+// helpButton.on('click', () => {
+//   modal.style.display = "block";
+// })
+//
+// helpButton.on('clmouseoutick', function () {
+//   this.fill = 'red';
+//   layer.draw();
+//   gridLayer.draw();
+// });
+//
+// helpButton.on('mouseenter', function () {
+//   stage.container().style.cursor = 'pointer';
+// });
+//
+// helpButton.on('mouseleave', function () {
+//   stage.container().style.cursor = 'default';
+// });
+//
+// layer.add(helpButton)
+// gridLayer.add(helpButton);
 
 gridLayer.draw();
 
