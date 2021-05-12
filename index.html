@@ -715,15 +715,26 @@
 <!-- ############################################################################################################ -->
 <!-- ############################################################################################################ -->
 
-                                                                <!-- The Modal -->
-                                                                <div id="myModal" class="modal">
-
-                                                                    <!-- Modal content -->
+                                                                <!-- The Modals -->
+                                                                <div id="introductionModal" class="modal">
                                                                     <div class="modal-content">
                                                                         <span class="close-modal">&times;</span>
                                                                         <iframe class="iframe-modal embed-responsive-item" width="100%" height="480" src="https://www.youtube.com/embed/qN3OueBm9F4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                                                     </div>
+                                                                </div>
 
+                                                                <div id="instructionModal" class="modal">
+                                                                    <div class="modal-content">
+                                                                        <span class="close-modal">&times;</span>
+                                                                        <iframe class="iframe-modal embed-responsive-item" width="100%" height="480" src="https://www.youtube.com/embed/qN3OueBm9F4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div id="mistyStatesModal" class="modal">
+                                                                    <div class="modal-content">
+                                                                        <span class="close-modal">&times;</span>
+                                                                        <iframe class="iframe-modal embed-responsive-item" width="100%" height="480" src="https://www.youtube.com/embed/qN3OueBm9F4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                                    </div>
                                                                 </div>
 
                                                                 <div class="expand-child-marginally-past-parent"><!-- To make child exceed parent, add  'expand-child-past-parent' to class-->
@@ -742,17 +753,17 @@
                                                                                             </div>
                                                                                             <div class="row ">
                                                                                                 <div class="col-sm-12 col-md-12 col-lg-12" id="introduction-button">
-                                                                                                    <a class="button-Instruction instruction" onclick = "">
+                                                                                                    <a class="button-Instruction instruction" onclick = "introduction_Modal.style.display = 'block';">
                                                                                                         <p class="my-float">Introduction</p>
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <div class="col-sm-12 col-md-12 col-lg-12" id="classical-states-button">
-                                                                                                    <a class="button-Instruction instruction" onclick = "">
+                                                                                                    <a class="button-Instruction instruction" onclick = "instruction_Modal.style.display = 'block';">
                                                                                                         <p class="my-float">Using the canvas</p>
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <div class="col-sm-12 col-md-12 col-lg-12" id="misty-states-button">
-                                                                                                    <a class="button-Instruction instruction" onclick = "">
+                                                                                                    <a class="button-Instruction instruction" onclick = "mistyStates_Modal.style.display = 'block';">
                                                                                                         <p class="my-float">Misty States</p>
                                                                                                     </a>
                                                                                                 </div>
@@ -896,7 +907,7 @@
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Beta/js/GatesAndParticles/Pipe.js"></script>
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Dev/js/build.js"></script>
                                                                 <script src="https://julianbeaulieu.com/QBlocks-Dev/js/buttons.js"></script>
-                                                                <script src="https://julianbeaulieu.com/QBlocks-Beta/js/popup-modal.js"></script>
+                                                                <script src="https://julianbeaulieu.com/QBlocks-Dev/js/popup-modal.js"></script>
 
 
 

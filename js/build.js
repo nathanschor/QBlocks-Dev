@@ -277,7 +277,6 @@ var listOfObjects = ['not', 'cnot', 'white', 'black', 'swap', 'cswap', 'ccswap',
 for (i = 0; i < listOfObjects.length; i++) {
   let obj = listOfObjects[i];
   let id = 'drag-' + obj;
-  console.log(id);
   document.getElementById(id).addEventListener('dragstart', function (e) {
     type = obj;
   });
