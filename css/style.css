@@ -44,7 +44,7 @@
 }
 
 .border-middle {
-  border-left: 1px dashed black;
+  border-left: 1px dotted black;
   height: 170px;
 }
 
