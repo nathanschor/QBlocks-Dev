@@ -3,7 +3,7 @@
 	--large-dimension: 6vw;
 }
 
-.button, .start-stop-button, .button-clearAll, .button-Instruction{
+.button, .start-stop-button, .button-clearAll, .button-Instruction, .button-Instruction-small-screen{
 	display: block;
 	color:#FFF;
 	text-align: center;
@@ -37,9 +37,17 @@
 
 .button-Instruction{
 	width:140px;
-	height:40px;
-	line-height: 40px;
+	height:140px;
+	line-height: 140px;
 	border-radius:5%;
+	font-size: 15px;
+}
+
+.button-Instruction-small-screen{
+	width: 90vw;
+	height: 4vh;
+	line-height: 4vh;
+	border-radius:2%;
 	font-size: 15px;
 }
 
