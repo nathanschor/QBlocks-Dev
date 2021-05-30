@@ -205,20 +205,19 @@ var stage = new Konva.Stage({
 });
 
 var gridLayer = new Konva.Layer();
-var padding = blockSnapSize*2;
 
-for (var i = 0; i < width / padding; i++) {
+for (var i = 0; i < width / gridSnapSize; i++) {
   gridLayer.add(new Konva.Line({
-    points: [Math.round(i * padding) + 0.5, 0, Math.round(i * padding) + 0.5, height],
+    points: [Math.round(i * gridSnapSize) + 0.5, 0, Math.round(i * gridSnapSize) + 0.5, height],
     stroke: '#ddd',
     strokeWidth: 1,
   }));
 }
 
 gridLayer.add(new Konva.Line({points: [0,0,10,10]}));
-for (var j = 0; j < height / padding; j++) {
+for (var j = 0; j < height / gridSnapSize; j++) {
   gridLayer.add(new Konva.Line({
-    points: [0, Math.round(j * padding), width, Math.round(j * padding)],
+    points: [0, Math.round(j * gridSnapSize), width, Math.round(j * gridSnapSize)],
     stroke: '#ddd',
     strokeWidth: 1,
   }));
@@ -289,12 +288,28 @@ con.addEventListener('drop', function (e) {
   // we can register it manually:
   stage.setPointersPositions(e);
   console.log("TYPE OF DROP: " + type);
-  x = stage.getPointerPosition().x;
-  y = stage.getPointerPosition().y;
-  gateY = Math.round(y / gridSnapSize) * gridSnapSize - 60;
-  gateX = Math.round(x / gridSnapSize) * gridSnapSize - 60;
+  let x = stage.getPointerPosition().x;
+  let y = stage.getPointerPosition().y;
+  let gateY = 0;
+  let gateX = 0;
 
-  console.log("X: " + gateX + " | Y: " + gateY);
+  for (var i = 1; i < width / gridSnapSize; i++) {
+    let temp = Math.round((x / gridSnapSize) * gridSnapSize) + 0.5
+    if((Math.round((i-1) * gridSnapSize) + 0.5) < temp &&
+        temp < (Math.round(i * gridSnapSize) + 0.5)){
+      gateX = Math.round((i-1) * gridSnapSize) + 0.5;
+    }
+  }
+
+  for (var j = 1; j < height / gridSnapSize; j++) {
+    let temp = Math.round((y / gridSnapSize) * gridSnapSize)
+    if((Math.round((j-1) * gridSnapSize)) < temp &&
+        temp < (Math.round(j * gridSnapSize))){
+      gateY = Math.round((j-1) * gridSnapSize);
+    }
+  }
+
+  console.log("gateX: " + gateX + " | gateY: " + gateY);
 
   if(type === 'cnot'){
     newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cnot.png', 'cnotGate', 'user');
