@@ -1,3 +1,8 @@
+:root {
+  --small-dimension: 10vw;
+  --large-dimension: 100%;
+}
+
 #desc {
   position : absolute;
   top: 5px;
@@ -7,6 +12,7 @@
 .min-well{
   min-width: 50vw;
 }
+
 
 .controll-box{
   text-decoration: underline;
@@ -30,8 +36,13 @@
   height: 50%;
 }
 
-.row-bottom-margin { margin-bottom: 0px; }
-.row-top-margin { margin-top: 30px; }
+.row-bottom-margin {
+  margin-bottom: 0px;
+}
+
+.row-top-margin {
+  margin-top: 30px;
+}
 
 .border-right {
   border-right: 1px solid #A9A9A9;
@@ -58,4 +69,93 @@
 
 .green-line{
   border: 3px solid green;
+}
+
+.largeControlls, .mediumControlls, .smallControlls{
+  display:block; /*default behavior*/
+}
+
+/*hide div on all screens with 700 and higher width*/
+@media only screen and (max-width: 1500px) {
+  .largeControlls{
+    display:none;
+  }
+
+  /*.expand-child-marginally-past-parent {*/
+  /*  width: 100vw;*/
+  /*  position: relative;*/
+  /*  left: calc(-50vw + 50%);*/
+  /*}*/
+
+
+  .box{
+    position: relative;
+    width: 88vw;
+    left: calc(-25vw + 35%);
+  }
+
+  .center-divs{
+    position: absolute;
+    left: 0%;
+    right: 0vw;
+  }
+}
+
+/*hide div on all screens with 700 and higher width*/
+@media only screen and (max-width: 1050px) {
+  .expand-child-marginally-past-parent {
+    width: 100vw;
+    position: relative;
+    left: calc(-50vw + 50%);
+  }
+
+  .box{
+    width: 100vw;
+    position: relative;
+    left: calc(-50vw + 50%);
+  }
+}
+
+/*hide div on all screens with 700 and lower width*/
+@media only screen and (max-width: 780px) {
+  .mediumControlls {
+    display:none;
+  }
+
+  .border-right {
+    border-right: 1px solid #A9A9A9;
+    height: var(--small-dimension);
+  }
+
+  .border-bottom {
+    border-bottom: 1px dashed black;
+    width: 100%;
+  }
+
+  .border-middle {
+    background-image: linear-gradient(to bottom, black 40%, rgba(255, 255, 255, 0) 0%);
+    background-position: left;
+    background-size: 1px 10px;
+    background-repeat: repeat-y;
+    height: var(--small-dimension);
+  }
+
+  .expand-child-marginally-past-parent {
+    width: 100vw;
+    position: relative;
+    left: calc(-50vw + 50%);
+  }
+
+  .row-top-margin { margin-top: var(--small-dimension); }
+
+  .controll-box{
+    font-size: 4vw;
+  }
+}
+
+/*hide div on all screens with 700 and higher width*/
+@media only screen and (min-width: 780px) {
+  .smallControlls{
+    display:none;
+  }
 }

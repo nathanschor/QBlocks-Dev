@@ -1,27 +1,46 @@
-.button{
+:root {
+	--small-dimension:  10vw;
+	--large-dimension: 6vw;
+}
+
+.button, .start-stop-button, .button-clearAll, .button-Instruction{
 	display: block;
-	width:60px;
-	height:60px;
-  	line-height: 60px;
 	color:#FFF;
-	border-radius:50%;
-  	font-size: 13px;
 	text-align: center;
 	box-shadow: 2px 2px 3px #999;
 	vertical-align: top;
 }
 
+.button{
+	width:60px;
+	height:60px;
+  	line-height: 60px;
+	border-radius:50%;
+  	font-size: 13px;
+}
+
 .start-stop-button{
-	display: block;
 	width:60px;
 	height:60px;
 	line-height: 85px;
-	color:#FFF;
 	border-radius:50%;
 	font-size: 13px;
-	text-align: center;
-	box-shadow: 2px 2px 3px #999;
-	vertical-align: center;
+}
+
+.button-clearAll{
+	width:140px;
+	height:60px;
+	line-height: 60px;
+	border-radius:5%;
+	font-size: 15px;
+}
+
+.button-Instruction{
+	width:140px;
+	height:40px;
+	line-height: 40px;
+	border-radius:5%;
+	font-size: 15px;
 }
 
 .button-img{
@@ -36,36 +55,51 @@
 	padding: 0px 5px 5px 5px;
 }
 
+@media only screen and (max-width: 780px) {
+	.button, .start-stop-button, .button-clearAll, .button-Instruction{
+		display: block;
+		color:#FFF;
+		text-align: center;
+		box-shadow: 2px 2px 3px #999;
+		vertical-align: top;
+	}
+
+	.button{
+		width: var(--small-dimension);
+		height: var(--small-dimension);
+		line-height:  var(--small-dimension);
+		border-radius:50%;
+		font-size: 13px;
+	}
+
+	.start-stop-button, .button-clearAll{
+		width:  var(--small-dimension);
+		height:  var(--small-dimension);
+		line-height:  var(--small-dimension);
+		border-radius:50%;
+		font-size: 13px;
+	}
+
+	.button-img {
+		width: auto;
+		height:  var(--small-dimension);
+		padding: 1vw 1vw 1vw 1vw;
+	}
+
+	.button-img-top{
+		width: auto;
+		height:  var(--small-dimension);
+		padding: 0vw 1vw 1vw 1vw;
+	}
+}
+
+
 .button-img:hover{
 	opacity: 0.7;
 }
 
 .left-space{
 	margin-left: 10px !important;
-}
-
-.button-clearAll{
-	display: block;
-	width:140px;
-	height:60px;
-  	line-height: 60px;
-	color:#FFF;
-	border-radius:5%;
-  	font-size: 15px;
-	text-align: center;
-	box-shadow: 2px 2px 3px #999;
-}
-
-.button-Instruction{
-	display: block;
-	width:140px;
-	height:40px;
-	line-height: 40px;
-	color:#FFF;
-	border-radius:5%;
-	font-size: 15px;
-	text-align: center;
-	box-shadow: 2px 2px 3px #999;
 }
 
 .black-ball{

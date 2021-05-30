@@ -13,6 +13,8 @@ var tween = null;
 var blockSnapSize = 30;
 var gridSnapSize = 60;
 var userGeneratedParticles = [];
+var timeout;
+var lastTap = 0;
 
 /*############################################################################*/
 /*####################### Ball Definition ####################################*/
@@ -173,6 +175,17 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
       layer.draw();
     });
 
+    rectangle.on('touchend', (e) => {
+      var currentTime = new Date().getTime();
+      var tapLength = currentTime - lastTap;
+      clearTimeout(timeout);
+      if (tapLength < 500 && tapLength > 0) {
+        rectangle.destroy();
+        layer.draw();
+      }
+      lastTap = currentTime;
+    });
+
     // do something else on right click
     rectangle.on('stop-button', (e) => {
       // rectangle.destroy();
@@ -220,6 +233,32 @@ stage.on('contentContextmenu', (e) => {
 });
 
 gridLayer.draw();
+
+function fitStageIntoParentContainer() {
+  var container = document.querySelector('#stage-parent');
+
+// now we need to fit stage into parent
+  var containerWidth = document.getElementById('canvas-div').clientWidth;
+// to do this we need to scale the stage
+  var scaleX = containerWidth / width;
+
+// now we need to fit stage into parent
+  var containerHeight = (window.innerHeight * 0.5);
+// to do this we need to scale the stage
+  var scaleY = containerHeight / height;
+  console.log(containerWidth+" x " + containerHeight);
+// uncomment to enable "uniform stretch"
+//scaleX = scaleY =Math.min(scaleX,scaleY);
+
+  stage.width(width * scaleX);
+  stage.height(height * scaleY);
+  stage.scale({ x: scaleX, y: scaleY });
+  stage.draw();
+}
+
+fitStageIntoParentContainer();
+// adapt the stage on any window resize
+window.addEventListener('resize', fitStageIntoParentContainer);
 
 /*############################################################################*/
 /*####################### Drag and Drop ######################################*/
