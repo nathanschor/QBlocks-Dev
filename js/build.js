@@ -570,9 +570,17 @@ function getShapes() {
 
   let levels = splitElementsIntoGroupsByElementLevel(elements);
 
+  console.log(levels);
+
+  levels = removeDisconectedLevels(levels);
+
   var matchedObjects = matchLevels(levels);
 
+  console.log(matchedObjects);
+
   matchedObjects = removeSingleObjects(matchedObjects);
+
+  console.log(matchedObjects);
 
   if(matchedObjects.length === 0){
     return ;
@@ -647,6 +655,23 @@ function removeSingleObjects(objects) {
     if(objects[i].isComplete()){
       convertedObjects.push(objects[i]);
     }
+  }
+
+  return convertedObjects;
+};
+
+function removeDisconectedLevels(levels){
+  var convertedObjects = {};
+  let keys = Object.keys(levels);
+  var prevKey = parseInt(keys[0]);
+  convertedObjects[prevKey] = levels[prevKey];
+
+  for (var i = 1; i < keys.length; i++) {
+    if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
+      convertedObjects[keys[i]] = levels[keys[i]];
+    }
+
+    prevKey = keys[i];
   }
 
   return convertedObjects;
