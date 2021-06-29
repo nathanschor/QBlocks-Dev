@@ -312,27 +312,27 @@ con.addEventListener('drop', function (e) {
   console.log("gateX: " + gateX + " | gateY: " + gateY);
 
   if(type === 'cnot'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cnot.png', 'cnotGate', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/cnot.png', 'cnotGate', 'user');
   } else if(type === 'not'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/not.png', 'notGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/not.png', 'notGate', 'user');
   } else if(type === 'ccswap'){
-    newGate(gateX,  gateY, 8, 2, layer, stage, 'https://raw.githubusercontent.com/JulianBeaulieu/QBlocks-Beta/main/img/ccswap.png', 'ccswapGate', 'user');
+    newGate(gateX,  gateY, 8, 2, layer, stage, 'img/ccswap.png', 'ccswapGate', 'user');
   } else if(type === 'cswap'){
-    newGate(gateX,  gateY, 6, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/cswap.png', 'cswapGate', 'user');
+    newGate(gateX,  gateY, 6, 2, layer, stage, 'img/cswap.png', 'cswapGate', 'user');
   } else if(type === 'swap'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/swap.png', 'swapGate', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/swap.png', 'swapGate', 'user');
   } else if(type === 'pete'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pete.png', 'peteGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pete.png', 'peteGate', 'user');
   } else if(type === 'pipe'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/pipe.png', 'pipeGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pipe.png', 'pipeGate', 'user');
   } else if(type === 'white'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/white.png', 'white', 'user', 'circle');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'white', 'user', 'circle');
   } else if(type === 'black'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/black.png', 'black', 'user', 'circle');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'black', 'user', 'circle');
   } else if(type === 'wbmist'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wb.png', 'wbMist', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user');
   } else if(type === 'wnegbmist'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/wnegb.png', 'w-bMist', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user');
   }
 
   stage.add(layer);
@@ -809,7 +809,7 @@ function drawObjects(objects, userGen=false){
   let generationType = userGen ? "user" : "simulation";
   objects.forEach((object, i) => {
     if(object.constructor.name.toLowerCase() === 'ball'){
-      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, 'https://julianBeaulieu.com/QBlocks-Beta/img/' + ((object.color === 1) ? 'white' : 'black') + '.png', ((object.color === 1) ? 'white' : 'black'), generationType, 'circle');
+      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, 'img/' + ((object.color === 1) ? 'white' : 'black') + '.png', ((object.color === 1) ? 'white' : 'black'), generationType, 'circle');
     } else if(object.constructor.name.toLowerCase() === 'mist'){
       if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
         newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType);
