@@ -1,4 +1,4 @@
-function Ball(color=0, sign='+', x, y, radius){ //0 is black, 1 is white
+function Ball(color=0, sign='+', x, y, radius, id = 0){ //0 is black, 1 is white
   this.color = color;
   this.sign = sign;
   this.x = x;
@@ -7,6 +7,7 @@ function Ball(color=0, sign='+', x, y, radius){ //0 is black, 1 is white
   this.level = this.y;
   this.elementType = "Ball";
   this.elementSize = 1;
+  this.id = id;
 
   this.toString = function toString(){
     return ((this.color === 1) ? 'White' : 'Black') + ' Ball with ' + this.sign + ' sign';
@@ -38,5 +39,9 @@ function Ball(color=0, sign='+', x, y, radius){ //0 is black, 1 is white
 
   this.getCenterPosition = function getCenterPosition(otherX, otherY){
     return 0;
+  }
+
+  this.getID = function getID(){
+    return [this.id];
   }
 }

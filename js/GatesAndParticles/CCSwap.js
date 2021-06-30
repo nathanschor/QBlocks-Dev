@@ -1,4 +1,4 @@
-function CCSwap(x, y, width, height){
+function CCSwap(x, y, width, height, id = 0){
   this.x = x;
   this.y = y;
   this.width = width;
@@ -15,6 +15,7 @@ function CCSwap(x, y, width, height){
   this.centerRightElementPosition = 0;
   this.rightElementPosition = 0;
   this.alreadyRan = false;
+  this.id = id;
 
 
   this.run = function ccnot(multiplicity = 3){
@@ -157,5 +158,9 @@ function CCSwap(x, y, width, height){
       this.rightElementPosition = elementPositionNumber;
       this.right = element;
     }
+  }
+
+  this.getID = function getID(){
+    return this.left.getID().concat(this.center_left.getID().concat(this.center_right.getID()).concat(this.right.getID()).concat([this.id]));
   }
 }

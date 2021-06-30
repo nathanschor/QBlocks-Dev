@@ -1,4 +1,4 @@
-function Swap(x, y, width, height){
+function Swap(x, y, width, height, id = 0){
   this.x = x;
   this.y = y;
   this.width = width;
@@ -11,6 +11,7 @@ function Swap(x, y, width, height){
   this.leftElementPosition = 0;
   this.rightElementPosition = 0;
   this.alreadyRan = false;
+  this.id = id;
 
   this.run = function swap(multiplicity = 3){
     if(this.alreadyRan){
@@ -120,5 +121,9 @@ function Swap(x, y, width, height){
       this.rightElementPosition = elementPositionNumber;
       this.right = element;
     }
+  }
+
+  this.getID = function getID(){
+    return this.left.getID().concat(this.right.getID()).concat([this.id]);
   }
 }

@@ -1,10 +1,11 @@
-function Mist(colorLeft=0, signLeft='+', colorRight=0, signRight='+', x, y, width, height){ //0 is black, 1 is white
+function Mist(colorLeft=0, signLeft='+', colorRight=0, signRight='+', x, y, width, height, id = 0){ //0 is black, 1 is white
   this.colorLeft = colorLeft;
   this.signLeft = signLeft;
   this.x = x;
   this.y = y;
   this.width = width;
   this.height = height;
+  this.id = id;
 
   this.colorRight = colorRight;
   this.signRight = signRight;
@@ -19,4 +20,7 @@ function Mist(colorLeft=0, signLeft='+', colorRight=0, signRight='+', x, y, widt
     return( false );
   }
 
+  this.getID = function getID(){
+    return [this.id];
+  }
 }

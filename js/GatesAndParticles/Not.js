@@ -1,4 +1,4 @@
-function Not(x, y, width, height){
+function Not(x, y, width, height, id = 0){
   this.x = x;
   this.y = y;
   this.width = width;
@@ -9,6 +9,7 @@ function Not(x, y, width, height){
   this.elementSize = 1;
   this.centerElementPosition = 0;
   this.alreadyRan = false;
+  this.id = id;
 
   this.run = function not(multiplicity = 3){
     if(this.alreadyRan){
@@ -71,5 +72,9 @@ function Not(x, y, width, height){
   this.getCenterPosition = function getCenterPosition(otherX, otherY){
     this.centerUsed = true;
     return 0;
+  }
+
+  this.getID = function getID(){
+    return this.center.getID().concat([this.id]);
   }
 }
