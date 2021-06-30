@@ -574,6 +574,8 @@ function getShapes() {
 
   levels = removeDisconectedLevels(levels);
 
+  console.log(levels);
+
   var matchedObjects = matchLevels(levels);
 
   console.log(matchedObjects);
@@ -588,7 +590,7 @@ function getShapes() {
 
   let simulationOutcome = simulate(matchedObjects);
 
-  clearSimulations();
+  //clearSimulations();
 
   drawObjects(simulationOutcome);
 
