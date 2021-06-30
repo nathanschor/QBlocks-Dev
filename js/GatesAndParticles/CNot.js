@@ -25,7 +25,7 @@ function CNot(x, y, width, height, id = 0){
       this.right.updateLevel();
       this.alreadyRan = true;
 
-      if(this.left.color === 1){
+      if(this.left.color === 0){
         this.right.color = Math.abs(this.right.color - 1);
 
         return [this.left, this.right];

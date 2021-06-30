@@ -31,7 +31,7 @@ function CSwap(x, y, width, height, id = 0){
       this.right.updateLevel();
       this.alreadyRan = true;
 
-      if(this.left.color === 1){
+      if(this.left.color === 0){
         tmp = this.center.x;
         this.center.x = this.right.x;
         this.right.x = tmp;
