@@ -124,6 +124,6 @@ function Swap(x, y, width, height, id = 0){
   }
 
   this.getID = function getID(){
-    return this.left.getID().concat(this.right.getID()).concat([this.id]);
+    return Array.from(new Set(this.left.getID().concat(this.right.getID()).concat([this.id])));
   }
 }

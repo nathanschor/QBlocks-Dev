@@ -71,6 +71,6 @@ function Pipe(x, y, width, height, id = 0){
   }
 
   this.getID = function getID(){
-    return this.center.getID().concat([this.id]);
+    return Array.from(new Set(this.center.getID().concat([this.id])));
   }
 }
