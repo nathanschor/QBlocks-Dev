@@ -112,6 +112,15 @@ function CNot(x, y, width, height, id = 0){
   }
 
   this.getID = function getID(){
-    return Array.from(new Set(this.left.getID().concat(this.right.getID()).concat([this.id])));
+    var ids = [this.id];
+
+    if(!(this.left === null)){
+      ids = ids.concat(this.left.getID());
+    }
+    if(!(this.right === null)){
+      ids = ids.concat(this.right.getID());
+    }
+
+    return Array.from(new Set(ids));
   }
 }

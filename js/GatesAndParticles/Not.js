@@ -75,6 +75,12 @@ function Not(x, y, width, height, id = 0){
   }
 
   this.getID = function getID(){
-    return Array.from(new Set(this.center.getID().concat([this.id])));
+    var ids = [this.id];
+
+    if(!(this.center === null)){
+      ids = ids.concat(this.center.getID());
+    }
+
+    return Array.from(new Set(ids));
   }
 }

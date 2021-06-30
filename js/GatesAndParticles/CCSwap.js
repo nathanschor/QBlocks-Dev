@@ -161,6 +161,21 @@ function CCSwap(x, y, width, height, id = 0){
   }
 
   this.getID = function getID(){
-    return Array.from(new Set(this.left.getID().concat(this.center_left.getID().concat(this.center_right.getID()).concat(this.right.getID()).concat([this.id]))));
+    var ids = [this.id];
+
+    if(!(this.left === null)){
+      ids = ids.concat(this.left.getID());
+    }
+    if(!(this.center_left === null)){
+      ids = ids.concat(this.center_left.getID());
+    }
+    if(!(this.center_right === null)){
+      ids = ids.concat(this.center_right.getID());
+    }
+    if(!(this.right === null)){
+      ids = ids.concat(this.right.getID());
+    }
+
+    return Array.from(new Set(ids));
   }
 }
