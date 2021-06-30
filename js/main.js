@@ -437,29 +437,40 @@ function toggleHideOutput() {
   hideResults = (checkBox.checked === true);
 }
 
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() *
+        charactersLength));
+  }
+  return result;
+}
+
 function createObject(object) {
   if(object.attrs.type.toLowerCase().includes("ccswap")){
-    return new CCSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new CCSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cswap")){
-    return new CSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new CSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cnot")){
-    return new CNot(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new CNot(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("swap")){
-    return new Swap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new Swap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("not")){
-    return new Not(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new Not(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("pipe")){
-    return new Pipe(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new Pipe(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("pete")){
-    return new Pete(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new Pete(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("black")){
-    return new Ball(0, '+', object.attrs.x + object.attrs.height/2, object.attrs.y + object.attrs.height/2, object.attrs.height/2);
+    return new Ball(0, '+', object.attrs.x + object.attrs.height/2, object.attrs.y + object.attrs.height/2, object.attrs.height/2, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("white")){
-    return new Ball(1, '+', object.attrs.x + object.attrs.height/2, object.attrs.y + object.attrs.height/2, object.attrs.height/2);
+    return new Ball(1, '+', object.attrs.x + object.attrs.height/2, object.attrs.y + object.attrs.height/2, object.attrs.height/2, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("wb")){
-    return new Mist(1, '+', 0, '+', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new Mist(1, '+', 0, '+', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("w-b")){
-    return new Mist(1, '+', 0, '1', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
+    return new Mist(1, '+', 0, '1', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else {
     console.log("Something went wrong while creating the objects");
     return null;
@@ -584,11 +595,17 @@ function getShapes() {
 
   let levels = splitElementsIntoGroupsByElementLevel(elements);
 
+  console.log("Getting Levels");
+  console.log(levels);
+
   levels = removeDisconectedLevels(levels);
 
   var matchedObjects = matchLevels(levels);
 
   matchedObjects = removeSingleObjects(matchedObjects);
+
+  console.log("Getting IDs");
+  console.log(matchedObjects[0].getID());
 
   if(matchedObjects.length === 0){
     return ;
