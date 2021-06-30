@@ -68,8 +68,8 @@ function reset(){
   console.log("Clearing simulation objects");
   //document.getElementById("start-button-tag").innerText = "Start";
   showUsergenerated();
-  //clearSimulations();
-  clearBalls();
+  clearSimulations();
+  //clearBalls();
 }
 
 function clearAll(){

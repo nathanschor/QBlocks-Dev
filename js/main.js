@@ -15,7 +15,7 @@ var gridSnapSize = 60;
 var userGeneratedParticles = [];
 var timeout;
 var lastTap = 0;
-var hideResults = true;
+var hideResults = false;
 
 /*############################################################################*/
 /*####################### Ball Definition ####################################*/
@@ -647,12 +647,28 @@ function matchLevels(levels) {
 
 function matchElements(aboveRow, belowRow){
   var matchedObjects = [];
+  let ids = [];
+  let idDict = {};
+
+  aboveRow.forEach((element, i) => {
+    idDict[element.id] = element;
+  });
 
   belowRow.forEach((element, i) => {
     let temp = matchElement(element, aboveRow);
     aboveRow = temp[1];
     matchedObjects.push(temp[0]);
+    ids = Array.from(new Set(ids.concat(temp[0].getID())));
   });
+
+  Object.keys(idDict).forEach((key, i) => {
+    if( !(ids.includes(key)) ){
+      matchedObjects.push(idDict[key]);
+    }
+  });
+
+
+  matchedObjects = Array.from(new Set(matchedObjects));
 
   return matchedObjects;
 };
@@ -706,11 +722,15 @@ function simulate(matchedObjects){
   var newObjects = [];
 
   for (var i = 0; i < matchedObjects.length; i++) {
-    let elementList = matchedObjects[i].run();
 
-    elementList.forEach((item, i) => {
-      newObjects.push(item);
-    });
+    try {
+      let elementList = matchedObjects[i].run();
+
+      elementList.forEach((item, i) => {
+        newObjects.push(item);
+      });
+    }
+    catch (e) {}
   }
 
   return newObjects;
