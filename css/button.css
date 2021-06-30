@@ -160,3 +160,7 @@
 .instruction:hover{
 	background-color: darkorange;
 }
+
+.toggleP{
+	font-size: 16px;
+}

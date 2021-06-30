@@ -15,6 +15,7 @@ var gridSnapSize = 60;
 var userGeneratedParticles = [];
 var timeout;
 var lastTap = 0;
+var hideResults = true;
 
 /*############################################################################*/
 /*####################### Ball Definition ####################################*/
@@ -103,8 +104,9 @@ function newBall(x, y, radius, layer, stage, color, createdBy) {
 /*####################### Gate Definition ####################################*/
 /*############################################################################*/
 
-function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, shapetype = 'rectangle') {
+function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, shapetype = 'rectangle', hidden = false) {
   let tempShadowShapeType = 'shadow' + shapetype;
+
   var shadowRectangle = new Konva.Rect({
     x: x,
     y: y,
@@ -168,11 +170,15 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
     });
 
     layer.add(rectangle);
+
     layer.batchDraw();
     // do something else on right click
     rectangle.on('contextmenu', (e) => {
       rectangle.destroy();
       layer.draw();
+      if(hidden){
+        newGate(x, y, width, height, layer, stage, 'img/' + type + '.png', type, "simulation", 'circle', false);
+      }
     });
 
     rectangle.on('touchend', (e) => {
@@ -182,6 +188,9 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
       if (tapLength < 500 && tapLength > 0) {
         rectangle.destroy();
         layer.draw();
+        if(hidden){
+          newGate(x, y, width, height, layer, stage, 'img/' + type + '.png', type, "simulation", 'circle', false);
+        }
       }
       lastTap = currentTime;
     });
@@ -423,6 +432,11 @@ layer.on('dragmove', function (e) {
 /*####################### Simulation Code ####################################*/
 /*############################################################################*/
 
+function toggleHideOutput() {
+  var checkBox = document.getElementById("checkIfHidden");
+  hideResults = (checkBox.checked === true);
+}
+
 function createObject(object) {
   if(object.attrs.type.toLowerCase().includes("ccswap")){
     return new CCSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height);
@@ -456,7 +470,9 @@ function drawObjects(objects, userGen=false){
   let generationType = userGen ? "user" : "simulation";
   objects.forEach((object, i) => {
     if(object.constructor.name.toLowerCase() === 'ball'){
-      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, 'img/' + ((object.color === 1) ? 'white' : 'black') + '.png', ((object.color === 1) ? 'white' : 'black'), generationType, 'circle');
+      let imgFilePath = hideResults ? 'img/square.png' : ('img/' + ((object.color === 1) ? 'white' : 'black') + '.png');
+
+      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, imgFilePath, ((object.color === 1) ? 'white' : 'black'), generationType, 'circle', hideResults);
     } else if(object.constructor.name.toLowerCase() === 'mist'){
       if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
         newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType);
@@ -475,15 +491,13 @@ function drawObjects(objects, userGen=false){
 
 function clearBalls() {
   // select shapes by name
-  let shapes = ["Image", "Circle"]
-  var gates = []
-  var particles = []
+  let shapes = ["Image", "Circle", "Square"];
 
   shapes.forEach((shape, i) => {
     var shapeInStage = stage.find(shape);
     shapeInStage.each(function (object) {
       if(!object.attrs.shapeType.toLowerCase().includes("shadow")){
-        if(object.attrs.shapeType.toLowerCase().includes("circle")){
+        if(object.attrs.shapeType.toLowerCase().includes("circle") || object.attrs.shapeType.toLowerCase().includes("square")){
           object.destroy();
           layer.draw();
         }
@@ -570,19 +584,11 @@ function getShapes() {
 
   let levels = splitElementsIntoGroupsByElementLevel(elements);
 
-  console.log(levels);
-
   levels = removeDisconectedLevels(levels);
-
-  console.log(levels);
 
   var matchedObjects = matchLevels(levels);
 
-  console.log(matchedObjects);
-
   matchedObjects = removeSingleObjects(matchedObjects);
-
-  console.log(matchedObjects);
 
   if(matchedObjects.length === 0){
     return ;
