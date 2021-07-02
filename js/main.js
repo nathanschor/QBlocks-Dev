@@ -614,6 +614,10 @@ function getShapes() {
     });
   });
 
+  if(elements.length === 0){
+    return ;
+  }
+
   // #### This will remove intermittent balls for the animation to be smooth
   // if(document.getElementById("start-button-tag").innerText.toLowerCase() === "start"){
   //   document.getElementById("start-button-tag").innerText = "Continue";
