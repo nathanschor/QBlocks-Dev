@@ -61,18 +61,33 @@ function createWNegBMist(){
 
 function start(){
   console.log("Starting simulations");
+  $('#loading-sign').removeClass('hidden');
+  $(".loader-wrapper").fadeIn("fast");
+
   getShapes();
+
+  $(".loader-wrapper").fadeOut("fast");
 }
 
 function reset(){
   console.log("Clearing simulation objects");
-  //document.getElementById("start-button-tag").innerText = "Start";
+  $('#loading-sign').removeClass('hidden');
+  $(".loader-wrapper").fadeIn("fast");
+
   showUsergenerated();
   clearSimulations();
+
+  $(".loader-wrapper").fadeOut("fast");
   //clearBalls();
 }
 
 function clearAll(){
   console.log("Clearing all objects");
+
+  $('#loading-sign').removeClass('hidden');
+  $(".loader-wrapper").fadeIn("fast");
+
   clearAllObjects();
+
+  $(".loader-wrapper").fadeOut("fast");
 }

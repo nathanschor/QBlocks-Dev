@@ -44,4 +44,8 @@ function Ball(color=0, sign='+', x, y, radius, id = 0){ //0 is black, 1 is white
   this.getID = function getID(){
     return [this.id];
   }
+
+  this.getTopLeftCoordinates = function getTopLeftCoordinates(){
+    return [parseInt(this.x - this.radius), parseInt(this.y - this.radius)];
+  }
 }

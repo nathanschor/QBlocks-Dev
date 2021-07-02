@@ -23,4 +23,8 @@ function Mist(colorLeft=0, signLeft='+', colorRight=0, signRight='+', x, y, widt
   this.getID = function getID(){
     return [this.id];
   }
+
+  this.getTopLeftCoordinates = function getTopLeftCoordinates(){
+    return [parseInt(this.x), parseInt(this.y)];
+  }
 }

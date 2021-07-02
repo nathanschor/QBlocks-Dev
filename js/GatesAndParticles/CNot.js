@@ -123,4 +123,8 @@ function CNot(x, y, width, height, id = 0){
 
     return Array.from(new Set(ids));
   }
+
+  this.getTopLeftCoordinates = function getTopLeftCoordinates(){
+    return [parseInt(this.x), parseInt(this.y)];
+  }
 }

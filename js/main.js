@@ -567,6 +567,33 @@ function clearAllObjects(){
   layer.draw();
 };
 
+function clearSoonToBeDuplicateObjects(simulationOutcome){
+  // select shapes by name
+
+  //let shapes = ["Image", "Square", "Circle", "Rect"]
+
+  let dictOfObjectsByCoordinates = {};
+
+  simulationOutcome.forEach((element, i) => {
+    if( !(element.getTopLeftCoordinates() in dictOfObjectsByCoordinates) ){
+      dictOfObjectsByCoordinates[element.getTopLeftCoordinates()] = true;
+    }
+  });
+
+  var objects = stage.find('#simulation');
+
+  objects.each(function (object) {
+    let x = parseInt(object.attrs.x);
+    let y = parseInt(object.attrs.y);
+
+    if([x, y] in dictOfObjectsByCoordinates){
+      object.destroy();
+    }
+  });
+
+  layer.draw();
+};
+
 /**/
 
 function getShapes() {
@@ -614,6 +641,8 @@ function getShapes() {
   let simulationOutcome = simulate(matchedObjects);
 
   //clearSimulations();
+
+  clearSoonToBeDuplicateObjects(simulationOutcome);
 
   drawObjects(simulationOutcome);
 
