@@ -14,9 +14,6 @@
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="https://quantumcurious.org/xmlrpc.php">
     <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'/>
-    <meta http-equiv=“Pragma” content=”no-cache”>
-    <meta http-equiv=“Expires” content=”-1″>
-    <meta http-equiv=“CACHE-CONTROL” content=”NO-CACHE”>
     <!-- Optimized by SG Optimizer plugin version - 5.7.20 -->
     <!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https://yoast.com/wordpress/plugins/seo/ -->
     <title>Learning Quantum Computing Using Misty States</title>
@@ -41,6 +38,23 @@
     <link rel="alternate" type="application/rss+xml" title="Quantum Curious &raquo; Comments Feed" href="https://quantumcurious.org/comments/feed/"/>
     <!-- This site uses the Google Analytics by MonsterInsights plugin v7.17.0 - Using Analytics tracking - https://www.monsterinsights.com/ -->
     <script src="//www.googletagmanager.com/gtag/js?id=UA-177271239-1" type="text/javascript" data-cfasync="false"></script>
+    <?php
+        /**
+        *  Given a file, i.e. /css/base.css, replaces it with a string containing the
+        *  file's mtime, i.e. /css/base.1221534296.css.
+        *
+        *  @param $file  The file to be loaded.  Must be an absolute path (i.e.
+        *                starting with slash).
+        */
+        function auto_version($file)
+        {
+            if(strpos($file, '/') !== 0 || !file_exists($_SERVER['DOCUMENT_ROOT'] . $file))
+                return $file;
+
+            $mtime = filemtime($_SERVER['DOCUMENT_ROOT'] . $file);
+            return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);
+        }
+    ?>
     <script type="text/javascript" data-cfasync="false">
     var mi_version = '7.17.0';
     var mi_track_user = true;
@@ -565,10 +579,10 @@
     <!-- ############################################################################################################ -->
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/button.css">
-    <link rel="stylesheet" type="text/css" href="css/popup-modal.css">
-    <link rel="stylesheet" type="text/css" href="css/loading.css">
+    <link rel="stylesheet" href="<?php echo auto_version('css/style.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo auto_version('css/button.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo auto_version('css/popup-modal.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo auto_version('css/loading.css'); ?>" type="text/css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -1014,18 +1028,18 @@
 
 
                                                                 <!-- Script Imports -->
-                                                                <script src="js/GatesAndParticles/Ball.js"></script>
-                                                                <script src="js/GatesAndParticles/Not.js"></script>
-                                                                <script src="js/GatesAndParticles/CNot.js"></script>
-                                                                <script src="js/GatesAndParticles/CCSwap.js"></script>
-                                                                <script src="js/GatesAndParticles/Swap.js"></script>
-                                                                <script src="js/GatesAndParticles/CSwap.js"></script>
-                                                                <script src="js/GatesAndParticles/Pete.js"></script>
-                                                                <script src="js/GatesAndParticles/Mist.js"></script>
-                                                                <script src="js/GatesAndParticles/Pipe.js"></script>
-                                                                <script src="js/main.js"></script>
-                                                                <script src="js/buttons.js"></script>
-                                                                <script src="js/popup-modal.js"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Ball.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Not.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/CNot.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/CCSwap.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Swap.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/CSwap.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Pete.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Mist.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Pipe.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/main.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/buttons.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/popup-modal.js'); ?>"></script>
 
 
 
