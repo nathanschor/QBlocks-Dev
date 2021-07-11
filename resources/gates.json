@@ -1,0 +1,46 @@
+[
+  {
+  "name": "Not Gate",
+  "description": "Inverts the input of the gate."
+  },
+  {
+    "name": "CNot Gate",
+    "description": "Inverts the input of the gate when the control is activated."
+  },
+  {
+    "name": "Swap Gate",
+    "description": "Swaps the two inputs of the gate."
+  },
+  {
+    "name": "CSwap Gate",
+    "description": "Swaps the two inputs of the gate when the control is activated."
+  },
+  {
+    "name": "CCSwap Gate",
+    "description": "Swaps the two inputs of the gate when the controls are activated."
+  },
+  {
+    "name": "Pipe Gate",
+    "description": "Moves the input down one block."
+  },
+  {
+    "name": "Pete Gate",
+    "description": "Hadamard gate. Outputs either random ball or misty clouds."
+  },
+  {
+    "name": "Black Ball",
+    "description": "Black ball which represents 1."
+  },
+  {
+    "name": "White Ball",
+    "description": "White ball which represents 0."
+  },
+  {
+    "name": "White/Back Mist",
+    "description": "Mist containing a white, and a black ball."
+  },
+  {
+  "name": "White/-Back Mist",
+  "description": "Mist containing a white, and a negative black ball."
+  }
+]
