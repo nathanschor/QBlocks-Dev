@@ -584,7 +584,7 @@
 <!--    <link rel="stylesheet" href="--><?php //echo auto_version('css/popup-modal.css'); ?><!--" type="text/css" />-->
 
     <link rel="stylesheet" href="<?php echo auto_version('css/fullwidth-div.css'); ?>" type="text/css" />
-    <link rel="stylesheet" href="<?php echo auto_version('css/loading.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo auto_version('css/loading-indicator.css'); ?>" type="text/css" />
     <link rel="stylesheet" href="<?php echo auto_version('css/main.css'); ?>" type="text/css" />
     <link rel="stylesheet" href="<?php echo auto_version('css/canvas.css'); ?>" type="text/css" />
 
@@ -747,9 +747,9 @@
 
                                                                             <!---->
                                                                             <main>
-                                                                                <aside class="left ">
+                                                                                <aside class="left red-line">
                                                                                         <!--  Gates Go Here-->
-                                                                                        <div class="row ">
+                                                                                        <div class="row green-line ">
                                                                                             <a id="drag-white" onclick="createWHITE_BALL()" onmouseover="over('White Ball')">
                                                                                                 <img class="button-img" src="img/white.png" draggable="true">
                                                                                             </a>
@@ -757,7 +757,7 @@
                                                                                                 <img class="button-img" src="img/black.png" draggable="true">
                                                                                             </a>
                                                                                         </div>
-                                                                                        <div class="row ">
+                                                                                        <div class="row green-line ">
                                                                                             <a id="drag-not" onclick="createNOT_Gate()" onmouseover="over('Not Gate')">
                                                                                                 <img class="button-img" src="img/not.png" draggable="true">
                                                                                             </a>
@@ -765,7 +765,7 @@
                                                                                                 <img class="button-img" src="img/cnot.png" draggable="true">
                                                                                             </a>
                                                                                         </div>
-                                                                                        <div class="row ">
+                                                                                        <div class="row green-line ">
                                                                                             <a id="drag-swap" onclick="createSWAP_Gate()" onmouseover="over('Swap Gate')">
                                                                                                 <img class="button-img" src="img/swap.png" draggable="true">
                                                                                             </a>
@@ -773,13 +773,13 @@
                                                                                                 <img class="button-img" src="img/cswap.png" draggable="true">
                                                                                             </a>
                                                                                         </div>
-                                                                                        <div class="row ">
+                                                                                        <div class="row green-line ">
                                                                                             <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseover="over('CCSwap Gate')">
                                                                                                 <img class="button-img" src="img/ccswap.png" draggable="true">
                                                                                             </a>
                                                                                         </div>
 
-                                                                                        <div class="row ">
+                                                                                        <div class="row green-line ">
                                                                                             <a id="drag-pete" onclick="createPETE_Gate()" onmouseover="over('Pete Gate')">
                                                                                                 <img class="button-img" src="img/pete.png" draggable="true">
                                                                                             </a>
@@ -787,7 +787,7 @@
                                                                                                 <img class="button-img" src="img/pipe.png" draggable="true">
                                                                                             </a>
                                                                                         </div>
-                                                                                        <div class="row ">
+                                                                                        <div class="row green-line ">
                                                                                             <a id="drag-wbmist" onclick="createWBMist()" onmouseover="over('White/Back Mist')">
                                                                                                 <img class="button-img" src="img/wb.png" draggable="true">
                                                                                             </a>
@@ -796,13 +796,13 @@
                                                                                             </a>
                                                                                         </div>
 
-                                                                                        <div class="explanation">
+                                                                                        <div class=" explanation row blue-line">
                                                                                             <h3 id="title" class="title">Hint</h3>
                                                                                             <p id="description" class="description">Hover over a gate for more information.</p>
                                                                                             <!----><!----><!---->
                                                                                         </div>
                                                                                 </aside>
-                                                                                <section class="center ">
+                                                                                <section class="center blue-line">
                                                                                     <!--  Canvas Goes Here-->
                                                                                     <div class="canvas-inset">
                                                                                         <div class="canvas-box" id="canvas-div" >
@@ -810,7 +810,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </section>
-                                                                                <aside class="right ">
+                                                                                <aside class="right red-line">
                                                                                     <div class="">
                                                                                         <!--  Controls Go Here-->
                                                                                         <div class="row row-bottom-margin ">
