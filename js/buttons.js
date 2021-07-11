@@ -69,7 +69,7 @@ function start(){
   $(".loader-wrapper").fadeOut("fast");
 }
 
-function reset(){
+function clearOutput(){
   console.log("Clearing simulation objects");
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
@@ -78,10 +78,20 @@ function reset(){
   clearSimulations();
 
   $(".loader-wrapper").fadeOut("fast");
-  //clearBalls();
 }
 
-function clearAll(){
+function clearAllBalls(){
+  console.log("Clearing simulation objects");
+  $('#loading-sign').removeClass('hidden');
+  $(".loader-wrapper").fadeIn("fast");
+
+  showUsergenerated();
+  clearBalls();
+
+  $(".loader-wrapper").fadeOut("fast");
+}
+
+function clearCanvas(){
   console.log("Clearing all objects");
 
   $('#loading-sign').removeClass('hidden');

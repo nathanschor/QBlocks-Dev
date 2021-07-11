@@ -22,21 +22,20 @@
 }
 
 .left{
-    width: 20%;
+    width: 15%;
 }
 
 .center{
-    width: 55%;
+    width: 67%;
 }
 
 .right{
-    width: 15%;
+    width: 8%;
 }
 
 .explanation{
     position: absolute;
     bottom: 0%;
-    height: 20%;
 }
 
 .title{
@@ -52,16 +51,3 @@
     font-size:16px;
     margin: 0 1.5%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
