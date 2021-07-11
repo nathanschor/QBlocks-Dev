@@ -1,0 +1,11 @@
+.expand-div-across-full-width {
+    width: 90vw;
+    position: relative;
+    left: calc(-45vw + 50%);
+}
+
+.expand-child-marginally-past-parent {
+    width: 70vw;
+    position: relative;
+    left: calc(-25vw + 35%);
+}

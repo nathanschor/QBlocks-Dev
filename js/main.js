@@ -4,10 +4,7 @@
 // var width = window.innerWidth;
 // var height = window.innerHeight;
 // window.onresize = function(){ location.reload(); }
-var width = document.getElementById('canvas-div').clientWidth;
-var height = (window.innerHeight * 0.5);
 
-console.log("Height: " + height + " | Width: " + width);
 var shadowOffset = 20;
 var tween = null;
 var blockSnapSize = 30;
@@ -16,6 +13,11 @@ var userGeneratedParticles = [];
 var timeout;
 var lastTap = 0;
 var hideResults = false;
+
+var width = Math.round(document.getElementById('canvas-div').clientWidth / gridSnapSize) * gridSnapSize;
+var height =Math.round( document.getElementById('canvas-div').clientHeight / gridSnapSize) * gridSnapSize;
+
+console.log("Height: " + height + " | Width: " + width);
 
 /*############################################################################*/
 /*####################### Ball Definition ####################################*/
@@ -246,15 +248,15 @@ function fitStageIntoParentContainer() {
   var container = document.querySelector('#stage-parent');
 
 // now we need to fit stage into parent
-  var containerWidth = document.getElementById('canvas-div').clientWidth;
+  var containerWidth = document.getElementById('canvas').clientWidth;
 // to do this we need to scale the stage
   var scaleX = containerWidth / width;
 
 // now we need to fit stage into parent
-  var containerHeight = (window.innerHeight * 0.5);
+  var containerHeight = document.getElementById('canvas').clientHeight;
 // to do this we need to scale the stage
   var scaleY = containerHeight / height;
-  console.log(containerWidth+" x " + containerHeight);
+  console.log(containerHeight + " x " + containerWidth);
 // uncomment to enable "uniform stretch"
 //scaleX = scaleY =Math.min(scaleX,scaleY);
 

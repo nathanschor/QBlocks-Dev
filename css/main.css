@@ -1,0 +1,67 @@
+:root {
+    --small-dimension: 10vw;
+    --large-dimension: 100%;
+}
+
+.green-line{
+    border: 3px solid green;
+}
+
+.blue-line{
+    border: 3px solid blue;
+}
+
+.red-line{
+    border: 3px solid red;
+}
+
+.left, .center, .right{
+    float: left;
+    margin: 0 1.5%;
+    height: 80vh;
+}
+
+.left{
+    width: 20%;
+}
+
+.center{
+    width: 55%;
+}
+
+.right{
+    width: 15%;
+}
+
+.explanation{
+    position: absolute;
+    bottom: 0%;
+    height: 20%;
+}
+
+.title{
+    font-size: 75%;
+    font-weight: bold;
+}
+
+.description{
+    font-size: 70%;
+}
+
+.built-by-note{
+    font-size:16px;
+    margin: 0 1.5%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

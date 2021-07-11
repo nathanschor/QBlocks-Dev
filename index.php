@@ -579,10 +579,14 @@
     <!-- ############################################################################################################ -->
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo auto_version('css/style.css'); ?>" type="text/css" />
+<!--    <link rel="stylesheet" href="--><?php //echo auto_version('css/style.css'); ?><!--" type="text/css" />-->
     <link rel="stylesheet" href="<?php echo auto_version('css/button.css'); ?>" type="text/css" />
-    <link rel="stylesheet" href="<?php echo auto_version('css/popup-modal.css'); ?>" type="text/css" />
+<!--    <link rel="stylesheet" href="--><?php //echo auto_version('css/popup-modal.css'); ?><!--" type="text/css" />-->
+
+    <link rel="stylesheet" href="<?php echo auto_version('css/fullwidth-div.css'); ?>" type="text/css" />
     <link rel="stylesheet" href="<?php echo auto_version('css/loading.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo auto_version('css/main.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo auto_version('css/canvas.css'); ?>" type="text/css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -732,300 +736,98 @@
 <!-- ############################################################################################################ -->
 <!-- ############################################################################################################ -->
 
-                                                                <!-- Start Modals -->
-                                                                <div id="introductionModal" class="modal">
-                                                                    <div class="modal-content">
-                                                                        <span class="close-modal">&times;</span>
-                                                                        <iframe class="iframe-modal embed-responsive-item" width=100% height=100% src="https://www.youtube.com/embed/u9E_f2gmAns" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                                                    </div>
-                                                                </div>
 
-                                                                <div id="instructionModal" class="modal">
-                                                                    <div class="modal-content">
-                                                                        <span class="close-modal">&times;</span>
-                                                                        <iframe class="iframe-modal embed-responsive-item" width=100% height=100% src="https://www.youtube.com/embed/wiz9YsmEpvs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div id="mistyStatesModal" class="modal">
-                                                                    <div class="modal-content">
-                                                                        <span class="close-modal">&times;</span>
-                                                                        <iframe class="iframe-modal embed-responsive-item" width=100% height=100% src="https://www.youtube.com/embed/r0HEQMhgq5U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- End Modals -->
-
-                                                                <div class="expand-child-marginally-past-parent"><!-- To make child exceed parent, add  'expand-child-past-parent' to class-->
-                                                                  <div class="container-flex">
-                                                                    <div class="row vertical-divider">
-                                                                        <div class="col-sm-12 col-md-12 col-lg-12">
-
-
-
-                                                                            <div class="well spacer mediumControlls" style="height: 260px;">
-                                                                                <div class="box">
-
-                                                                                    <!-- Instructions -->
-                                                                                    <div class="col-md-2 col-lg-2 border-right largeControlls">
-                                                                                        <div style="width: 160px;">
-                                                                                            <div class="row ">
-<!--                                                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="introduction-button">-->
-<!--                                                                                                    <a class="button-Instruction instruction" onclick = "introduction_Modal.style.display = 'block';">-->
-<!--                                                                                                        <p class="my-float">Introduction</p>-->
-<!--                                                                                                    </a>-->
-<!--                                                                                                </div>-->
-                                                                                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                                                                                    <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-Instruction instruction">
-                                                                                                        <p class="my-float">Start Here</p>
-                                                                                                    </a>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
+                                                                <div class="expand-div-across-full-width green-line">
+                                                                  <!-- To make child exceed parent, add  'expand-child-past-parent' to class-->
+                                                                    <div id="container-flex">
+                                                                        <!---->
+                                                                        <main id="misty-states-canvas">
+                                                                            <aside class="left green-line">
+                                                                                <div class="min-well well">
+                                                                                    <!--  Gates Go Here-->
+                                                                                    <div class="row row-bottom-margin">
+                                                                                        <a id="drag-white" onclick="createWHITE_BALL()">
+                                                                                            <img class="button-img" src="img/white.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-black" onclick="createBLACK_BALL()">
+                                                                                            <img class="button-img" src="img/black.png" draggable="true">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                    <div class="row row-bottom-margin ">
+                                                                                        <a id="drag-not" onclick="createNOT_Gate()">
+                                                                                            <img class="button-img" src="img/not.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-cnot" onclick="createCNOT_Gate()">
+                                                                                            <img class="button-img" src="img/cnot.png" draggable="true">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                    <div class="row row-bottom-margin ">
+                                                                                        <a id="drag-swap" onclick="createSWAP_Gate()">
+                                                                                            <img class="button-img" src="img/swap.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-cswap" onclick="createCSWAP_Gate()">
+                                                                                            <img class="button-img" src="img/cswap.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-ccswap" onclick="createCCSWAP_Gate()">
+                                                                                            <img class="button-img" src="img/ccswap.png" draggable="true">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                    <div class="row row-bottom-margin">
+                                                                                        <a id="drag-pete" onclick="createPETE_Gate()" onmouseover="over('pete')">
+                                                                                            <img class="button-img" src="img/pete.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseover="over('pipe')">
+                                                                                            <img class="button-img" src="img/pipe.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-wbmist" onclick="createWBMist()" onmouseover="over('wbmist')">
+                                                                                            <img class="button-img" src="img/wb.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-wnegbmist" onclick="createWNegBMist()" onmouseover="over('wnegbmist')">
+                                                                                            <img class="button-img" src="img/wnegb.png" draggable="true">
+                                                                                        </a>
                                                                                     </div>
 
-                                                                                    <!-- Simulation Controls -->
-                                                                                    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 border-right " >
-                                                                                        <div style="width: 130px;">
-                                                                                            <div class="row row-bottom-margin controll-box">
-                                                                                                Operations
-                                                                                            </div>
-                                                                                            <div class="row ">
-                                                                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
-                                                                                                    <a class="start-stop-button start my-float" onclick = "start()" id="start-button">
-                                                                                                        <i class="material-icons" style="font-size:36px">play_arrow</i>
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="stop-button">
-                                                                                                    <a class="start-stop-button reset my-float" onclick = "reset()">
-                                                                                                        <i class="material-icons" style="font-size:36px">refresh</i>
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="clear-button">
-                                                                                                    <a class="button-clearAll start" onclick = "clearAll()">
-                                                                                                        <p class="my-float">Clear Canvas</p>
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="">
-                                                                                                    <input type="checkbox"  id="checkIfHidden" onclick="toggleHideOutput();">
-                                                                                                    <label class="toggleP" for="checkIfHidden">Hide output</label>
-                                                                                                </div>
-
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <!-- Balls -->
-                                                                                    <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 border-right " >
-                                                                                        <div style="width: 70px;" class="">
-                                                                                            <div class="row row-bottom-margin controll-box" >
-                                                                                                Balls
-                                                                                            </div>
-                                                                                            <div class="row ">
-                                                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                                                                    <a  id="drag-white" class="button white-ball" draggable="true">
-                                                                                                        <p class="my-float">W</p>
-                                                                                                    </a>
-                                                                                                    <a id="drag-black" class="button black-ball" draggable="true">
-                                                                                                        <p class="my-float">B</p>
-                                                                                                    </a>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <!-- Gates -->
-                                                                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 border-right">
-                                                                                        <div class="row controll-box">
-                                                                                            Classical Gates
-                                                                                        </div>
-                                                                                        <div class="row row-bottom-margin ">
-                                                                                            <div class="col-sm-4 col-md-4 col-lg-4 center-divs">
-                                                                                                <div class="border-bottom">
-                                                                                                    <a id="drag-not">
-                                                                                                        <img class="button-img" src="img/not.png" draggable="true">
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <a id="drag-swap">
-                                                                                                    <img class="button-img" src="img/swap.png" draggable="true">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                            <div class="col-sm-6 col-md-6 col-lg-6 center-divs border-middle">
-                                                                                                <div class="border-bottom">
-                                                                                                    <a id="drag-cnot">
-                                                                                                        <img class="button-img" src="img/cnot.png" draggable="true">
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <a id="drag-cswap">
-                                                                                                    <img class="button-img" src="img/cswap.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-ccswap">
-                                                                                                    <img class="button-img" src="img/ccswap.png" draggable="true">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <!-- Mists -->
-                                                                                    <div class="col-xs-2 col-sm-2 col-md-3 col-lg-3 ">
-                                                                                        <div class="row controll-box">
-                                                                                            Misty States
-                                                                                        </div>
-                                                                                        <div class="row row-bottom-margin">
-                                                                                            <div class="col-sm-4 col-md-4 col-lg-4 center-divs">
-                                                                                                <a id="drag-pete">
-                                                                                                    <img class="button-img" src="img/pete.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-pipe">
-                                                                                                    <img class="button-img" src="img/pipe.png" draggable="true">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                            <div class="col-sm-6 col-md-6 col-lg-6 center-divs">
-                                                                                                <a id="drag-wbmist">
-                                                                                                    <img class="button-img" src="img/wb.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-wnegbmist">
-                                                                                                    <img class="button-img" src="img/wnegb.png" draggable="true">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
+                                                                                    <div class="explanation">
+                                                                                        <h3 id="title" class="title">Hint</h3>
+                                                                                        <p id="description" class="description">Hover over a gate for more information.</p>
+                                                                                        <!----><!----><!---->
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-
-
-                                                                            <div class="loader-wrapper hidden" id="loading-sign">
-                                                                                <span class="loader"><span class="loader-inner"></span></span>
-                                                                            </div>
-
-
-                                                                            <div class="min-well well">
-                                                                                <div class="canvas-box" id="canvas-div" >
-                                                                                  <div id="canvas"></div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="well smallControlls" style="height: 74vw;">
-                                                                                <div class="" style="height: 4vh;">
-                                                                                    <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-Instruction-small-screen instruction">
-                                                                                        <p class="">Start Here</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div class="box my-float">
-                                                                                    <!-- Simulation Controls -->
-                                                                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
-                                                                                        <div>
-                                                                                            <div class="row row-bottom-margin controll-box">
-                                                                                                Operations
-                                                                                            </div>
-                                                                                            <div class="row ">
-                                                                                                <div class="col-sm-6 col-md-6 col-lg-6" >
-                                                                                                    <a class="start-stop-button start my-float" onclick = "start()" id="start-button">
-                                                                                                        <i class="material-icons" style="font-size:10vw">play_arrow</i>
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-sm-6 col-md-6 col-lg-6" id="stop-button">
-                                                                                                    <a class="start-stop-button reset my-float" onclick = "reset()">
-                                                                                                        <i class="material-icons" style="font-size:10vw">refresh</i>
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-sm-6 col-md-6 col-lg-6" id="clear-button">
-                                                                                                    <a class="button-clearAll start my-float" onclick = "clearAll()">
-                                                                                                        <i class="material-icons" style="font-size:10vw">delete</i>
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="">
-                                                                                                    <input type="checkbox" checked="checked" id="checkIfHidden" onclick="toggleHideOutput();">
-                                                                                                    <label class="toggleP" for="checkIfHidden">Hide output</label>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <!-- Balls -->
-                                                                                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" >
-                                                                                        <div>
-                                                                                            <div class="row row-bottom-margin controll-box" >
-                                                                                                Balls
-                                                                                            </div>
-                                                                                            <div class="row">
-                                                                                                <a  id="drag-white" class="button white-ball" draggable="true" onclick="createWHITE_BALL()">
-                                                                                                    <p class="my-float">W</p>
-                                                                                                </a>
-                                                                                                <a id="drag-black" class="button black-ball" draggable="true" onclick="createBLACK_BALL()">
-                                                                                                    <p class="my-float">B</p>
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <!-- Gates -->
-                                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                                                                        <div class="row controll-box">
-                                                                                            Classical Gates
-                                                                                        </div>
-                                                                                        <div class="row row-bottom-margin ">
-                                                                                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center-divs">
-                                                                                                <a id="drag-not" onclick="createNOT_Gate()">
-                                                                                                    <img class="button-img" src="img/not.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-swap" onclick="createSWAP_Gate()">
-                                                                                                    <img class="button-img" src="img/swap.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-ccswap" onclick="createCCSWAP_Gate()">
-                                                                                                    <img class="button-img" src="img/ccswap.png" draggable="true">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 center-divs">
-                                                                                                <a id="drag-cnot" onclick="createCNOT_Gate()">
-                                                                                                    <img class="button-img" src="img/cnot.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-cswap" onclick="createCSWAP_Gate()">
-                                                                                                    <img class="button-img" src="img/cswap.png" draggable="true">
-                                                                                                </a>
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <!-- Mists -->
-                                                                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                                                                        <div class="row controll-box">
-                                                                                            Misty States
-                                                                                        </div>
-                                                                                        <div class="row row-bottom-margin">
-                                                                                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 center-divs">
-                                                                                                <a id="drag-pete" onclick="createPETE_Gate()">
-                                                                                                    <img class="button-img" src="img/pete.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-pipe" onclick="createPIPE_Gate()">
-                                                                                                    <img class="button-img" src="img/pipe.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-wbmist" onclick="createWBMist()">
-                                                                                                    <img class="button-img" src="img/wb.png" draggable="true">
-                                                                                                </a>
-                                                                                                <a id="drag-wnegbmist" onclick="createWNegBMist()">
-                                                                                                    <img class="button-img" src="img/wnegb.png" draggable="true">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
+                                                                            </aside>
+                                                                            <section class="center red-line">
+                                                                                <!--  Canvas Goes Here-->
+                                                                                <div class="min-well well">
+                                                                                    <div class="canvas-box" id="canvas-div" >
+                                                                                        <div class="green-line canvas-box" id="canvas" ></div>
                                                                                     </div>
                                                                                 </div>
-
-                                                                            </div>
-
-                                                                        </div>
+                                                                            </section>
+                                                                            <aside class="right blue-line">
+                                                                                <div class="min-well well">
+                                                                                    <!--  Controls Go Here-->
+                                                                                    <div class="row row-bottom-margin ">
+                                                                                        <a class="start-stop-button start my-float" onclick = "start()" id="start-button">
+                                                                                            <i class="material-icons" style="font-size:10vw">play_arrow</i>
+                                                                                        </a>
+                                                                                        <a class="start-stop-button reset my-float" onclick = "reset()">
+                                                                                            <i class="material-icons" style="font-size:10vw">refresh</i>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                    <div class="row row-bottom-margin ">
+                                                                                        <a class="button-clearAll start my-float" onclick = "clearAll()">
+                                                                                            <i class="material-icons" style="font-size:10vw">delete</i>
+                                                                                        </a>
+                                                                                        <input type="checkbox" checked="checked" id="checkIfHidden" onclick="toggleHideOutput();">
+                                                                                        <label class="toggleP" for="checkIfHidden">Hide output</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </aside>
+                                                                        </main>
                                                                     </div>
-                                                                  </div>
 
-                                                                  <p style="font-size:16px">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a>, <a href="https://julianbeaulieu.com/" target="_blank">Julian Beaulieu</a>, and <a href="https://sunilsingh.me/" target="_blank">Sunil Singh</a> </p>
+                                                                    <p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a>, <a href="https://julianbeaulieu.com/" target="_blank">Julian Beaulieu</a>, and <a href="https://sunilsingh.me/" target="_blank">Sunil Singh</a> </p>
+
                                                                 </div>
-
-
 
                                                                 <!-- Script Imports -->
                                                                 <script src="<?php echo auto_version('js/GatesAndParticles/Ball.js'); ?>"></script>
@@ -1039,7 +841,26 @@
                                                                 <script src="<?php echo auto_version('js/GatesAndParticles/Pipe.js'); ?>"></script>
                                                                 <script src="<?php echo auto_version('js/main.js'); ?>"></script>
                                                                 <script src="<?php echo auto_version('js/buttons.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/popup-modal.js'); ?>"></script>
+
+                                                                <script>
+                                                                    function over(buttonName){
+                                                                        document.getElementById("title").innerHTML= buttonName;
+                                                                        document.getElementById("description").innerHTML= "You have hovered mouse over " + buttonName;
+                                                                    }
+
+                                                                    window.addEventListener("load", function(){
+                                                                        var my_element = document.getElementById("misty-states-canvas");
+
+                                                                        console.log("Scrolling");
+
+                                                                        my_element.scrollIntoView({
+                                                                            behavior: "smooth",
+                                                                            block: "start",
+                                                                            inline: "nearest"
+                                                                        });
+                                                                    });
+                                                                </script>
+
 
 
 

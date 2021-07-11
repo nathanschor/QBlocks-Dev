@@ -9,31 +9,10 @@
   left: 5px;
 }
 
-.min-well{
-  min-width: 50vw;
-}
-
-
 .controll-box{
   text-decoration: underline;
   text-align: center;
   font-weight: bold;
-}
-
-.expand-child-past-parent {
-  width: 90vw;
-  position: relative;
-  left: calc(-38vw + 45%);
-}
-
-.expand-child-marginally-past-parent {
-  width: 70vw;
-  position: relative;
-  left: calc(-25vw + 35%);
-}
-
-.canvas-box{
-  height: 50%;
 }
 
 .row-bottom-margin {
