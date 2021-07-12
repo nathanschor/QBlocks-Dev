@@ -4,7 +4,7 @@
 }
 
 .button-1x1-round, .button-2x1, .button-2x2, .button-2x2-small-screen{
-	display: block;
+	display: inline-block;
 	color:#FFF;
 	text-align: center;
 	box-shadow: 2px 2px 3px #999;
@@ -99,9 +99,7 @@
 	opacity: 0.7;
 }
 
-.left-space{
-	margin-left: 10px !important;
-}
+
 
 .black-ball{
   background-color:black;
@@ -156,20 +154,27 @@
 	background-color: lightskyblue;
 }
 
-.toggleOutputTextSize{
-	font-size: 16px;
-}
+
+/*##############################################*/
+/*################# Margins ####################*/
+/*##############################################*/
 
 .space-top{
 	margin-top:22px;
 }
 
+.left-space{
+	margin-left: 10px !important;
+}
 
 
+/*##############################################*/
+/*################# Check box ##################*/
+/*##############################################*/
 
 /* The container */
 .checkbox_container {
-	display: block;
+	display: inline-block;
 	position: relative;
 	padding-left: 35px;
 	margin-bottom: 12px;
@@ -219,7 +224,7 @@
 
 /* Show the checkmark when checked */
 .checkbox_container input:checked ~ .checkmark:after {
-	display: block;
+	display: inline-block;
 }
 
 /* Style the checkmark/indicator */

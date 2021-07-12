@@ -18,15 +18,17 @@
 .left, .center, .right{
     float: left;
     margin: 0 1.5%;
-    height: 80vh;
+
 }
 
 .left{
     width: 15%;
+    height: 90vh;
 }
 
 .center{
-    width: 67%;
+    width: 78%;
+    height: 80vh;
 }
 
 .right{
