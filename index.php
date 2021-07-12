@@ -818,19 +818,25 @@
                                                                                     <div class="">
                                                                                         <!--  Controls Go Here-->
                                                                                         <div class="row  ">
-                                                                                            <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x2 blue">
+                                                                                            <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue">
                                                                                                 <p class="space-top">Tutorials</p>
                                                                                             </a>
-                                                                                            <a class="button-2x1 green space-top" onclick = "start()" id="start-button">
+                                                                                            <a class="button-2x1 green space-top" onclick = "goBack()" onmouseenter="over('Go Back')">
+                                                                                                <p class="space-top">Go Back</p>
+                                                                                            </a>
+                                                                                            <a class="button-2x1 green space-top" onclick = "run()" onmouseenter="over('Run')" id="start-button" >
                                                                                                 <p class="space-top">Run</p>
                                                                                             </a>
-                                                                                            <a class="button-2x1 orange my-space-top" onclick = "clearOutput()">
-                                                                                                <p class="space-top">Remove Output</p>
+                                                                                            <a class="button-2x1 green space-top" onclick = "runAll()" onmouseenter="over('Run All')">
+                                                                                                <p class="space-top">Run Simulation</p>
                                                                                             </a>
-                                                                                            <a class="button-2x1 orange space-top" onclick = "clearAllBalls()">
-                                                                                                <p class="space-top">Remove All Balls</p>
+                                                                                            <a class="button-2x1 orange space-top" onclick = "clearSimulation()" onmouseenter="over('Clear Simulation')">
+                                                                                                <p class="space-top">Clear Simulation</p>
                                                                                             </a>
-                                                                                            <a class="button-2x1 red space-top" onclick = "clearCanvas()">
+                                                                                            <a class="button-2x1 orange space-top" onclick = "clearAllBallsAndMists()" onmouseenter="over('Clear All Balls')">
+                                                                                                <p class="space-top">Clear All Balls</p>
+                                                                                            </a>
+                                                                                            <a class="button-2x1 red space-top" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
                                                                                                 <p class="space-top">Clear Canvas</p>
                                                                                             </a>
 

@@ -59,8 +59,8 @@ function createWNegBMist(){
 }
 
 
-function start(){
-  console.log("Starting simulations");
+function run(){
+  console.log("Running next simulation");
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
 
@@ -69,7 +69,27 @@ function start(){
   $(".loader-wrapper").fadeOut("fast");
 }
 
-function clearOutput(){
+function runAll(){
+  console.log("Running all simulations");
+  $('#loading-sign').removeClass('hidden');
+  $(".loader-wrapper").fadeIn("fast");
+
+  //getShapes();
+
+  $(".loader-wrapper").fadeOut("fast");
+}
+
+function goBack(){
+  console.log("Going back one step");
+  $('#loading-sign').removeClass('hidden');
+  $(".loader-wrapper").fadeIn("fast");
+
+  //getShapes();
+
+  $(".loader-wrapper").fadeOut("fast");
+}
+
+function clearSimulation(){
   console.log("Clearing simulation objects");
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
@@ -80,7 +100,7 @@ function clearOutput(){
   $(".loader-wrapper").fadeOut("fast");
 }
 
-function clearAllBalls(){
+function clearAllBallsAndMists(){
   console.log("Clearing simulation objects");
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
