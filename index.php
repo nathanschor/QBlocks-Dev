@@ -835,11 +835,10 @@
                                                                                             </a>
 
                                                                                             <div class="space-top">
-                                                                                                <label class="switch">
+                                                                                                <label class="checkbox_container">Hide output
                                                                                                     <input type="checkbox" id="checkIfHidden" onclick="toggleHideOutput();">
-                                                                                                    <span class="slider round"></span>
+                                                                                                    <span class="checkmark"></span>
                                                                                                 </label>
-                                                                                                <label class="toggleOutputTextSize" for="checkIfHidden">Hide output</label>
                                                                                             </div>
 
 
