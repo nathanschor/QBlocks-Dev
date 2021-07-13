@@ -1,10 +1,3 @@
-// TODO: https://konvajs.org/docs/sandbox/Drop_DOM_Element.html
-
-
-// var width = window.innerWidth;
-// var height = window.innerHeight;
-// window.onresize = function(){ location.reload(); }
-
 var shadowOffset = 20;
 var tween = null;
 var blockSnapSize = 30;
@@ -13,6 +6,8 @@ var userGeneratedParticles = [];
 var timeout;
 var lastTap = 0;
 var hideResults = false;
+var currentStep = 0;
+let gridLinesColor = '#c6c6c6';
 
 var width = Math.round(document.getElementById('canvas-div').clientWidth / gridSnapSize) * gridSnapSize;
 var height =Math.round( document.getElementById('canvas-div').clientHeight / gridSnapSize) * gridSnapSize;
@@ -217,19 +212,19 @@ var stage = new Konva.Stage({
 
 var gridLayer = new Konva.Layer();
 
-for (var i = 0; i < width / gridSnapSize; i++) {
+for (var i = 1; i < width / gridSnapSize; i++) {
   gridLayer.add(new Konva.Line({
     points: [Math.round(i * gridSnapSize) + 0.5, 0, Math.round(i * gridSnapSize) + 0.5, height],
-    stroke: '#ddd',
+    stroke: gridLinesColor,
     strokeWidth: 1,
   }));
 }
 
 gridLayer.add(new Konva.Line({points: [0,0,10,10]}));
-for (var j = 0; j < height / gridSnapSize; j++) {
+for (var j = 1; j < height / gridSnapSize; j++) {
   gridLayer.add(new Konva.Line({
     points: [0, Math.round(j * gridSnapSize), width, Math.round(j * gridSnapSize)],
-    stroke: '#ddd',
+    stroke: gridLinesColor,
     strokeWidth: 1,
   }));
 }
@@ -337,9 +332,9 @@ con.addEventListener('drop', function (e) {
   } else if(type === 'pipe'){
     newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pipe.png', 'pipeGate', 'user');
   } else if(type === 'white'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'white', 'user', 'circle');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle');
   } else if(type === 'black'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'black', 'user', 'circle');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'blackBalls', 'user', 'circle');
   } else if(type === 'wbmist'){
     newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user');
   } else if(type === 'wnegbmist'){
@@ -416,16 +411,13 @@ layer.on('dragmove', function (e) {
     // do not check intersection with itself
     if (shape === target) {
       return;
-    }
-
-    else if (haveIntersection(shape, target)) {
+    } else if (haveIntersection(shape, target)) {
       newX = calcNewX(shape, target)
       newY = calcNewY(shape, target)
       target.position({
         x: newX,
         y: newY
       });
-    } else {
     }
   });
 });
@@ -484,8 +476,9 @@ function drawObjects(objects, userGen=false){
   objects.forEach((object, i) => {
     if(object.constructor.name.toLowerCase() === 'ball'){
       let imgFilePath = hideResults ? 'img/square.png' : ('img/' + ((object.color === 1) ? 'white' : 'black') + '.png');
+      let objectType = ((object.color === 1) ? 'white' : 'black') + 'Ball';
 
-      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, imgFilePath, ((object.color === 1) ? 'white' : 'black'), generationType, 'circle', hideResults);
+      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, imgFilePath, objectType, generationType, 'circle', hideResults);
     } else if(object.constructor.name.toLowerCase() === 'mist'){
       if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
         newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType);
@@ -502,22 +495,42 @@ function drawObjects(objects, userGen=false){
 
 /**/
 
-function clearBalls() {
+function clearBallsAndMists() {
   // select shapes by name
-  let shapes = ["Image", "Circle", "Square"];
+  let shapes = ["Image", "Circle", "Square", "Rect"];
 
   shapes.forEach((shape, i) => {
     var shapeInStage = stage.find(shape);
     shapeInStage.each(function (object) {
-      if(!object.attrs.shapeType.toLowerCase().includes("shadow")){
-        if(object.attrs.shapeType.toLowerCase().includes("circle") || object.attrs.shapeType.toLowerCase().includes("square")){
-          object.destroy();
-          layer.draw();
-        }
+      if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
+          isBallMistOrBoth(object.attrs.type.toLowerCase())){
+        object.destroy();
+        layer.draw();
       }
     });
   });
 };
+
+/**
+ * Function returns boolean value depending on if the entered object type is a ball or mist
+ * @param objectType A string containing the objectType
+ * @param operationType 0 = check for ball, 1 = check for mist, 2 = check for both. 2 is default.
+ */
+function isBallMistOrBoth(objectType, operationType=2) {
+  if (operationType === 0){
+    return objectType.includes("ball");
+  } else if(operationType === 1){
+    return objectType.includes("mist");
+  }else if(operationType === 2){
+    return objectType.includes("ball") || objectType.includes("mist");
+  }else{
+    return false;
+  }
+}
+
+function isNotObjectShadow(objectType){
+  return !objectType.includes("shadow");
+}
 
 function clearSimulations() {
   // select shapes by name
@@ -534,13 +547,11 @@ function hideUsergenerated() {
   var objects = stage.find('#user');
 
   objects.each(function (object) {
-    if(!object.attrs.shapeType.toLowerCase().includes("shadow")) {
-      if (object.attrs.shapeType.toLowerCase().includes("circle") ||
-          object.attrs.shapeType.toLowerCase().includes("mist")) {
-        userGeneratedParticles.push(createObject(object))
-        object.destroy();
-        layer.draw();
-      }
+    if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
+        isBallMistOrBoth(object.attrs.type.toLowerCase())){
+      userGeneratedParticles.push(createObject(object))
+      object.destroy();
+      layer.draw();
     }
   });
 };
@@ -598,61 +609,72 @@ function clearSoonToBeDuplicateObjects(simulationOutcome){
 
 /**/
 
-function getShapes() {
+function getAmountOfLevels(){
+  var elements = getElementsFromCanvas();
+
+  if(elements.length === 0){
+    return 0;
+  }
+
+  return Object.keys(splitElementsIntoGroupsByElementLevel(elements)).length;
+}
+
+function getElementsFromCanvas(){
   let shapes = ["Image", "Circle"];
   var elements = [];
 
   shapes.forEach((shape, i) => {
     var shapeInStage = stage.find(shape);
     shapeInStage.each(function (object) {
-      if(!object.attrs.shapeType.toLowerCase().includes("shadow")){
-        if(object.attrs.shapeType.toLowerCase().includes("circle") ||
-            object.attrs.shapeType.toLowerCase().includes("mist")){
-              elements.push(createObject(object));
-            } else {
-              elements.push(createObject(object));
-            }
+      if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
+          isBallMistOrBoth(object.attrs.type.toLowerCase())){
+        elements.push(createObject(object));
+      } else {
+        elements.push(createObject(object));
       }
     });
   });
+
+  return elements
+}
+
+function run(allLevels = false) {
+
+  var elements = getElementsFromCanvas();
 
   if(elements.length === 0){
     return ;
   }
 
-  // #### This will remove intermittent balls for the animation to be smooth
-  // if(document.getElementById("start-button-tag").innerText.toLowerCase() === "start"){
-  //   document.getElementById("start-button-tag").innerText = "Continue";
-  //   hideUsergenerated();
-  // }
+  let amountOfLevels = (allLevels) ? getAmountOfLevels() : 1;
 
-  let levels = splitElementsIntoGroupsByElementLevel(elements);
+  for (var i = 0; i < amountOfLevels; i++) {
+    let levels = splitElementsIntoGroupsByElementLevel(elements);
 
-  console.log("Getting Levels");
-  console.log(levels);
+    // console.log("Getting Levels");
+    // console.log(levels);
 
-  levels = removeDisconectedLevels(levels);
+    levels = removeDisconectedLevels(levels);
 
-  var matchedObjects = matchLevels(levels);
+    var matchedObjects = matchLevels(levels);
 
-  matchedObjects = removeSingleObjects(matchedObjects);
+    matchedObjects = removeSingleObjects(matchedObjects);
 
-  console.log("Getting IDs");
-  console.log(matchedObjects[0].getID());
+    // console.log("Getting IDs");
+    // console.log(matchedObjects[0].getID());
 
-  if(matchedObjects.length === 0){
-    return ;
+    if (matchedObjects.length === 0) {
+      return;
+    }
+
+    let simulationOutcome = simulate(matchedObjects);
+
+    clearSoonToBeDuplicateObjects(simulationOutcome);
+
+    drawObjects(simulationOutcome);
+
+    elements.push(simulationOutcome);
   }
-
-  let simulationOutcome = simulate(matchedObjects);
-
-  //clearSimulations();
-
-  clearSoonToBeDuplicateObjects(simulationOutcome);
-
-  drawObjects(simulationOutcome);
-
-  return(simulationOutcome);
 };
 
 function splitElementsIntoGroupsByElementLevel(elements){

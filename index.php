@@ -821,14 +821,14 @@
                                                                                             <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue">
                                                                                                 <p class="space-top">Tutorials</p>
                                                                                             </a>
-                                                                                            <a class="button-2x1 green space-top" onclick = "goBack()" onmouseenter="over('Go Back')">
-                                                                                                <p class="space-top">Go Back</p>
+                                                                                            <a class="button-2x1 space-top" onclick = "goBack()" onmouseenter="over('Go Back')">
+                                                                                                <span class="icon back"></span>
                                                                                             </a>
-                                                                                            <a class="button-2x1 green space-top" onclick = "run()" onmouseenter="over('Run')" id="start-button" >
-                                                                                                <p class="space-top">Run</p>
+                                                                                            <a class="button-2x1 space-top" onclick = "runNext()" onmouseenter="over('Run')">
+                                                                                                <span class="icon play"></span>
                                                                                             </a>
-                                                                                            <a class="button-2x1 green space-top" onclick = "runAll()" onmouseenter="over('Run All')">
-                                                                                                <p class="space-top">Run Simulation</p>
+                                                                                            <a class="button-2x1 space-top" onclick = "runAll()" onmouseenter="over('Run All')">
+                                                                                                <span class="icon forward"></span>
                                                                                             </a>
                                                                                             <a class="button-2x1 orange space-top" onclick = "clearSimulation()" onmouseenter="over('Clear Simulation')">
                                                                                                 <p class="space-top">Clear Simulation</p>

@@ -39,12 +39,12 @@ function createPIPE_Gate(){
 }
 
 function createBLACK_BALL(){
-  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'black', 'user', 'circle');
+  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'blackBall', 'user', 'circle');
   stage.add(layer);
 }
 
 function createWHITE_BALL(){
-  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'white', 'user', 'circle');
+  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle');
   stage.add(layer);
 }
 
@@ -59,12 +59,12 @@ function createWNegBMist(){
 }
 
 
-function run(){
+function runNext(){
   console.log("Running next simulation");
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
 
-  getShapes();
+  run();
 
   $(".loader-wrapper").fadeOut("fast");
 }
@@ -74,7 +74,7 @@ function runAll(){
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
 
-  //getShapes();
+  run(true);
 
   $(".loader-wrapper").fadeOut("fast");
 }
@@ -106,7 +106,7 @@ function clearAllBallsAndMists(){
   $(".loader-wrapper").fadeIn("fast");
 
   showUsergenerated();
-  clearBalls();
+  clearBallsAndMists();
 
   $(".loader-wrapper").fadeOut("fast");
 }
