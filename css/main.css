@@ -55,6 +55,7 @@
 div.scrollmenu {
     overflow: auto;
     white-space: nowrap;
+
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -89,10 +90,12 @@ div.scrollmenus {
     font-weight: bold;
 }
 
+.controll-line{
+    display: inline;
+}
+
 .border-left {
-    margin-right: 5px;
     border-left: 2px solid #A9A9A9;
-    height: 60px;
 }
 
 a{

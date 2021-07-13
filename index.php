@@ -580,7 +580,7 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo auto_version('css/button.css'); ?>" type="text/css" />
-
+    <link rel="stylesheet" href="<?php echo auto_version('css/debug-lines.css'); ?>" type="text/css" />
     <link rel="stylesheet" href="<?php echo auto_version('css/fullwidth-div.css'); ?>" type="text/css" />
     <link rel="stylesheet" href="<?php echo auto_version('css/loading-indicator.css'); ?>" type="text/css" />
     <link rel="stylesheet" href="<?php echo auto_version('css/main.css'); ?>" type="text/css" />
@@ -810,7 +810,7 @@
                                                                                     </div>
 
                                                                                     <!--  Mobile Elements Go Here-->
-                                                                                    <div class="row left-space scrollmenu mobileControlls">
+                                                                                    <div class="row left-space scrollmenu mobileControlls green-line">
                                                                                         <div class="controll-box ">
                                                                                             Balls
                                                                                         </div>
@@ -820,7 +820,7 @@
                                                                                         <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
                                                                                             <img class="button-img-mobile" src="img/black.png" draggable="true">
                                                                                         </a>
-                                                                                        <div class="border-left controll-box">
+                                                                                        <div class="left-space controll-box border-left" style="padding-left: 20px; padding-right: 10px">
                                                                                             Classical Gates
                                                                                         </div>
                                                                                         <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
@@ -839,7 +839,7 @@
                                                                                         <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
                                                                                             <img class="button-img" src="img/ccswap.png" draggable="true">
                                                                                         </a>
-                                                                                        <div class="controll-box">
+                                                                                        <div class="controll-box border-left" style="padding-left: 20px; padding-right: 10px">
                                                                                             Misty States
                                                                                         </div>
                                                                                         <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
