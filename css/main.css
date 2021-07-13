@@ -18,15 +18,17 @@
 .left, .center, .right{
     float: left;
     margin: 0 1.5%;
-    height: 80vh;
+
 }
 
 .left{
     width: 15%;
+    height: 90vh;
 }
 
 .center{
-    width: 67%;
+    width: 78%;
+    height: 80vh;
 }
 
 .right{
@@ -50,4 +52,9 @@
 .built-by-note{
     font-size:16px;
     margin: 0 1.5%;
+}
+
+div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
 }

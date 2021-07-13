@@ -746,7 +746,7 @@
                                                                             <main>
                                                                                 <aside class="left ">
                                                                                         <!--  Gates Go Here-->
-                                                                                        <div class="row  ">
+                                                                                        <div class="row">
                                                                                             <div class="controll-box">
                                                                                                 Balls
                                                                                             </div>
@@ -757,7 +757,7 @@
                                                                                                 <img class="button-img" src="img/black.png" draggable="true">
                                                                                             </a>
                                                                                         </div>
-                                                                                        <div class="row  ">
+                                                                                        <div class="row">
                                                                                             <div class="controll-box">
                                                                                                 Classical Gates
                                                                                             </div>
@@ -805,14 +805,20 @@
                                                                                 </aside>
                                                                                 <section class="center ">
                                                                                     <!--  Canvas Goes Here-->
+
+
+
+
                                                                                     <div class="loader-wrapper hidden" id="loading-sign">
                                                                                         <span class="loader"><span class="loader-inner"></span></span>
                                                                                     </div>
+
                                                                                     <div class="canvas-inset">
                                                                                         <div class="canvas-box" id="canvas-div" >
                                                                                             <div class="canvas-box" id="canvas" ></div>
                                                                                         </div>
                                                                                     </div>
+
                                                                                 </section>
                                                                                 <aside class="right ">
                                                                                     <div class="">
@@ -853,8 +859,41 @@
 
 
 
+                                                                                    <div class="row left-space scrollmenu">
+                                                                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue">
+                                                                                            <p class="">Tutorials</p>
+                                                                                        </a>
+                                                                                        <a class="button-2x1 left-space green" onclick = "start()" id="start-button">
+                                                                                            <p class="">Run</p>
+                                                                                        </a>
+                                                                                        <a class="button-2x1 left-space orange" onclick = "">
+                                                                                            <p class="">Back One Step</p>
+                                                                                        </a>
+                                                                                        <a class="button-2x1 left-space orange" onclick = "clearOutput()">
+                                                                                            <p class="">Remove Output</p>
+                                                                                        </a>
+                                                                                        <a class="button-2x1 left-space orange" onclick = "clearAllBalls()">
+                                                                                            <p class="">Remove All Balls</p>
+                                                                                        </a>
+                                                                                        <a class="button-2x1 left-space red" onclick = "clearCanvas()">
+                                                                                            <p class="">Clear Canvas</p>
+                                                                                        </a>
+
+                                                                                        <label class="checkbox_container left-space space-top">Hide output
+                                                                                            <input type="checkbox" id="checkIfHidden" onclick="toggleHideOutput();">
+                                                                                            <span class="checkmark"></span>
+                                                                                        </label>
                                                                                     </div>
-                                                                                </aside>
+                                                                                </section>
+<!--                                                                                <aside class="right ">-->
+<!--                                                                                    <div class="">-->
+                                                                                        <!--  Controls Go Here-->
+<!--                                                                                        -->
+<!---->
+<!---->
+<!---->
+<!--                                                                                    </div>-->
+<!--                                                                                </aside>-->
                                                                             </main>
 
                                                                     </div>
