@@ -58,9 +58,16 @@
 
 .icon {
 	display: inline-block;
-	width: 70px;
-	height: 70px;
+	width: 60px;
+	height: 60px;
 	background-size: cover;
+}
+
+.icon-button{
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	cursor: default;
 }
 
 .play {
@@ -72,19 +79,19 @@
 }
 
 .back {
-	background-image: url(../img/play.svg);
+	background-image: url(../img/back.svg);
 }
 .back:hover,
 .back:focus {
-	background-image: url(../img/play.svg);
+	background-image: url(../img/back-hover.svg);
 }
 
 .forward {
-	background-image: url(../img/play.svg);
+	background-image: url(../img/forward.svg);
 }
 .forward:hover,
 .forward:focus {
-	background-image: url(../img/play.svg);
+	background-image: url(../img/forward-hover.svg);
 }
 
 @media only screen and (max-width: 20px) {
@@ -191,7 +198,10 @@
 /*##############################################*/
 
 .space-top{
-	margin-top:22px;
+	margin-top: 22px;
+}
+.space-bottom{
+	margin-bottom: 22px;
 }
 
 .left-space{
@@ -208,7 +218,7 @@
 	display: inline-block;
 	position: relative;
 	padding-left: 35px;
-	margin-bottom: 12px;
+	margin-bottom: 22px;
 	font-size: 16px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
