@@ -39,12 +39,12 @@ function createPIPE_Gate(){
 }
 
 function createBLACK_BALL(){
-  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'black', 'user', 'circle');
+  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'blackBall', 'user', 'circle');
   stage.add(layer);
 }
 
 function createWHITE_BALL(){
-  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'white', 'user', 'circle');
+  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle');
   stage.add(layer);
 }
 
@@ -59,17 +59,37 @@ function createWNegBMist(){
 }
 
 
-function start(){
-  console.log("Starting simulations");
+function runNext(){
+  console.log("Running next simulation");
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
 
-  getShapes();
+  run();
 
   $(".loader-wrapper").fadeOut("fast");
 }
 
-function clearOutput(){
+function runAll(){
+  console.log("Running all simulations");
+  $('#loading-sign').removeClass('hidden');
+  $(".loader-wrapper").fadeIn("fast");
+
+  run(true);
+
+  $(".loader-wrapper").fadeOut("fast");
+}
+
+function goBack(){
+  console.log("Going back one step");
+  $('#loading-sign').removeClass('hidden');
+  $(".loader-wrapper").fadeIn("fast");
+
+  //getShapes();
+
+  $(".loader-wrapper").fadeOut("fast");
+}
+
+function clearSimulation(){
   console.log("Clearing simulation objects");
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
@@ -80,13 +100,13 @@ function clearOutput(){
   $(".loader-wrapper").fadeOut("fast");
 }
 
-function clearAllBalls(){
+function clearAllBallsAndMists(){
   console.log("Clearing simulation objects");
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
 
   showUsergenerated();
-  clearBalls();
+  clearBallsAndMists();
 
   $(".loader-wrapper").fadeOut("fast");
 }

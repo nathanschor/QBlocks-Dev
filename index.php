@@ -819,6 +819,45 @@
                                                                                         </div>
                                                                                     </div>
 
+                                                                                </section>
+                                                                                <aside class="right ">
+                                                                                    <div class="">
+                                                                                        <!--  Controls Go Here-->
+                                                                                        <div class="row  ">
+                                                                                            <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue">
+                                                                                                <p class="space-top">Tutorials</p>
+                                                                                            </a>
+                                                                                            <a class="button-2x1 space-top" onclick = "goBack()" onmouseenter="over('Go Back')">
+                                                                                                <span class="icon back"></span>
+                                                                                            </a>
+                                                                                            <a class="button-2x1 space-top" onclick = "runNext()" onmouseenter="over('Run')">
+                                                                                                <span class="icon play"></span>
+                                                                                            </a>
+                                                                                            <a class="button-2x1 space-top" onclick = "runAll()" onmouseenter="over('Run All')">
+                                                                                                <span class="icon forward"></span>
+                                                                                            </a>
+                                                                                            <a class="button-2x1 orange space-top" onclick = "clearSimulation()" onmouseenter="over('Clear Simulation')">
+                                                                                                <p class="space-top">Clear Simulation</p>
+                                                                                            </a>
+                                                                                            <a class="button-2x1 orange space-top" onclick = "clearAllBallsAndMists()" onmouseenter="over('Clear All Balls')">
+                                                                                                <p class="space-top">Clear All Balls</p>
+                                                                                            </a>
+                                                                                            <a class="button-2x1 red space-top" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
+                                                                                                <p class="space-top">Clear Canvas</p>
+                                                                                            </a>
+
+                                                                                            <div class="space-top">
+                                                                                                <label class="checkbox_container">Hide output
+                                                                                                    <input type="checkbox" id="checkIfHidden" onclick="toggleHideOutput();">
+                                                                                                    <span class="checkmark"></span>
+                                                                                                </label>
+                                                                                            </div>
+
+
+
+                                                                                        </div>
+
+
 
                                                                                     <div class="row left-space scrollmenu">
                                                                                         <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue">

@@ -56,6 +56,37 @@
 	padding: 0px 5px 5px 5px;
 }
 
+.icon {
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	background-size: cover;
+}
+
+.play {
+	background-image: url(../img/play.svg);
+}
+.play:hover,
+.play:focus {
+	background-image: url(../img/play-hover.svg);
+}
+
+.back {
+	background-image: url(../img/play.svg);
+}
+.back:hover,
+.back:focus {
+	background-image: url(../img/play.svg);
+}
+
+.forward {
+	background-image: url(../img/play.svg);
+}
+.forward:hover,
+.forward:focus {
+	background-image: url(../img/play.svg);
+}
+
 @media only screen and (max-width: 20px) {
 	.button, .start-stop-button, .button-clearAll, .button-Instruction{
 		display: block;
