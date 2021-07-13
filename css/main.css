@@ -1,38 +1,35 @@
-:root {
-    --small-dimension: 10vw;
-    --large-dimension: 100%;
-}
-
-.green-line{
-    border: 3px solid green;
-}
-
-.blue-line{
-    border: 3px solid blue;
-}
-
-.red-line{
-    border: 3px solid red;
-}
-
-.left, .center, .right{
+.left, .center{
     float: left;
     margin: 0 1.5%;
 
 }
 
-.left{
-    width: 15%;
-    height: 90vh;
+
+
+/*hide div on all screens with 700 and lower width*/
+@media only screen and (max-width: 780px) {
+    .left{
+        width: 15%;
+        height: 90vh;
+    }
+
+    .center{
+        width: 78%;
+        height: 80vh;
+    }
 }
 
-.center{
-    width: 78%;
-    height: 80vh;
-}
+/*hide div on all screens with 700 and higher width*/
+@media only screen and (min-width: 780px) {
+    .left{
+        width: 15%;
+        height: 70vh;
+    }
 
-.right{
-    width: 8%;
+    .center{
+        width: 78%;
+        height: 75vh;
+    }
 }
 
 .explanation{
@@ -54,6 +51,7 @@
     margin: 0 1.5%;
 }
 
+
 div.scrollmenu {
     overflow: auto;
     white-space: nowrap;
@@ -68,4 +66,31 @@ div.scrollmenu::-webkit-scrollbar {
 div.scrollmenus {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+
+/*hide div on all screens with 700 and higher width*/
+@media only screen and (max-width: 1000px) {
+    .standardControlls {
+        display:none;
+    }
+}
+
+/*hide div on all screens with 700 and higher width*/
+@media only screen and (min-width: 1000px) {
+    .mobileControlls{
+        display:none;
+    }
+}
+
+.controll-box{
+    display: inline-block;
+    text-decoration: underline;
+    text-align: center;
+    font-weight: bold;
+}
+
+.border-left {
+    margin-right: 5px;
+    border-left: 2px solid #A9A9A9;
+    height: 60px;
 }

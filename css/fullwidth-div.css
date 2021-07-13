@@ -4,8 +4,19 @@
     left: calc(-45vw + 50%);
 }
 
-.expand-child-marginally-past-parent {
-    width: 70vw;
-    position: relative;
-    left: calc(-25vw + 35%);
+/*hide div on all screens with 700 and higher width*/
+@media only screen and (max-width: 1000px) {
+    .expand-div-across-full-width {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        left: calc(-50vw + 50%);
+    }
+
+    .center, .canvas-inset{
+        width: 100vw;
+        float: none;
+        margin: 0 0%;
+        left: calc(-41vw + 50%);
+    }
 }

@@ -14,6 +14,8 @@ var height =Math.round( document.getElementById('canvas-div').clientHeight / gri
 
 console.log("Height: " + height + " | Width: " + width);
 
+console.log(window.innerWidth);
+
 /*############################################################################*/
 /*####################### Ball Definition ####################################*/
 /*############################################################################*/

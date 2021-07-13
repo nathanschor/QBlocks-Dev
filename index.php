@@ -740,11 +740,11 @@
 
                                                                 <div class="total-canvas expand-div-across-full-width">
                                                                   <!-- To make child exceed parent, add  'expand-child-past-parent' to class-->
-                                                                    <div id="container-flex" class="">
+                                                                    <div id="container-flex">
 
                                                                             <!---->
                                                                             <main>
-                                                                                <aside class="left ">
+                                                                                <aside class="left standardControlls">
                                                                                         <!--  Gates Go Here-->
                                                                                         <div class="row">
                                                                                             <div class="controll-box">
@@ -803,38 +803,87 @@
                                                                                             <!----><!----><!---->
                                                                                         </div>
                                                                                 </aside>
-                                                                                <section class="center ">
-                                                                                    <!--  Canvas Goes Here-->
+                                                                                <section class="center">
+                                                                                    <!--  Focus of the webpage-->
                                                                                     <div class="loader-wrapper hidden" id="loading-sign">
                                                                                         <span class="loader"><span class="loader-inner"></span></span>
                                                                                     </div>
 
+                                                                                    <!--  Mobile Elements Go Here-->
+                                                                                    <div class="row left-space scrollmenu mobileControlls">
+                                                                                        <div class="controll-box ">
+                                                                                            Balls
+                                                                                        </div>
+                                                                                        <a class="" id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
+                                                                                            <img class="button-img-mobile" src="img/white.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
+                                                                                            <img class="button-img-mobile" src="img/black.png" draggable="true">
+                                                                                        </a>
+                                                                                        <div class="border-left controll-box">
+                                                                                            Classical Gates
+                                                                                        </div>
+                                                                                        <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
+                                                                                            <img class="button-img" src="img/not.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-swap" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
+                                                                                            <img class="button-img" src="img/swap.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-cnot" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
+                                                                                            <img class="button-img" src="img/cnot.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-cswap" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
+                                                                                            <img class="button-img" src="img/cswap.png" draggable="true">
+                                                                                        </a>
+
+                                                                                        <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
+                                                                                            <img class="button-img" src="img/ccswap.png" draggable="true">
+                                                                                        </a>
+                                                                                        <div class="controll-box">
+                                                                                            Misty States
+                                                                                        </div>
+                                                                                        <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
+                                                                                            <img class="button-img" src="img/pete.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
+                                                                                            <img class="button-img" src="img/pipe.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-wbmist" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
+                                                                                            <img class="button-img" src="img/wb.png" draggable="true">
+                                                                                        </a>
+                                                                                        <a id="drag-wnegbmist" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
+                                                                                            <img class="button-img" src="img/wnegb.png" draggable="true">
+                                                                                        </a>
+                                                                                    </div>
+
+                                                                                    <!-- The Canvas-->
                                                                                     <div class="canvas-inset">
                                                                                         <div class="canvas-box" id="canvas-div" >
                                                                                             <div class="canvas-box" id="canvas" ></div>
                                                                                         </div>
                                                                                     </div>
-                                                                                        <!--  Controls Go Here-->
-                                                                                    <div class="row left-space scrollmenu">
-                                                                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue">
+
+                                                                                    <!-- Controls Go Here-->
+                                                                                    <div class="row left-space scrollmenu" id="controlStrip">
+                                                                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue" id="tutorials-button">
                                                                                             <p class="">Tutorials</p>
                                                                                         </a>
                                                                                         <a class="left-space icon-button" onclick = "goBack()" onmouseenter="over('Go Back')">
                                                                                             <span class="icon back"></span>
                                                                                         </a>
-                                                                                        <a class="left-space icon-button" onclick = "runNext()" onmouseenter="over('Run')">
+                                                                                        <a class="left-space icon-button" onclick = "runNext()" onmouseenter="over('Run')" id="playButton">
                                                                                             <span class="icon play"></span>
                                                                                         </a>
-                                                                                        <a class="left-space icon-button" onclick = "runAll()" onmouseenter="over('Run All')">
+                                                                                        <a class="left-space icon-button" onclick = "runAll()" onmouseenter="over('Forward')">
                                                                                             <span class="icon forward"></span>
                                                                                         </a>
-                                                                                        <a class="button-2x1 left-space orange" onclick = "clearOutput()">
+                                                                                        <a class="button-2x1 left-space orange" onclick = "clearSimulation()" onmouseenter="over('Remove Output')">
                                                                                             <p class="">Remove Output</p>
                                                                                         </a>
-                                                                                        <a class="button-2x1 left-space orange" onclick = "clearAllBalls()">
+                                                                                        <a class="button-2x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')">
                                                                                             <p class="">Remove All Balls</p>
                                                                                         </a>
-                                                                                        <a class="button-2x1 left-space red" onclick = "clearCanvas()">
+                                                                                        <a class="button-2x1 left-space red" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
                                                                                             <p class="">Clear Canvas</p>
                                                                                         </a>
 
@@ -850,7 +899,7 @@
                                                                     <br style="clear: both">
                                                                 </div>
 
-                                                                <div class="expand-div-across-full-width">
+                                                                <div class="expand-div-across-full-width standardControlls">
                                                                     <p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a>, <a href="https://julianbeaulieu.com/" target="_blank">Julian Beaulieu</a>, and <a href="https://sunilsingh.me/" target="_blank">Sunil Singh</a> </p>
                                                                 </div>
 
@@ -869,6 +918,7 @@
                                                                 <script src="<?php echo auto_version('js/buttons.js'); ?>"></script>
                                                                 <script src="<?php echo auto_version('js/center-canvas.js'); ?>"></script>
                                                                 <script src="<?php echo auto_version('js/tooltips.js'); ?>"></script>
+                                                                <script src="<?php echo auto_version('js/scroll-to-center.js'); ?>"></script>
 
 
   <!-- ############################################################################################################ -->
