@@ -731,10 +731,10 @@
                                 <aside class="left standardControlls">
                                         <!--  Gates Go Here-->
                                         <div class="row">
-                                            <div class="controll-box">
+                                            <div class="controll-box space-bottom">
                                                 Balls
                                             </div>
-                                            <a class="space-top" id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
+                                            <a id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
                                                 <img class="button-img" src="img/white.png" draggable="true">
                                             </a>
                                             <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
@@ -742,10 +742,10 @@
                                             </a>
                                         </div>
                                         <div class="row">
-                                            <div class="controll-box">
+                                            <div class="controll-box space-bottom">
                                                 Classical Gates
                                             </div>
-                                            <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
+                                            <a id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
                                                 <img class="button-img" src="img/not.png" draggable="true">
                                             </a>
                                             <a id="drag-swap" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
@@ -763,11 +763,11 @@
                                             </a>
                                         </div>
 
-                                        <div class="row  ">
-                                            <div class="controll-box">
+                                        <div class="row">
+                                            <div class="controll-box space-bottom">
                                                 Misty States
                                             </div>
-                                            <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
+                                            <a id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
                                                 <img class="button-img" src="img/pete.png" draggable="true">
                                             </a>
                                             <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
@@ -795,7 +795,7 @@
 
                                     <!--  Mobile Elements Go Here-->
                                     <div class="row left-space scrollmenu mobileControlls">
-                                        <div class="controll-box ">
+                                        <div class="controll-box-mobile ">
                                             Balls
                                         </div>
                                         <a class="" id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
@@ -804,7 +804,7 @@
                                         <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
                                             <img class="button-img-mobile" src="img/black.png" draggable="true">
                                         </a>
-                                        <div class="left-space controll-box border-left" style="padding-left: 20px; padding-right: 10px">
+                                        <div class="left-space controll-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
                                             Classical Gates
                                         </div>
                                         <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
@@ -823,7 +823,7 @@
                                         <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
                                             <img class="button-img" src="img/ccswap.png" draggable="true">
                                         </a>
-                                        <div class="controll-box border-left" style="padding-left: 20px; padding-right: 10px">
+                                        <div class="controll-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
                                             Misty States
                                         </div>
                                         <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
@@ -849,7 +849,7 @@
 
                                     <!-- Controls Go Here-->
                                     <div class="row left-space scrollmenu" id="controlStrip">
-                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue" id="tutorials-button">
+                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue" id="tutorials-button" onmouseenter="over('Tutorials')">
                                             <p class="">Tutorials</p>
                                         </a>
                                         <a class="left-space icon-button" onclick = "goBack()" onmouseenter="over('Go Back')">
@@ -871,7 +871,7 @@
                                             <p class="">Clear Canvas</p>
                                         </a>
 
-                                        <label class="checkbox_container left-space space-top">Hide output
+                                        <label class="checkbox_container left-space space-top" onmouseenter="over('Hide output')">Hide output
                                             <input type="checkbox" id="checkIfHidden" onclick="toggleHideOutput();">
                                             <span class="checkmark"></span>
                                         </label>

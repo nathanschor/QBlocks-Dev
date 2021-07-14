@@ -46,10 +46,6 @@
   left: 5%;
 }
 
-.green-line{
-  border: 3px solid green;
-}
-
 .largeControlls, .mediumControlls, .smallControlls{
   display:block; /*default behavior*/
 }
@@ -59,13 +55,6 @@
   .largeControlls{
     display:none;
   }
-
-  /*.expand-child-marginally-past-parent {*/
-  /*  width: 100vw;*/
-  /*  position: relative;*/
-  /*  left: calc(-50vw + 50%);*/
-  /*}*/
-
 
   .box{
     position: relative;

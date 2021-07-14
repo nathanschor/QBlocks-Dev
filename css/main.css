@@ -4,15 +4,11 @@
 
 }
 
-
-
 /*hide div on all screens with 700 and lower width*/
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
     .standardControlls {
         display:none;
     }
-
-
 
     .left{
         width: 15%;
@@ -26,7 +22,7 @@
 }
 
 /*hide div on all screens with 700 and higher width*/
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
     .mobileControlls{
         display:none;
     }
@@ -48,16 +44,17 @@
 }
 
 .title{
-    font-size: 75%;
+    font-size: 120%;
     font-weight: bold;
+    text-decoration: underline;
 }
 
 .description{
-    font-size: 70%;
+    font-size: 100%;
 }
 
 .built-by-note{
-    font-size:16px;
+    font-size: 100%;
     margin: 0 1.5%;
 }
 
@@ -79,11 +76,19 @@ div.scrollmenus {
     scrollbar-width: none;  /* Firefox */
 }
 
-.controll-box{
+.controll-box-mobile{
     display: inline-block;
     text-decoration: underline;
     text-align: center;
     font-weight: bold;
+}
+
+.controll-box{
+    display: block;
+    text-decoration: underline;
+    text-align: left;
+    font-weight: bold;
+    font-size: 120%;
 }
 
 .controll-line{
