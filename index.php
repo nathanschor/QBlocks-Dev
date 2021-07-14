@@ -38,24 +38,7 @@
     <link rel="alternate" type="application/rss+xml" title="Quantum Curious &raquo; Comments Feed" href="https://quantumcurious.org/comments/feed/"/>
     <!-- This site uses the Google Analytics by MonsterInsights plugin v7.17.0 - Using Analytics tracking - https://www.monsterinsights.com/ -->
     <script src="//www.googletagmanager.com/gtag/js?id=UA-177271239-1" type="text/javascript" data-cfasync="false"></script>
-    <?php
-        /**
-        *  Given a file, i.e. /css/base.css, replaces it with a string containing the
-        *  file's mtime, i.e. /css/base.1221534296.css.
-        *
-        *  @param $file  The file to be loaded.  Must be an absolute path (i.e.
-        *                starting with slash).
-        */
-        function auto_version($file)
-        {
-            if(strpos($file, '/') !== 0 || !file_exists($_SERVER['DOCUMENT_ROOT'] . $file))
-                return $file;
 
-            $mtime = filemtime($_SERVER['DOCUMENT_ROOT'] . $file);
-            error_log(print_r($mtime, TRUE));
-            return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);
-        }
-    ?>
     <script type="text/javascript" data-cfasync="false">
     var mi_version = '7.17.0';
     var mi_track_user = true;
@@ -578,14 +561,36 @@
     <!-- ############################################################################################################ -->
     <!-- ############################################################################################################ -->
     <!-- ############################################################################################################ -->
+    <?php
+    /**
+     *  Given a file, i.e. /css/base.css, replaces it with a string containing the
+     *  file's mtime, i.e. /css/base.1221534296.css.
+     *
+     *  @param $file  The file to be loaded.  Must be an absolute path (i.e.
+     *                starting with slash).
+     */
+
+    function auto_version($file)
+    {
+        if(strpos($file, '/') !== 0 || !file_exists($_SERVER['DOCUMENT_ROOT'] . $file))
+            return $file;
+
+        $mtime = filemtime($_SERVER['DOCUMENT_ROOT'] . $file);
+        echo $mtime;
+        return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);
+    }
+    ?>
+<!--    <link rel="stylesheet" href="css/custom.css?v=--><?//=filemtime("./css/custom.css")?><!--"/>-->
+<!--    <script src="js/custom.js?v=--><?//=filemtime("js/custom.js")?><!--"></script>-->
+
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo auto_version('css/button.css'); ?>" type="text/css" />
-    <link rel="stylesheet" href="<?php echo auto_version('css/debug-lines.css'); ?>" type="text/css" />
-    <link rel="stylesheet" href="<?php echo auto_version('css/fullwidth-div.css'); ?>" type="text/css" />
-    <link rel="stylesheet" href="<?php echo auto_version('css/loading-indicator.css'); ?>" type="text/css" />
-    <link rel="stylesheet" href="<?php echo auto_version('css/main.css'); ?>" type="text/css" />
-    <link rel="stylesheet" href="<?php echo auto_version('css/canvas.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="css/button.css?v=<?=filemtime('css/button.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="css/debug-lines.css?v=<?=filemtime('css/debug-lines.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="css/fullwidth-div.css?v=<?=filemtime('css/fullwidth-div.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="css/loading-indicator.css?v=<?=filemtime('css/loading-indicator.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="css/main.css?v=<?=filemtime('css/main.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="css/canvas.css?v=<?=filemtime('css/canvas.css'); ?>" type="text/css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -735,10 +740,10 @@
                                             <div class="controll-box space-bottom">
                                                 Balls
                                             </div>
-                                            <a id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
+                                            <a id="drag-white" onmouseenter="over('White Ball')">
                                                 <img class="button-img" src="img/white.png" draggable="true">
                                             </a>
-                                            <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
+                                            <a id="drag-black" onmouseenter="over('Black Ball')">
                                                 <img class="button-img" src="img/black.png" draggable="true">
                                             </a>
                                         </div>
@@ -746,20 +751,20 @@
                                             <div class="controll-box space-bottom">
                                                 Classical Gates
                                             </div>
-                                            <a id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
+                                            <a id="drag-not" onmouseenter="over('Not Gate')">
                                                 <img class="button-img" src="img/not.png" draggable="true">
                                             </a>
-                                            <a id="drag-swap" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
+                                            <a id="drag-swap" onmouseenter="over('Swap Gate')">
                                                 <img class="button-img" src="img/swap.png" draggable="true">
                                             </a>
-                                            <a id="drag-cnot" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
+                                            <a id="drag-cnot" onmouseenter="over('CNot Gate')">
                                                 <img class="button-img" src="img/cnot.png" draggable="true">
                                             </a>
-                                            <a id="drag-cswap" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
+                                            <a id="drag-cswap" onmouseenter="over('CSwap Gate')">
                                                 <img class="button-img" src="img/cswap.png" draggable="true">
                                             </a>
 
-                                            <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
+                                            <a id="drag-ccswap" onmouseenter="over('CCSwap Gate')">
                                                 <img class="button-img" src="img/ccswap.png" draggable="true">
                                             </a>
                                         </div>
@@ -768,16 +773,16 @@
                                             <div class="controll-box space-bottom">
                                                 Misty States
                                             </div>
-                                            <a id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
+                                            <a id="drag-pete" onmouseenter="over('Pete Gate')">
                                                 <img class="button-img" src="img/pete.png" draggable="true">
                                             </a>
-                                            <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
+                                            <a id="drag-pipe" onmouseenter="over('Pipe Gate')">
                                                 <img class="button-img" src="img/pipe.png" draggable="true">
                                             </a>
-                                            <a id="drag-wbmist" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
+                                            <a id="drag-wbmist" onmouseenter="over('White/Back Mist')">
                                                 <img class="button-img" src="img/wb.png" draggable="true">
                                             </a>
-                                            <a id="drag-wnegbmist" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
+                                            <a id="drag-wnegbmist" onmouseenter="over('White/-Back Mist')">
                                                 <img class="button-img" src="img/wnegb.png" draggable="true">
                                             </a>
                                         </div>
@@ -799,44 +804,44 @@
                                         <div class="controll-box-mobile ">
                                             Balls
                                         </div>
-                                        <a class="" id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
+                                        <a id="drag-white-mobile" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
                                             <img class="button-img-mobile" src="img/white.png" draggable="true">
                                         </a>
-                                        <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
+                                        <a id="drag-black-mobile" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
                                             <img class="button-img-mobile" src="img/black.png" draggable="true">
                                         </a>
                                         <div class="left-space controll-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
                                             Classical Gates
                                         </div>
-                                        <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
+                                        <a id="drag-not-mobile" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
                                             <img class="button-img" src="img/not.png" draggable="true">
                                         </a>
-                                        <a id="drag-swap" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
+                                        <a id="drag-swap-mobile" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
                                             <img class="button-img" src="img/swap.png" draggable="true">
                                         </a>
-                                        <a id="drag-cnot" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
+                                        <a id="drag-cnot-mobile" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
                                             <img class="button-img" src="img/cnot.png" draggable="true">
                                         </a>
-                                        <a id="drag-cswap" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
+                                        <a id="drag-cswap-mobile" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
                                             <img class="button-img" src="img/cswap.png" draggable="true">
                                         </a>
 
-                                        <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
+                                        <a id="drag-ccswap-mobile" class="right-space" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
                                             <img class="button-img" src="img/ccswap.png" draggable="true">
                                         </a>
                                         <div class="controll-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
                                             Misty States
                                         </div>
-                                        <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
+                                        <a id="drag-pete-mobile" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
                                             <img class="button-img" src="img/pete.png" draggable="true">
                                         </a>
-                                        <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
+                                        <a id="drag-pipe-mobile" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
                                             <img class="button-img" src="img/pipe.png" draggable="true">
                                         </a>
-                                        <a id="drag-wbmist" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
+                                        <a id="drag-wbmist-mobile" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
                                             <img class="button-img" src="img/wb.png" draggable="true">
                                         </a>
-                                        <a id="drag-wnegbmist" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
+                                        <a id="drag-wnegbmist-mobile" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
                                             <img class="button-img" src="img/wnegb.png" draggable="true">
                                         </a>
                                     </div>
@@ -889,21 +894,22 @@
                 </div>
 
                 <!-- Script Imports -->
-                <script src="<?php echo auto_version('js/loadJSON.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/Ball.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/Not.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/CNot.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/CCSwap.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/Swap.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/CSwap.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/Pete.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/Mist.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/GatesAndParticles/Pipe.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/main.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/buttons.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/center-canvas.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/tooltips.js'); ?>"></script>
-                <script src="<?php echo auto_version('js/scroll-to-center.js'); ?>"></script>
+<!--                <script src="js/custom.js?v=--><?//=filemtime("js/custom.js")?><!--"></script>-->
+                <script src="js/loadJSON.js?v=<?=filemtime('js/loadJSON.js'); ?>"></script>
+                <script src="js/GatesAndParticles/Ball.js?v=<?=filemtime('js/GatesAndParticles/Ball.js'); ?>"></script>
+                <script src="js/GatesAndParticles/Not.js?v=<?=filemtime('js/GatesAndParticles/Not.js'); ?>"></script>
+                <script src="js/GatesAndParticles/CNot.js?v=<?=filemtime('js/GatesAndParticles/CNot.js'); ?>"></script>
+                <script src="js/GatesAndParticles/CCSwap.js?v=<?=filemtime('js/GatesAndParticles/CCSwap.js'); ?>"></script>
+                <script src="js/GatesAndParticles/Swap.js?v=<?=filemtime('js/GatesAndParticles/Swap.js'); ?>"></script>
+                <script src="js/GatesAndParticles/CSwap.js?v=<?=filemtime('js/GatesAndParticles/CSwap.js'); ?>"></script>
+                <script src="js/GatesAndParticles/Pete.js?v=<?=filemtime('js/GatesAndParticles/Pete.js'); ?>"></script>
+                <script src="js/GatesAndParticles/Mist.js?v=<?=filemtime('js/GatesAndParticles/Mist.js'); ?>"></script>
+                <script src="js/GatesAndParticles/Pipe.js?v=<?=filemtime('js/GatesAndParticles/Pipe.js'); ?>"></script>
+                <script src="js/main.js?v=<?=filemtime('js/main.js'); ?>"></script>
+                <script src="js/buttons.js?v=<?=filemtime('js/buttons.js'); ?>"></script>
+                <script src="js/center-canvas.js?v=<?=filemtime('js/center-canvas.js'); ?>"></script>
+                <script src="js/tooltips.js?v=<?=filemtime('js/tooltips.js'); ?>"></script>
+                <script src="js/scroll-to-center.js?v=<?=filemtime('js/scroll-to-center.js'); ?>"></script>
 
 
   <!-- ############################################################################################################ -->

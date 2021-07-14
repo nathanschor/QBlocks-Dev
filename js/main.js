@@ -14,8 +14,6 @@ var height =Math.round( document.getElementById('canvas-div').clientHeight / gri
 
 console.log("Height: " + height + " | Width: " + width);
 
-console.log(window.innerWidth);
-
 /*############################################################################*/
 /*####################### Ball Definition ####################################*/
 /*############################################################################*/
@@ -277,7 +275,11 @@ var listOfObjects = ['not', 'cnot', 'white', 'black', 'swap', 'cswap', 'ccswap',
 
 for (i = 0; i < listOfObjects.length; i++) {
   let obj = listOfObjects[i];
-  let id = 'drag-' + obj;
+  var id = 'drag-' + obj;
+  document.getElementById(id).addEventListener('dragstart', function (e) {
+    type = obj;
+  });
+  id = 'drag-' + obj + '-mobile';
   document.getElementById(id).addEventListener('dragstart', function (e) {
     type = obj;
   });
