@@ -878,7 +878,7 @@
                                         </a>
 
                                         <label class="checkbox_container left-space space-top" onmouseenter="over('Hide output')">Hide output
-                                            <input type="checkbox" id="checkIfHidden" onclick="toggleHideOutput();">
+                                            <input type="checkbox" class="red-line" id="checkIfHidden" onclick="toggleHideOutput();">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
