@@ -7,20 +7,13 @@
 
 
 /*hide div on all screens with 700 and lower width*/
-@media only screen and (max-width: 780px) {
-    .left{
-        width: 15%;
-        height: 90vh;
+@media only screen and (max-width: 1000px) {
+    .standardControlls {
+        display:none;
     }
 
-    .center{
-        width: 78%;
-        height: 80vh;
-    }
-}
 
-/*hide div on all screens with 700 and higher width*/
-@media only screen and (min-width: 780px) {
+
     .left{
         width: 15%;
         height: 70vh;
@@ -29,6 +22,23 @@
     .center{
         width: 78%;
         height: 75vh;
+    }
+}
+
+/*hide div on all screens with 700 and higher width*/
+@media only screen and (min-width: 1000px) {
+    .mobileControlls{
+        display:none;
+    }
+
+    .left{
+        width: 15%;
+        height: 90vh;
+    }
+
+    .center{
+        width: 78%;
+        height: 80vh;
     }
 }
 
@@ -67,20 +77,6 @@ div.scrollmenu::-webkit-scrollbar {
 div.scrollmenus {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-}
-
-/*hide div on all screens with 700 and higher width*/
-@media only screen and (max-width: 1000px) {
-    .standardControlls {
-        display:none;
-    }
-}
-
-/*hide div on all screens with 700 and higher width*/
-@media only screen and (min-width: 1000px) {
-    .mobileControlls{
-        display:none;
-    }
 }
 
 .controll-box{

@@ -10,7 +10,7 @@
         width: 100vw;
         height: 100vh;
         position: relative;
-        left: calc(-50vw + 50%);
+        left: calc(-51vw + 51%);
     }
 
     .center, .canvas-inset{
@@ -18,5 +18,9 @@
         float: none;
         margin: 0 0%;
         left: calc(-41vw + 50%);
+    }
+
+    .row{
+        width: 90vw;
     }
 }

@@ -700,22 +700,6 @@
                     </div>
 
                 </div>
-                <div class="block-content">
-                    <div class="container">
-                        <div class="panel row">
-
-                            <div class="panel-center col-xs-12">
-                                <article id="post-997" class="post-997 page type-page status-publish">
-
-                                    <div class="entry-content post-content">
-
-                                        <div id="vc_row-607a847f0a6dc" class="vc_row wpb_row vc_row-fluid vc_custom_1598445692319 thegem-custom-607a847f0a69c3842">
-                                            <div class="wpb_column vc_column_container vc_col-sm-12 thegem-custom-607a847f0af527923">
-                                                <div class="vc_column-inner ">
-                                                    <div class="wpb_wrapper">
-
-                                                        <div class="wpb_text_column wpb_content_element ">
-                                                            <div class="wpb_wrapper">
 
 
 <!-- ############################################################################################################ -->
@@ -736,226 +720,208 @@
 <!-- ############################################################################################################ -->
 
 
-                                                                <br style="clear: both" id="misty-states-canvas">
+                <br style="clear: both" id="misty-states-canvas">
 
-                                                                <div class="total-canvas expand-div-across-full-width">
-                                                                  <!-- To make child exceed parent, add  'expand-child-past-parent' to class-->
-                                                                    <div id="container-flex">
+                <div class="total-canvas expand-div-across-full-width">
+                  <!-- To make child exceed parent, add  'expand-child-past-parent' to class-->
+                    <div id="container-flex">
 
-                                                                            <!---->
-                                                                            <main>
-                                                                                <aside class="left standardControlls">
-                                                                                        <!--  Gates Go Here-->
-                                                                                        <div class="row">
-                                                                                            <div class="controll-box">
-                                                                                                Balls
-                                                                                            </div>
-                                                                                            <a class="space-top" id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
-                                                                                                <img class="button-img" src="img/white.png" draggable="true">
-                                                                                            </a>
-                                                                                            <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
-                                                                                                <img class="button-img" src="img/black.png" draggable="true">
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <div class="row">
-                                                                                            <div class="controll-box">
-                                                                                                Classical Gates
-                                                                                            </div>
-                                                                                            <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
-                                                                                                <img class="button-img" src="img/not.png" draggable="true">
-                                                                                            </a>
-                                                                                            <a id="drag-swap" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
-                                                                                                <img class="button-img" src="img/swap.png" draggable="true">
-                                                                                            </a>
-                                                                                            <a id="drag-cnot" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
-                                                                                                <img class="button-img" src="img/cnot.png" draggable="true">
-                                                                                            </a>
-                                                                                            <a id="drag-cswap" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
-                                                                                                <img class="button-img" src="img/cswap.png" draggable="true">
-                                                                                            </a>
-
-                                                                                            <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
-                                                                                                <img class="button-img" src="img/ccswap.png" draggable="true">
-                                                                                            </a>
-                                                                                        </div>
-
-                                                                                        <div class="row  ">
-                                                                                            <div class="controll-box">
-                                                                                                Misty States
-                                                                                            </div>
-                                                                                            <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
-                                                                                                <img class="button-img" src="img/pete.png" draggable="true">
-                                                                                            </a>
-                                                                                            <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
-                                                                                                <img class="button-img" src="img/pipe.png" draggable="true">
-                                                                                            </a>
-                                                                                            <a id="drag-wbmist" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
-                                                                                                <img class="button-img" src="img/wb.png" draggable="true">
-                                                                                            </a>
-                                                                                            <a id="drag-wnegbmist" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
-                                                                                                <img class="button-img" src="img/wnegb.png" draggable="true">
-                                                                                            </a>
-                                                                                        </div>
-
-                                                                                        <div class="row ">
-                                                                                            <h3 id="title" class="title">Hint</h3>
-                                                                                            <p id="description" class="description">Hover over a gate for more information.</p>
-                                                                                            <!----><!----><!---->
-                                                                                        </div>
-                                                                                </aside>
-                                                                                <section class="center">
-                                                                                    <!--  Focus of the webpage-->
-                                                                                    <div class="loader-wrapper hidden" id="loading-sign">
-                                                                                        <span class="loader"><span class="loader-inner"></span></span>
-                                                                                    </div>
-
-                                                                                    <!--  Mobile Elements Go Here-->
-                                                                                    <div class="row left-space scrollmenu mobileControlls green-line">
-                                                                                        <div class="controll-box ">
-                                                                                            Balls
-                                                                                        </div>
-                                                                                        <a class="" id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
-                                                                                            <img class="button-img-mobile" src="img/white.png" draggable="true">
-                                                                                        </a>
-                                                                                        <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
-                                                                                            <img class="button-img-mobile" src="img/black.png" draggable="true">
-                                                                                        </a>
-                                                                                        <div class="left-space controll-box border-left" style="padding-left: 20px; padding-right: 10px">
-                                                                                            Classical Gates
-                                                                                        </div>
-                                                                                        <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
-                                                                                            <img class="button-img" src="img/not.png" draggable="true">
-                                                                                        </a>
-                                                                                        <a id="drag-swap" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
-                                                                                            <img class="button-img" src="img/swap.png" draggable="true">
-                                                                                        </a>
-                                                                                        <a id="drag-cnot" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
-                                                                                            <img class="button-img" src="img/cnot.png" draggable="true">
-                                                                                        </a>
-                                                                                        <a id="drag-cswap" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
-                                                                                            <img class="button-img" src="img/cswap.png" draggable="true">
-                                                                                        </a>
-
-                                                                                        <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
-                                                                                            <img class="button-img" src="img/ccswap.png" draggable="true">
-                                                                                        </a>
-                                                                                        <div class="controll-box border-left" style="padding-left: 20px; padding-right: 10px">
-                                                                                            Misty States
-                                                                                        </div>
-                                                                                        <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
-                                                                                            <img class="button-img" src="img/pete.png" draggable="true">
-                                                                                        </a>
-                                                                                        <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
-                                                                                            <img class="button-img" src="img/pipe.png" draggable="true">
-                                                                                        </a>
-                                                                                        <a id="drag-wbmist" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
-                                                                                            <img class="button-img" src="img/wb.png" draggable="true">
-                                                                                        </a>
-                                                                                        <a id="drag-wnegbmist" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
-                                                                                            <img class="button-img" src="img/wnegb.png" draggable="true">
-                                                                                        </a>
-                                                                                    </div>
-
-                                                                                    <!-- The Canvas-->
-                                                                                    <div class="canvas-inset">
-                                                                                        <div class="canvas-box" id="canvas-div" >
-                                                                                            <div class="canvas-box" id="canvas" ></div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <!-- Controls Go Here-->
-                                                                                    <div class="row left-space scrollmenu" id="controlStrip">
-                                                                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue" id="tutorials-button">
-                                                                                            <p class="">Tutorials</p>
-                                                                                        </a>
-                                                                                        <a class="left-space icon-button" onclick = "goBack()" onmouseenter="over('Go Back')">
-                                                                                            <span class="icon back"></span>
-                                                                                        </a>
-                                                                                        <a class="left-space icon-button" onclick = "runNext()" onmouseenter="over('Run')" id="playButton">
-                                                                                            <span class="icon play"></span>
-                                                                                        </a>
-                                                                                        <a class="left-space icon-button" onclick = "runAll()" onmouseenter="over('Forward')">
-                                                                                            <span class="icon forward"></span>
-                                                                                        </a>
-                                                                                        <a class="button-2x1 left-space orange" onclick = "clearSimulation()" onmouseenter="over('Remove Output')">
-                                                                                            <p class="">Remove Output</p>
-                                                                                        </a>
-                                                                                        <a class="button-2x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')">
-                                                                                            <p class="">Remove All Balls</p>
-                                                                                        </a>
-                                                                                        <a class="button-2x1 left-space red" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
-                                                                                            <p class="">Clear Canvas</p>
-                                                                                        </a>
-
-                                                                                        <label class="checkbox_container left-space space-top">Hide output
-                                                                                            <input type="checkbox" id="checkIfHidden" onclick="toggleHideOutput();">
-                                                                                            <span class="checkmark"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </section>
-                                                                            </main>
-
-                                                                    </div>
-                                                                    <br style="clear: both">
-                                                                </div>
-
-                                                                <div class="expand-div-across-full-width standardControlls">
-                                                                    <p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a>, <a href="https://julianbeaulieu.com/" target="_blank">Julian Beaulieu</a>, and <a href="https://sunilsingh.me/" target="_blank">Sunil Singh</a> </p>
-                                                                </div>
-
-                                                                <!-- Script Imports -->
-                                                                <script src="<?php echo auto_version('js/loadJSON.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Ball.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Not.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/CNot.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/CCSwap.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Swap.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/CSwap.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Pete.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Mist.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/GatesAndParticles/Pipe.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/main.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/buttons.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/center-canvas.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/tooltips.js'); ?>"></script>
-                                                                <script src="<?php echo auto_version('js/scroll-to-center.js'); ?>"></script>
-
-
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-  <!-- ############################################################################################################ -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                            <!---->
+                            <main>
+                                <aside class="left standardControlls">
+                                        <!--  Gates Go Here-->
+                                        <div class="row">
+                                            <div class="controll-box">
+                                                Balls
                                             </div>
+                                            <a class="space-top" id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
+                                                <img class="button-img" src="img/white.png" draggable="true">
+                                            </a>
+                                            <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
+                                                <img class="button-img" src="img/black.png" draggable="true">
+                                            </a>
+                                        </div>
+                                        <div class="row">
+                                            <div class="controll-box">
+                                                Classical Gates
+                                            </div>
+                                            <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
+                                                <img class="button-img" src="img/not.png" draggable="true">
+                                            </a>
+                                            <a id="drag-swap" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
+                                                <img class="button-img" src="img/swap.png" draggable="true">
+                                            </a>
+                                            <a id="drag-cnot" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
+                                                <img class="button-img" src="img/cnot.png" draggable="true">
+                                            </a>
+                                            <a id="drag-cswap" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
+                                                <img class="button-img" src="img/cswap.png" draggable="true">
+                                            </a>
+
+                                            <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
+                                                <img class="button-img" src="img/ccswap.png" draggable="true">
+                                            </a>
+                                        </div>
+
+                                        <div class="row  ">
+                                            <div class="controll-box">
+                                                Misty States
+                                            </div>
+                                            <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
+                                                <img class="button-img" src="img/pete.png" draggable="true">
+                                            </a>
+                                            <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
+                                                <img class="button-img" src="img/pipe.png" draggable="true">
+                                            </a>
+                                            <a id="drag-wbmist" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
+                                                <img class="button-img" src="img/wb.png" draggable="true">
+                                            </a>
+                                            <a id="drag-wnegbmist" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
+                                                <img class="button-img" src="img/wnegb.png" draggable="true">
+                                            </a>
+                                        </div>
+
+                                        <div class="row ">
+                                            <h3 id="title" class="title">Hint</h3>
+                                            <p id="description" class="description">Hover over a gate for more information.</p>
+                                            <!----><!----><!---->
+                                        </div>
+                                </aside>
+                                <section class="center">
+                                    <!--  Focus of the webpage-->
+                                    <div class="loader-wrapper hidden" id="loading-sign">
+                                        <span class="loader"><span class="loader-inner"></span></span>
+                                    </div>
+
+                                    <!--  Mobile Elements Go Here-->
+                                    <div class="row left-space scrollmenu mobileControlls">
+                                        <div class="controll-box ">
+                                            Balls
+                                        </div>
+                                        <a class="" id="drag-white" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
+                                            <img class="button-img-mobile" src="img/white.png" draggable="true">
+                                        </a>
+                                        <a id="drag-black" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
+                                            <img class="button-img-mobile" src="img/black.png" draggable="true">
+                                        </a>
+                                        <div class="left-space controll-box border-left" style="padding-left: 20px; padding-right: 10px">
+                                            Classical Gates
+                                        </div>
+                                        <a class="space-top" id="drag-not" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
+                                            <img class="button-img" src="img/not.png" draggable="true">
+                                        </a>
+                                        <a id="drag-swap" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
+                                            <img class="button-img" src="img/swap.png" draggable="true">
+                                        </a>
+                                        <a id="drag-cnot" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
+                                            <img class="button-img" src="img/cnot.png" draggable="true">
+                                        </a>
+                                        <a id="drag-cswap" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
+                                            <img class="button-img" src="img/cswap.png" draggable="true">
+                                        </a>
+
+                                        <a id="drag-ccswap" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
+                                            <img class="button-img" src="img/ccswap.png" draggable="true">
+                                        </a>
+                                        <div class="controll-box border-left" style="padding-left: 20px; padding-right: 10px">
+                                            Misty States
+                                        </div>
+                                        <a class="space-top" id="drag-pete" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
+                                            <img class="button-img" src="img/pete.png" draggable="true">
+                                        </a>
+                                        <a id="drag-pipe" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
+                                            <img class="button-img" src="img/pipe.png" draggable="true">
+                                        </a>
+                                        <a id="drag-wbmist" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
+                                            <img class="button-img" src="img/wb.png" draggable="true">
+                                        </a>
+                                        <a id="drag-wnegbmist" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
+                                            <img class="button-img" src="img/wnegb.png" draggable="true">
+                                        </a>
+                                    </div>
+
+                                    <!-- The Canvas-->
+                                    <div class="canvas-inset">
+                                        <div class="canvas-box" id="canvas-div" >
+                                            <div class="canvas-box" id="canvas" ></div>
                                         </div>
                                     </div>
-                                    <!-- .entry-content -->
 
-                                </article>
-                                <!-- #post-## -->
+                                    <!-- Controls Go Here-->
+                                    <div class="row left-space scrollmenu" id="controlStrip">
+                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue" id="tutorials-button">
+                                            <p class="">Tutorials</p>
+                                        </a>
+                                        <a class="left-space icon-button" onclick = "goBack()" onmouseenter="over('Go Back')">
+                                            <span class="icon back"></span>
+                                        </a>
+                                        <a class="left-space icon-button" onclick = "runNext()" onmouseenter="over('Run')" id="playButton">
+                                            <span class="icon play"></span>
+                                        </a>
+                                        <a class="left-space icon-button" onclick = "runAll()" onmouseenter="over('Forward')">
+                                            <span class="icon forward"></span>
+                                        </a>
+                                        <a class="button-2x1 left-space orange" onclick = "clearSimulation()" onmouseenter="over('Remove Output')">
+                                            <p class="">Remove Output</p>
+                                        </a>
+                                        <a class="button-2x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')">
+                                            <p class="">Remove All Balls</p>
+                                        </a>
+                                        <a class="button-2x1 left-space red" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
+                                            <p class="">Clear Canvas</p>
+                                        </a>
 
-                            </div>
-
-                        </div>
+                                        <label class="checkbox_container left-space space-top">Hide output
+                                            <input type="checkbox" id="checkIfHidden" onclick="toggleHideOutput();">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </section>
+                            </main>
 
                     </div>
+                    <br style="clear: both">
                 </div>
-                <!-- .block-content -->
+
+                <div class="expand-div-across-full-width standardControlls">
+                    <p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a>, <a href="https://julianbeaulieu.com/" target="_blank">Julian Beaulieu</a>, and <a href="https://sunilsingh.me/" target="_blank">Sunil Singh</a> </p>
+                </div>
+
+                <!-- Script Imports -->
+                <script src="<?php echo auto_version('js/loadJSON.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/Ball.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/Not.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/CNot.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/CCSwap.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/Swap.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/CSwap.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/Pete.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/Mist.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/GatesAndParticles/Pipe.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/main.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/buttons.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/center-canvas.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/tooltips.js'); ?>"></script>
+                <script src="<?php echo auto_version('js/scroll-to-center.js'); ?>"></script>
+
+
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+  <!-- ############################################################################################################ -->
+
 
             </div>
             <!-- #main-content -->
