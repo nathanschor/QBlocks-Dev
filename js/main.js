@@ -173,6 +173,7 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
     rectangle.on('contextmenu', (e) => {
       rectangle.destroy();
       layer.draw();
+      console.log()
       if(hidden){
         newGate(x, y, width, height, layer, stage, 'img/' + type + '.png', type, "simulation", 'circle', false);
       }
@@ -251,7 +252,7 @@ function fitStageIntoParentContainer() {
   var containerHeight = document.getElementById('canvas').clientHeight;
 // to do this we need to scale the stage
   var scaleY = containerHeight / height;
-  console.log(containerHeight + " x " + containerWidth);
+
 // uncomment to enable "uniform stretch"
 //scaleX = scaleY =Math.min(scaleX,scaleY);
 

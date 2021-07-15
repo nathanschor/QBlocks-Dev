@@ -56,25 +56,27 @@
 .built-by-note{
     font-size: 100%;
     margin: 0 1.5%;
+    text-align: center;
 }
 
 
 div.scrollmenu {
+    height: 70px;
     overflow: auto;
     white-space: nowrap;
 
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-div.scrollmenu::-webkit-scrollbar {
-    display: none;
-}
+/*!* Hide scrollbar for Chrome, Safari and Opera *!*/
+/*div.scrollmenu::-webkit-scrollbar {*/
+/*    display: none;*/
+/*}*/
 
-/* Hide scrollbar for IE, Edge and Firefox */
-div.scrollmenus {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
+/*!* Hide scrollbar for IE, Edge and Firefox *!*/
+/*div.scrollmenus {*/
+/*    -ms-overflow-style: none;  !* IE and Edge *!*/
+/*    scrollbar-width: none;  !* Firefox *!*/
+/*}*/
 
 .elements-box-mobile{
     display: inline-block;
@@ -93,9 +95,13 @@ div.scrollmenus {
 .elements-box{
     display: block;
     text-decoration: underline;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     font-size: 120%;
+}
+
+.center-elements{
+    text-align:center;
 }
 
 .controll-line{
@@ -112,4 +118,22 @@ div.scrollmenus {
 
 a{
     text-decoration: none !important;
+}
+
+.frame-around-balls{
+    border: 5px solid green;
+    padding: 2px;
+    border-radius:5px;
+}
+
+.frame-around-gates{
+    border: 5px solid mediumpurple;
+    padding: 2px;
+    border-radius:5px;
+}
+
+.frame-around-misty{
+    border: 5px solid dodgerblue;
+    padding: 2px;
+    border-radius:5px;
 }
