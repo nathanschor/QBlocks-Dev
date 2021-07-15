@@ -8,7 +8,3 @@ $(document).ready(function(){
         console.log("An error has occurred.");
     });
 });
-
-console.log("JSON IMPORTED:");
-console.log(window.list_of_gates);
-console.log("End of import:");
