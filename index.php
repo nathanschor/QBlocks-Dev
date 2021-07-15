@@ -576,7 +576,6 @@
             return $file;
 
         $mtime = filemtime($_SERVER['DOCUMENT_ROOT'] . $file);
-        echo $mtime;
         return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);
     }
     ?>
@@ -737,7 +736,7 @@
                                 <aside class="left standardControlls">
                                         <!--  Gates Go Here-->
                                         <div class="row">
-                                            <div class="controll-box space-bottom">
+                                            <div class="elements-box space-bottom">
                                                 Balls
                                             </div>
                                             <a id="drag-white" onmouseenter="over('White Ball')">
@@ -748,7 +747,7 @@
                                             </a>
                                         </div>
                                         <div class="row">
-                                            <div class="controll-box space-bottom">
+                                            <div class="elements-box space-bottom">
                                                 Classical Gates
                                             </div>
                                             <a id="drag-not" onmouseenter="over('Not Gate')">
@@ -770,7 +769,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="controll-box space-bottom">
+                                            <div class="elements-box space-bottom">
                                                 Misty States
                                             </div>
                                             <a id="drag-pete" onmouseenter="over('Pete Gate')">
@@ -801,7 +800,7 @@
 
                                     <!--  Mobile Elements Go Here-->
                                     <div class="row left-space scrollmenu mobileControlls">
-                                        <div class="controll-box-mobile ">
+                                        <div class="elements-box-mobile ">
                                             Balls
                                         </div>
                                         <a id="drag-white-mobile" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
@@ -810,7 +809,7 @@
                                         <a id="drag-black-mobile" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
                                             <img class="button-img-mobile" src="img/black.png" draggable="true">
                                         </a>
-                                        <div class="left-space controll-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
+                                        <div class="left-space elements-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
                                             Classical Gates
                                         </div>
                                         <a id="drag-not-mobile" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
@@ -829,7 +828,7 @@
                                         <a id="drag-ccswap-mobile" class="right-space" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
                                             <img class="button-img" src="img/ccswap.png" draggable="true">
                                         </a>
-                                        <div class="controll-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
+                                        <div class="elements-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
                                             Misty States
                                         </div>
                                         <a id="drag-pete-mobile" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
@@ -855,28 +854,32 @@
 
                                     <!-- Controls Go Here-->
                                     <div class="row left-space scrollmenu" id="controlStrip">
-                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-2x1 blue" id="tutorials-button" onmouseenter="over('Tutorials')">
-                                            <p class="">Tutorials</p>
-                                        </a>
+
                                         <a class="left-space icon-button" onclick = "goBack()" onmouseenter="over('Go Back')">
                                             <span class="icon back"></span>
                                         </a>
                                         <a class="left-space icon-button" onclick = "runNext()" onmouseenter="over('Run')" id="playButton">
                                             <span class="icon play"></span>
                                         </a>
-                                        <a class="left-space icon-button" onclick = "runAll()" onmouseenter="over('Forward')">
+                                        <a class="left-space icon-button border-right right-space" onclick = "runAll()" onmouseenter="over('Forward')">
                                             <span class="icon forward"></span>
                                         </a>
-                                        <a class="button-2x1 left-space orange" onclick = "clearSimulation()" onmouseenter="over('Remove Output')">
-                                            <p class="">Remove Output</p>
-                                        </a>
-                                        <a class="button-2x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')">
-                                            <p class="">Remove All Balls</p>
-                                        </a>
-                                        <a class="button-2x1 left-space red" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
-                                            <p class="">Clear Canvas</p>
-                                        </a>
 
+                                        <div class="vertical-spacer"></div>
+                                        <div class="left-space controlls-box-mobile ">Clear:</div>
+                                        <a class="button-1x1 left-space orange" onclick = "clearSimulation()" onmouseenter="over('Remove Output')">
+                                            <p class="">Output</p>
+                                        </a>
+                                        <a class="button-1x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')">
+                                            <p class="">Balls</p>
+                                        </a>
+                                        <a class="button-1x1 left-space red right-space" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
+                                            <p class="">Canvas</p>
+                                        </a>
+                                        <div class="vertical-spacer"></div>
+                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-1x1 blue left-space " id="tutorials-button" onmouseenter="over('Tutorials')">
+                                            <p class="">Tutorials</p>
+                                        </a>
                                         <label class="checkbox_container left-space space-top" onmouseenter="over('Hide output')">Hide output
                                             <input type="checkbox" class="red-line" id="checkIfHidden" onclick="toggleHideOutput();">
                                             <span class="checkmark"></span>
@@ -894,7 +897,7 @@
                 </div>
 
                 <!-- Script Imports -->
-<!--                <script src="js/custom.js?v=--><?//=filemtime("js/custom.js")?><!--"></script>-->
+
                 <script src="js/loadJSON.js?v=<?=filemtime('js/loadJSON.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Ball.js?v=<?=filemtime('js/GatesAndParticles/Ball.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Not.js?v=<?=filemtime('js/GatesAndParticles/Not.js'); ?>"></script>

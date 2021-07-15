@@ -3,7 +3,7 @@
 	--large-dimension: 6vw;
 }
 
-.button-1x1-round, .button-2x1, .button-2x2, .button-2x2-small-screen{
+.button-1x1-round, .button-2x1, .button-2x2, .button-2x2-small-screen, .button-1-5x1, .button-1x1{
 	display: inline-block;
 	color:#FFF;
 	text-align: center;
@@ -12,12 +12,38 @@
 	cursor: default;
 }
 
+.vertical-spacer{
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	cursor: default;
+	width:2px;
+	height:60px;
+	border-left: 2px solid black;
+}
+
 .button-1x1-round{
 	width:60px;
 	height:60px;
 	line-height: 85px;
 	border-radius:50%;
 	font-size: 13px;
+}
+
+.button-1x1{
+	width:60px;
+	height:60px;
+	line-height: 60px;
+	border-radius:5%;
+	font-size: 15px;
+}
+
+.button-1-5x1{
+	width:100px;
+	height:60px;
+	line-height: 60px;
+	border-radius:5%;
+	font-size: 15px;
 }
 
 .button-2x1{
