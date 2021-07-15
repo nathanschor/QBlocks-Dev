@@ -173,9 +173,9 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
     rectangle.on('contextmenu', (e) => {
       rectangle.destroy();
       layer.draw();
-      console.log()
       if(hidden){
-        newGate(x, y, width, height, layer, stage, 'img/' + type + '.png', type, "simulation", 'circle', false);
+        let color = (type.includes("white")) ? 'white' : 'black';
+        newGate(x, y, width, height, layer, stage, 'img/' + color + '.png', type, "simulation", 'circle', false);
       }
     });
 
@@ -187,7 +187,8 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
         rectangle.destroy();
         layer.draw();
         if(hidden){
-          newGate(x, y, width, height, layer, stage, 'img/' + type + '.png', type, "simulation", 'circle', false);
+          let color = (type.includes("white")) ? 'white' : 'black';
+          newGate(x, y, width, height, layer, stage, 'img/' + color + '.png', type, "simulation", 'circle', false);
         }
       }
       lastTap = currentTime;
