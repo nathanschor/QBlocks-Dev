@@ -564,7 +564,7 @@
 
     <!--    <link rel="stylesheet" href="css/custom.css?v=--><?//=filemtime("./css/custom.css")?><!--"/>-->
     <!--    <script src="js/custom.js?v=--><?//=filemtime("js/custom.js")?><!--"></script>-->
-    
+
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/button.css?v=<?=filemtime('css/button.css'); ?>" type="text/css" />
@@ -903,9 +903,7 @@
                 <script src="js/GatesAndParticles/Pete.js?v=<?=filemtime('js/GatesAndParticles/Pete.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Mist.js?v=<?=filemtime('js/GatesAndParticles/Mist.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Pipe.js?v=<?=filemtime('js/GatesAndParticles/Pipe.js'); ?>"></script>
-                <script src="js/app/canvas.js?v=<?=filemtime('js/app/canvas.js'); ?>"></script>
-                <script src="js/app/canvas.js?v=<?=filemtime('js/app/canvas-ops.js'); ?>"></script>
-                <script src="js/app/canvas.js?v=<?=filemtime('js/app/simulate.js'); ?>"></script>
+                <script src="js/canvas.js?v=<?=filemtime('js/canvas.js'); ?>"></script>
                 <script src="js/buttons.js?v=<?=filemtime('js/buttons.js'); ?>"></script>
                 <script src="js/center-canvas.js?v=<?=filemtime('js/center-canvas.js'); ?>"></script>
                 <script src="js/tooltips.js?v=<?=filemtime('js/tooltips.js'); ?>"></script>
