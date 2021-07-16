@@ -13,6 +13,10 @@ function Ball(color=0, sign='+', x, y, radius, id = 0){ //0 is black, 1 is white
     return ((this.color === 1) ? 'White' : 'Black') + ' Ball with ' + this.sign + ' sign';
   };
 
+  this.equals = function equals(otherElement){
+    return (this.toString() === otherElement.toString()) && (this.x === otherElement.x) && (this.y === otherElement.y);
+  }
+
   this.isComplete = function isComplete() {
     return true;
   }

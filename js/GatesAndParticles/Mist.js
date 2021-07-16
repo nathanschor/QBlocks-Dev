@@ -15,6 +15,9 @@ function Mist(colorLeft=0, signLeft='+', colorRight=0, signRight='+', x, y, widt
             this.signRight + ((this.colorcolorRight === 1) ? 'White' : 'Black') + ' Mist';
   };
 
+  this.equals = function equals(otherElement){
+    return (this.toString() === otherElement.toString()) && (this.x === otherElement.x) && (this.y === otherElement.y);
+  }
 
   this.isRunnable = function () {
     return( false );
