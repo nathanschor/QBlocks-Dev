@@ -358,9 +358,9 @@ function toggleHideOutput() {
 function run(allLevels = false) {
 
   let elements = getElementsFromCanvas();
-  //let objectsOnCanvas = [];
-  //
-  //
+
+
+
   if(elements.length === 0){
     return ;
   }
@@ -371,9 +371,11 @@ function run(allLevels = false) {
 
     let levels = splitElementsIntoGroupsByElementLevel(elements);
 
-    levels = removeDisconectedLevels(levels);
+    let returnedVals = removeDisconectedLevels(levels);
 
-    let matchedObjects = matchLevels(levels);
+    elements = returnedVals[1];
+
+    let matchedObjects = matchLevels(returnedVals[0]);
 
     matchedObjects = removeSingleObjects(matchedObjects);
 
@@ -387,11 +389,7 @@ function run(allLevels = false) {
 
     drawObjects(simulationOutcome);
 
-  // elements = getElementsFromCanvas();
     elements.push(...simulationOutcome);
-  // elements = removeDuplicate(elements);
-  // objectsOnCanvas.push(...simulationOutcome);
-  // objectsOnCanvas = removeDuplicate(objectsOnCanvas);
   }
 }
 
@@ -611,16 +609,19 @@ function removeDisconectedLevels(levels){
   let keys = Object.keys(levels);
   let prevKey = parseInt(keys[0]);
   convertedObjects[prevKey] = levels[prevKey];
+  let unusedObjects = [];
 
   for (let i = 1; i < keys.length; i++) {
     if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
       convertedObjects[keys[i]] = levels[keys[i]];
+    } else {
+      unusedObjects.push(...levels[keys[i]]);
     }
 
     prevKey = keys[i];
   }
 
-  return convertedObjects;
+  return [convertedObjects, unusedObjects];
 }
 
 function simulate(matchedObjects){
