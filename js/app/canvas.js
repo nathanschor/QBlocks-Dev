@@ -358,22 +358,24 @@ function toggleHideOutput() {
 function run(allLevels = false) {
 
   let elements = getElementsFromCanvas();
-  //let objectsOnCanvas = [];
-  //
-  //
+
+
+
   if(elements.length === 0){
     return ;
   }
 
   let amountOfLevels = (allLevels) ? getAmountOfLevels() : 1;
 
-  for (let i = 0; i < amountOfLevels; i++) {
+  do {
 
     let levels = splitElementsIntoGroupsByElementLevel(elements);
 
-    levels = removeDisconectedLevels(levels);
+    let returnedVals = removeDisconectedLevels(levels);
 
-    let matchedObjects = matchLevels(levels);
+    elements = returnedVals[1];
+
+    let matchedObjects = matchLevels(returnedVals[0]);
 
     matchedObjects = removeSingleObjects(matchedObjects);
 
@@ -383,16 +385,12 @@ function run(allLevels = false) {
 
     let simulationOutcome = simulate(matchedObjects);
 
-    // simulationOutcome = clearSoonToBeDuplicateObjects(objectsOnCanvas, simulationOutcome);
+    clearSoonToBeDuplicateObjects(simulationOutcome);
 
     drawObjects(simulationOutcome);
 
-  // elements = getElementsFromCanvas();
     elements.push(...simulationOutcome);
-  // elements = removeDuplicate(elements);
-  // objectsOnCanvas.push(...simulationOutcome);
-  // objectsOnCanvas = removeDuplicate(objectsOnCanvas);
-  }
+  }while(allLevels && (elements.length !== 0));
 }
 
 function makeid(length) {
@@ -478,36 +476,32 @@ function removeDuplicate(array){
   })
 }
 
-function clearSoonToBeDuplicateObjects(newElements, simulationOutcome){
+function clearSoonToBeDuplicateObjects(simulationOutcome){
+  // select shapes by name
 
-  let uniqueBallsAndMists = removeDuplicate(filterBallsAndMists(newElements));
-  let uniqueSimulationOutcome = removeDuplicate(simulationOutcome);
+  //let shapes = ["Image", "Square", "Circle", "Rect"]
 
-  let removeList = [];
+  let dictOfObjectsByCoordinates = {};
 
-  uniqueSimulationOutcome.forEach((simulation, i) => {
-    uniqueBallsAndMists.forEach((ballOrMist) => {
-      if(ballOrMist.equals(simulation) && (removeList.indexOf(i) === -1)){
-        removeList.push(i);
-      }
-    });
+  simulationOutcome.forEach((element, i) => {
+    if( !(element.getTopLeftCoordinates() in dictOfObjectsByCoordinates) ){
+      dictOfObjectsByCoordinates[element.getTopLeftCoordinates()] = true;
+    }
   });
 
-  console.log(removeList);
+  var objects = stage.find('#simulation');
 
-  let returnArrary = [];
+  objects.each(function (object) {
+    let x = parseInt(object.attrs.x);
+    let y = parseInt(object.attrs.y);
 
-  let remCount = 0;
-  for(let i = 0; i < uniqueSimulationOutcome.length; i++){
-    if(i === removeList[remCount]){
-      remCount++;
-    } else {
-      returnArrary.push(uniqueSimulationOutcome[i]);
+    if([x, y] in dictOfObjectsByCoordinates){
+      object.destroy();
     }
-  }
+  });
 
-  return returnArrary;
-}
+  layer.draw();
+};
 
 /**/
 
@@ -611,16 +605,19 @@ function removeDisconectedLevels(levels){
   let keys = Object.keys(levels);
   let prevKey = parseInt(keys[0]);
   convertedObjects[prevKey] = levels[prevKey];
+  let unusedObjects = [];
 
   for (let i = 1; i < keys.length; i++) {
     if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
       convertedObjects[keys[i]] = levels[keys[i]];
+    } else {
+      unusedObjects.push(...levels[keys[i]]);
     }
 
     prevKey = keys[i];
   }
 
-  return convertedObjects;
+  return [convertedObjects, unusedObjects];
 }
 
 function simulate(matchedObjects){
