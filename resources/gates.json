@@ -56,42 +56,42 @@
   },
   {
     "name": "Tutorials",
-    "title": "Hint",
+    "title": "Tutorials",
     "description": "Watch tutorials on how the canvas works and learn more about quantum computing."
   },
   {
     "name": "Go Back",
-    "title": "Hint",
+    "title": "Undo",
     "description": "Undoes the last step."
   },
   {
     "name": "Run",
-    "title": "Hint",
+    "title": "Run",
     "description": "Runs the next step."
   },
   {
     "name": "Forward",
-    "title": "Hint",
+    "title": "Run All",
     "description": "Runs all steps."
   },
   {
     "name": "Remove Output",
-    "title": "Hint",
+    "title": "Clear Output",
     "description": "Removes the balls and mists that were created during runtime."
   },
   {
     "name": "Remove All Balls",
-    "title": "Hint",
+    "title": "Clear All Balls",
     "description": "Removes all balls and mists on the canvas."
   },
   {
     "name": "Clear Canvas",
-    "title": "Hint",
+    "title": "Clear Canvas",
     "description": "Clears the canvas of all balls, mists, and gates."
   },
   {
     "name": "Hide output",
-    "title": "Hint",
+    "title": "Hide output",
     "description": "Hides the generated output behind a blue square."
   }
 ]
