@@ -359,13 +359,9 @@ function run(allLevels = false) {
 
   let elements = getElementsFromCanvas();
 
-
-
   if(elements.length === 0){
     return ;
   }
-
-  let amountOfLevels = (allLevels) ? getAmountOfLevels() : 1;
 
   do {
 
@@ -458,24 +454,6 @@ function isNotObjectShadow(objectType){
   return !objectType.includes("shadow");
 }
 
-function filterBallsAndMists(otherObjects){
-  let ballsAndMists = [];
-
-  otherObjects.forEach((element, i) => {
-    if(element.toString().includes("Ball") || element.toString().includes("Mist")){
-      ballsAndMists.push(element);
-    }
-  });
-
-  return ballsAndMists;
-}
-
-function removeDuplicate(array){
-  return Array.from(new Set(array.map(a => a.id))).map(id => {
-    return array.find(a => a.id === id)
-  })
-}
-
 function clearSoonToBeDuplicateObjects(simulationOutcome){
   // select shapes by name
 
@@ -504,16 +482,6 @@ function clearSoonToBeDuplicateObjects(simulationOutcome){
 };
 
 /**/
-
-function getAmountOfLevels(){
-  let elements = getElementsFromCanvas();
-
-  if(elements.length === 0){
-    return 0;
-  }
-
-  return Object.keys(splitElementsIntoGroupsByElementLevel(elements)).length;
-}
 
 
 
