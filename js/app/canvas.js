@@ -1,115 +1,31 @@
-var shadowOffset = 20;
-var tween = null;
-var blockSnapSize = 30;
-var gridSnapSize = 60;
-var userGeneratedParticles = [];
-var timeout;
-var lastTap = 0;
-var hideResults = false;
-var currentStep = 0;
+shadowOffset = 20;
+let blockSnapSize = 30;
+let gridSnapSize = 60;
+let timeout;
+let lastTap = 0;
+let hideResults = false;
+let currentStep = 0;
 let gridLinesColor = '#c6c6c6';
 
-var width = Math.round(document.getElementById('canvas-div').clientWidth / gridSnapSize) * gridSnapSize;
-var height =Math.round( document.getElementById('canvas-div').clientHeight / gridSnapSize) * gridSnapSize;
+let width = Math.round(document.getElementById('canvas-div').clientWidth / gridSnapSize) * gridSnapSize;
+let height =Math.round( document.getElementById('canvas-div').clientHeight / gridSnapSize) * gridSnapSize;
 
 console.log("Height: " + height + " | Width: " + width);
-
-/*############################################################################*/
-/*####################### Ball Definition ####################################*/
-/*############################################################################*/
-
-function newBall(x, y, radius, layer, stage, color, createdBy) {
-  var shadowCircle = new Konva.Circle({
-    x: x,
-    y: y,
-    shapeType: 'shadowCircle',
-    type: color+'Ball',
-    id: createdBy,
-    radius: blockSnapSize * radius,
-    fill: '#FF7B17',
-    opacity: 0.6,
-    stroke: '#CF6412',
-    strokeWidth: 3,
-    dash: [20, 2]
-  });
-  shadowCircle.hide();
-  layer.add(shadowCircle);
-
-  let circle = new Konva.Circle({
-    x: x,
-    y: y,
-    x_prev: x,
-    y_prev: y,
-    shapeType: 'circle',
-    type: color+'Ball',
-    id: createdBy,
-    radius: blockSnapSize * radius,
-    fill: color,
-    borderSize: 5,
-    borderColor: 'black',
-    stroke: 'black',
-    strokeWidth: 1,
-    shadowColor: 'black',
-    shadowBlur: 2,
-    shadowOffset: {x : 1, y : 1},
-    shadowOpacity: 0.4,
-    draggable: true
-  });
-
-  circle.on('dragstart', (e) => {
-    shadowCircle.show();
-    shadowCircle.moveToTop();
-    circle.moveToTop();
-    circle.position({
-      x_prev: circle.x,
-      y_prev: circle.y
-    });
-  });
-
-  circle.on('dragend', (e) => {
-    let tempX = Math.round(circle.x() / gridSnapSize) * gridSnapSize;
-    let tempY = Math.round(circle.y() / gridSnapSize) * gridSnapSize; // blockSnapSize
-    circle.position({
-      x: tempX,
-      y: tempY
-    });
-    stage.batchDraw();
-    shadowCircle.hide();
-  });
-
-  circle.on('dragmove', (e) => {
-    let tempX = Math.round(circle.x() / gridSnapSize) * gridSnapSize;
-    let tempY = Math.round(circle.y() / gridSnapSize) * gridSnapSize; // blockSnapSize
-    shadowCircle.position({
-      x: tempX,
-      y: tempY
-    });
-    console.log("x: " + tempX + " | y: " + tempY);
-    stage.batchDraw();
-  });
-
-  layer.add(circle);
-
-  // do something else on right click
-  circle.on('contextmenu', (e) => {
-    circle.destroy();
-    layer.draw();
-  });
-}
 
 /*############################################################################*/
 /*####################### Gate Definition ####################################*/
 /*############################################################################*/
 
-function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, shapetype = 'rectangle', hidden = false) {
+function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, shapetype = 'rectangle', hidden = false, level = 0) {
   let tempShadowShapeType = 'shadow' + shapetype;
 
-  var shadowRectangle = new Konva.Rect({
+  let shadowRectangle = new Konva.Rect({
     x: x,
     y: y,
     shapeType: tempShadowShapeType,
     type: type,
     id: createdBy,
+    createdAtLevel: level,
     width: blockSnapSize * width,
     height: blockSnapSize * height,
     fill: '#FF7B17',
@@ -130,6 +46,7 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
       shapeType: shapetype,
       type: type,
       id: createdBy,
+      createdAtLevel: level,
       width: blockSnapSize * width,
       height: blockSnapSize * height,
       shadowColor: 'black',
@@ -175,20 +92,20 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
       layer.draw();
       if(hidden){
         let color = (type.includes("white")) ? 'white' : 'black';
-        newGate(x, y, width, height, layer, stage, 'img/' + color + '.png', type, "simulation", 'circle', false);
+        newGate(x, y, width, height, layer, stage, 'img/' + color + '.png', type, "simulation", 'circle', false, level);
       }
     });
 
     rectangle.on('touchend', (e) => {
-      var currentTime = new Date().getTime();
-      var tapLength = currentTime - lastTap;
+      let currentTime = new Date().getTime();
+      let tapLength = currentTime - lastTap;
       clearTimeout(timeout);
       if (tapLength < 500 && tapLength > 0) {
         rectangle.destroy();
         layer.draw();
         if(hidden){
           let color = (type.includes("white")) ? 'white' : 'black';
-          newGate(x, y, width, height, layer, stage, 'img/' + color + '.png', type, "simulation", 'circle', false);
+          newGate(x, y, width, height, layer, stage, 'img/' + color + '.png', type, "simulation", 'circle', false, level);
         }
       }
       lastTap = currentTime;
@@ -202,19 +119,20 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
   });
 }
 
+
 /*############################################################################*/
 /*####################### Creates Grid #######################################*/
 /*############################################################################*/
 
-var stage = new Konva.Stage({
+let stage = new Konva.Stage({
   container: 'canvas',
   width: width,
   height: height
 });
 
-var gridLayer = new Konva.Layer();
+let gridLayer = new Konva.Layer();
 
-for (var i = 1; i < width / gridSnapSize; i++) {
+for (let i = 1; i < width / gridSnapSize; i++) {
   gridLayer.add(new Konva.Line({
     points: [Math.round(i * gridSnapSize) + 0.5, 0, Math.round(i * gridSnapSize) + 0.5, height],
     stroke: gridLinesColor,
@@ -223,7 +141,7 @@ for (var i = 1; i < width / gridSnapSize; i++) {
 }
 
 gridLayer.add(new Konva.Line({points: [0,0,10,10]}));
-for (var j = 1; j < height / gridSnapSize; j++) {
+for (let j = 1; j < height / gridSnapSize; j++) {
   gridLayer.add(new Konva.Line({
     points: [0, Math.round(j * gridSnapSize), width, Math.round(j * gridSnapSize)],
     stroke: gridLinesColor,
@@ -231,7 +149,7 @@ for (var j = 1; j < height / gridSnapSize; j++) {
   }));
 }
 
-var layer = new Konva.Layer();
+let layer = new Konva.Layer();
 stage.add(gridLayer);
 
 // do not show context menu on right click
@@ -242,17 +160,17 @@ stage.on('contentContextmenu', (e) => {
 gridLayer.draw();
 
 function fitStageIntoParentContainer() {
-  var container = document.querySelector('#stage-parent');
+  let container = document.querySelector('#stage-parent');
 
 // now we need to fit stage into parent
-  var containerWidth = document.getElementById('canvas').clientWidth;
+  let containerWidth = document.getElementById('canvas').clientWidth;
 // to do this we need to scale the stage
-  var scaleX = containerWidth / width;
+  let scaleX = containerWidth / width;
 
 // now we need to fit stage into parent
-  var containerHeight = document.getElementById('canvas').clientHeight;
+  let containerHeight = document.getElementById('canvas').clientHeight;
 // to do this we need to scale the stage
-  var scaleY = containerHeight / height;
+  let scaleY = containerHeight / height;
 
 // uncomment to enable "uniform stretch"
 //scaleX = scaleY =Math.min(scaleX,scaleY);
@@ -272,12 +190,12 @@ window.addEventListener('resize', fitStageIntoParentContainer);
 /*############################################################################*/
 
 // what is url of dragging element?
-var type = '';
-var listOfObjects = ['not', 'cnot', 'white', 'black', 'swap', 'cswap', 'ccswap', 'pete', 'pipe', 'wbmist', 'wnegbmist'];
+let type = '';
+let listOfObjects = ['not', 'cnot', 'white', 'black', 'swap', 'cswap', 'ccswap', 'pete', 'pipe', 'wbmist', 'wnegbmist'];
 
 for (i = 0; i < listOfObjects.length; i++) {
   let obj = listOfObjects[i];
-  var id = 'drag-' + obj;
+  let id = 'drag-' + obj;
   document.getElementById(id).addEventListener('dragstart', function (e) {
     type = obj;
   });
@@ -287,7 +205,7 @@ for (i = 0; i < listOfObjects.length; i++) {
   });
 }
 
-var con = stage.container();
+let con = stage.container();
 con.addEventListener('dragover', function (e) {
   e.preventDefault(); // !important
 });
@@ -305,7 +223,7 @@ con.addEventListener('drop', function (e) {
   let gateY = 0;
   let gateX = 0;
 
-  for (var i = 1; i < width / gridSnapSize; i++) {
+  for (let i = 1; i < width / gridSnapSize; i++) {
     let temp = Math.round((x / gridSnapSize) * gridSnapSize) + 0.5
     if((Math.round((i-1) * gridSnapSize) + 0.5) < temp &&
         temp < (Math.round(i * gridSnapSize) + 0.5)){
@@ -313,7 +231,7 @@ con.addEventListener('drop', function (e) {
     }
   }
 
-  for (var j = 1; j < height / gridSnapSize; j++) {
+  for (let j = 1; j < height / gridSnapSize; j++) {
     let temp = Math.round((y / gridSnapSize) * gridSnapSize)
     if((Math.round((j-1) * gridSnapSize)) < temp &&
         temp < (Math.round(j * gridSnapSize))){
@@ -324,27 +242,27 @@ con.addEventListener('drop', function (e) {
   console.log("gateX: " + gateX + " | gateY: " + gateY);
 
   if(type === 'cnot'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/cnot.png', 'cnotGate', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/cnot.png', 'cnotGate', 'user', 'rectangle', false, currentStep);
   } else if(type === 'not'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/not.png', 'notGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/not.png', 'notGate', 'user', 'rectangle', false, currentStep);
   } else if(type === 'ccswap'){
-    newGate(gateX,  gateY, 8, 2, layer, stage, 'img/ccswap.png', 'ccswapGate', 'user');
+    newGate(gateX,  gateY, 8, 2, layer, stage, 'img/ccswap.png', 'ccswapGate', 'user', 'rectangle', false, currentStep);
   } else if(type === 'cswap'){
-    newGate(gateX,  gateY, 6, 2, layer, stage, 'img/cswap.png', 'cswapGate', 'user');
+    newGate(gateX,  gateY, 6, 2, layer, stage, 'img/cswap.png', 'cswapGate', 'user', 'rectangle', false, currentStep);
   } else if(type === 'swap'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/swap.png', 'swapGate', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/swap.png', 'swapGate', 'user', 'rectangle', false, currentStep);
   } else if(type === 'pete'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pete.png', 'peteGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pete.png', 'peteGate', 'user', 'rectangle', false, currentStep);
   } else if(type === 'pipe'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pipe.png', 'pipeGate', 'user');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pipe.png', 'pipeGate', 'user', 'rectangle', false, currentStep);
   } else if(type === 'white'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle', false, currentStep);
   } else if(type === 'black'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'blackBalls', 'user', 'circle');
+    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'blackBalls', 'user', 'circle', false, currentStep);
   } else if(type === 'wbmist'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
   } else if(type === 'wnegbmist'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user');
+    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentStep);
   }
 
   stage.add(layer);
@@ -411,7 +329,7 @@ function calcNewX(r1, r2){
 }
 
 layer.on('dragmove', function (e) {
-  var target = e.target;
+  let target = e.target;
 
   layer.children.each(function (shape) {
     // do not check intersection with itself
@@ -428,20 +346,60 @@ layer.on('dragmove', function (e) {
   });
 });
 
-/*############################################################################*/
-/*####################### Simulation Code ####################################*/
-/*############################################################################*/
+
+
+//
 
 function toggleHideOutput() {
-  var checkBox = document.getElementById("checkIfHidden");
+  let checkBox = document.getElementById("checkIfHidden");
   hideResults = (checkBox.checked === true);
 }
 
+function run(allLevels = false) {
+
+  let elements = getElementsFromCanvas();
+  //let objectsOnCanvas = [];
+  //
+  //
+  if(elements.length === 0){
+    return ;
+  }
+
+  let amountOfLevels = (allLevels) ? getAmountOfLevels() : 1;
+
+  for (let i = 0; i < amountOfLevels; i++) {
+
+    let levels = splitElementsIntoGroupsByElementLevel(elements);
+
+    levels = removeDisconectedLevels(levels);
+
+    let matchedObjects = matchLevels(levels);
+
+    matchedObjects = removeSingleObjects(matchedObjects);
+
+    if (matchedObjects.length === 0) {
+      return;
+    }
+
+    let simulationOutcome = simulate(matchedObjects);
+
+    // simulationOutcome = clearSoonToBeDuplicateObjects(objectsOnCanvas, simulationOutcome);
+
+    drawObjects(simulationOutcome);
+
+  // elements = getElementsFromCanvas();
+    elements.push(...simulationOutcome);
+  // elements = removeDuplicate(elements);
+  // objectsOnCanvas.push(...simulationOutcome);
+  // objectsOnCanvas = removeDuplicate(objectsOnCanvas);
+  }
+}
+
 function makeid(length) {
-  var result           = '';
-  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var charactersLength = characters.length;
-  for ( var i = 0; i < length; i++ ) {
+  let result           = '';
+  let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let charactersLength = characters.length;
+  for ( let i = 0; i < length; i++ ) {
     result += characters.charAt(Math.floor(Math.random() *
         charactersLength));
   }
@@ -477,45 +435,9 @@ function createObject(object) {
   }
 }
 
-function drawObjects(objects, userGen=false){
-  let generationType = userGen ? "user" : "simulation";
-  objects.forEach((object, i) => {
-    if(object.constructor.name.toLowerCase() === 'ball'){
-      let imgFilePath = hideResults ? 'img/square.png' : ('img/' + ((object.color === 1) ? 'white' : 'black') + '.png');
-      let objectType = ((object.color === 1) ? 'white' : 'black') + 'Ball';
 
-      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, imgFilePath, objectType, generationType, 'circle', hideResults);
-    } else if(object.constructor.name.toLowerCase() === 'mist'){
-      if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
-        newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType);
-      } else {
-        newGate(object.x, object.y, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', generationType);
-      }
-    } else {
-      console.log("Something went wrong: " + object.toString());
-      return null;
-    }
-    stage.add(layer);
-  });
-};
 
 /**/
-
-function clearBallsAndMists() {
-  // select shapes by name
-  let shapes = ["Image", "Circle", "Square", "Rect"];
-
-  shapes.forEach((shape, i) => {
-    var shapeInStage = stage.find(shape);
-    shapeInStage.each(function (object) {
-      if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
-          isBallMistOrBoth(object.attrs.type.toLowerCase())){
-        object.destroy();
-        layer.draw();
-      }
-    });
-  });
-};
 
 /**
  * Function returns boolean value depending on if the entered object type is a ball or mist
@@ -538,85 +460,59 @@ function isNotObjectShadow(objectType){
   return !objectType.includes("shadow");
 }
 
-function clearSimulations() {
-  // select shapes by name
-  var objects = stage.find('#simulation');
+function filterBallsAndMists(otherObjects){
+  let ballsAndMists = [];
 
-  objects.each(function (object) {
-    object.destroy();
-    layer.draw();
-  });
-};
-
-function hideUsergenerated() {
-  // select shapes by name
-  var objects = stage.find('#user');
-
-  objects.each(function (object) {
-    if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
-        isBallMistOrBoth(object.attrs.type.toLowerCase())){
-      userGeneratedParticles.push(createObject(object))
-      object.destroy();
-      layer.draw();
+  otherObjects.forEach((element, i) => {
+    if(element.toString().includes("Ball") || element.toString().includes("Mist")){
+      ballsAndMists.push(element);
     }
   });
-};
 
-function showUsergenerated() {
-  // select shapes by name
+  return ballsAndMists;
+}
 
-  drawObjects(userGeneratedParticles, true);
-  console.log(userGeneratedParticles);
-  userGeneratedParticles = [];
-};
+function removeDuplicate(array){
+  return Array.from(new Set(array.map(a => a.id))).map(id => {
+    return array.find(a => a.id === id)
+  })
+}
 
-function clearAllObjects(){
-  // select shapes by name
+function clearSoonToBeDuplicateObjects(newElements, simulationOutcome){
 
-  let shapes = ["Image", "Rect", "Circle"]
+  let uniqueBallsAndMists = removeDuplicate(filterBallsAndMists(newElements));
+  let uniqueSimulationOutcome = removeDuplicate(simulationOutcome);
 
-  shapes.forEach((shape, i) => {
-    var shapeInStage = stage.find(shape);
-    shapeInStage.each(function (object) {
-      console.log(shape);
-      object.destroy();
+  let removeList = [];
+
+  uniqueSimulationOutcome.forEach((simulation, i) => {
+    uniqueBallsAndMists.forEach((ballOrMist) => {
+      if(ballOrMist.equals(simulation) && (removeList.indexOf(i) === -1)){
+        removeList.push(i);
+      }
     });
   });
 
-  layer.draw();
-};
+  console.log(removeList);
 
-function clearSoonToBeDuplicateObjects(simulationOutcome){
-  // select shapes by name
+  let returnArrary = [];
 
-  //let shapes = ["Image", "Square", "Circle", "Rect"]
-
-  let dictOfObjectsByCoordinates = {};
-
-  simulationOutcome.forEach((element, i) => {
-    if( !(element.getTopLeftCoordinates() in dictOfObjectsByCoordinates) ){
-      dictOfObjectsByCoordinates[element.getTopLeftCoordinates()] = true;
+  let remCount = 0;
+  for(let i = 0; i < uniqueSimulationOutcome.length; i++){
+    if(i === removeList[remCount]){
+      remCount++;
+    } else {
+      returnArrary.push(uniqueSimulationOutcome[i]);
     }
-  });
+  }
 
-  var objects = stage.find('#simulation');
-
-  objects.each(function (object) {
-    let x = parseInt(object.attrs.x);
-    let y = parseInt(object.attrs.y);
-
-    if([x, y] in dictOfObjectsByCoordinates){
-      object.destroy();
-    }
-  });
-
-  layer.draw();
-};
+  return returnArrary;
+}
 
 /**/
 
 function getAmountOfLevels(){
-  var elements = getElementsFromCanvas();
+  let elements = getElementsFromCanvas();
 
   if(elements.length === 0){
     return 0;
@@ -625,66 +521,12 @@ function getAmountOfLevels(){
   return Object.keys(splitElementsIntoGroupsByElementLevel(elements)).length;
 }
 
-function getElementsFromCanvas(){
-  let shapes = ["Image", "Circle"];
-  var elements = [];
 
-  shapes.forEach((shape, i) => {
-    var shapeInStage = stage.find(shape);
-    shapeInStage.each(function (object) {
-      if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
-          isBallMistOrBoth(object.attrs.type.toLowerCase())){
-        elements.push(createObject(object));
-      } else {
-        elements.push(createObject(object));
-      }
-    });
-  });
 
-  return elements
-}
 
-function run(allLevels = false) {
-
-  var elements = getElementsFromCanvas();
-
-  if(elements.length === 0){
-    return ;
-  }
-
-  let amountOfLevels = (allLevels) ? getAmountOfLevels() : 1;
-
-  for (var i = 0; i < amountOfLevels; i++) {
-    let levels = splitElementsIntoGroupsByElementLevel(elements);
-
-    // console.log("Getting Levels");
-    // console.log(levels);
-
-    levels = removeDisconectedLevels(levels);
-
-    var matchedObjects = matchLevels(levels);
-
-    matchedObjects = removeSingleObjects(matchedObjects);
-
-    // console.log("Getting IDs");
-    // console.log(matchedObjects[0].getID());
-
-    if (matchedObjects.length === 0) {
-      return;
-    }
-
-    let simulationOutcome = simulate(matchedObjects);
-
-    clearSoonToBeDuplicateObjects(simulationOutcome);
-
-    drawObjects(simulationOutcome);
-
-    elements.push(simulationOutcome);
-  }
-};
 
 function splitElementsIntoGroupsByElementLevel(elements){
-  var levels = {};
+  let levels = {};
 
   elements.forEach((gate, i) => {
     if(gate.level in levels){
@@ -695,21 +537,21 @@ function splitElementsIntoGroupsByElementLevel(elements){
   });
 
   return levels;
-};
+}
 
 function matchLevels(levels) {
   let keys = Object.keys(levels);
-  var aboveRow = levels[keys[0]];
+  let aboveRow = levels[keys[0]];
 
-  for (var i = 1; i < keys.length; i++) {
+  for (let i = 1; i < keys.length; i++) {
     aboveRow = matchElements(aboveRow, levels[keys[i]]);
   }
 
   return aboveRow;
-};
+}
 
 function matchElements(aboveRow, belowRow){
-  var matchedObjects = [];
+  let matchedObjects = [];
   let ids = [];
   let idDict = {};
 
@@ -734,7 +576,7 @@ function matchElements(aboveRow, belowRow){
   matchedObjects = Array.from(new Set(matchedObjects));
 
   return matchedObjects;
-};
+}
 
 function matchElement (element, aboveRow) {
 
@@ -743,7 +585,7 @@ function matchElement (element, aboveRow) {
 
       if(element.isBelow(centerCoordinates[0], centerCoordinates[1])){
         element.addCenter(centerCoordinates[0], centerCoordinates[1], elementAbove,
-                            elementAbove.getCenterPosition(centerCoordinates[0], centerCoordinates[1]));
+            elementAbove.getCenterPosition(centerCoordinates[0], centerCoordinates[1]));
       }
 
     });
@@ -753,24 +595,24 @@ function matchElement (element, aboveRow) {
 }
 
 function removeSingleObjects(objects) {
-  var convertedObjects = [];
+  let convertedObjects = [];
 
-  for (var i = 0; i < objects.length; i++) {
+  for (let i = 0; i < objects.length; i++) {
     if(objects[i].isComplete()){
       convertedObjects.push(objects[i]);
     }
   }
 
   return convertedObjects;
-};
+}
 
 function removeDisconectedLevels(levels){
-  var convertedObjects = {};
+  let convertedObjects = {};
   let keys = Object.keys(levels);
-  var prevKey = parseInt(keys[0]);
+  let prevKey = parseInt(keys[0]);
   convertedObjects[prevKey] = levels[prevKey];
 
-  for (var i = 1; i < keys.length; i++) {
+  for (let i = 1; i < keys.length; i++) {
     if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
       convertedObjects[keys[i]] = levels[keys[i]];
     }
@@ -779,22 +621,139 @@ function removeDisconectedLevels(levels){
   }
 
   return convertedObjects;
-};
+}
 
 function simulate(matchedObjects){
-  var newObjects = [];
+  let newObjects = [];
 
-  for (var i = 0; i < matchedObjects.length; i++) {
+  for (let i = 0; i < matchedObjects.length; i++) {
 
     try {
       let elementList = matchedObjects[i].run();
 
       elementList.forEach((item, i) => {
         newObjects.push(item);
+
       });
     }
-    catch (e) {}
+    catch (e) {
+      console.log("There was an error while trying to run a gate");
+    }
   }
 
+  currentStep++;
   return newObjects;
 }
+
+
+
+
+
+function clearBallsAndMists() {
+  // select shapes by name
+  let shapes = ["Image", "Circle", "Square", "Rect"];
+
+  currentStep = 0;
+
+  shapes.forEach((shape, i) => {
+    let shapeInStage = stage.find(shape);
+    shapeInStage.each(function (object) {
+      if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
+          isBallMistOrBoth(object.attrs.type.toLowerCase())){
+        object.destroy();
+        layer.draw();
+      }
+    });
+  });
+};
+
+function clearSimulations() {
+  // select shapes by name
+  let objects = stage.find('#simulation');
+
+  currentStep = 0;
+
+  objects.each(function (object) {
+    object.destroy();
+    layer.draw();
+  });
+};
+
+function clearAllObjects(){
+  // select shapes by name
+
+  let shapes = ["Image", "Rect", "Circle"];
+
+  currentStep = 0;
+
+  shapes.forEach((shape, i) => {
+    let shapeInStage = stage.find(shape);
+    shapeInStage.each(function (object) {
+      console.log(shape);
+      object.destroy();
+    });
+  });
+
+  layer.draw();
+};
+
+function undoLastSimulation(){
+  // select shapes by name
+  let lastLevel = '' + currentStep;
+  console.log("lastLevel: " + lastLevel);
+
+  let shapes = ["Image", "Rect", "Circle", "Mist"];
+
+  shapes.forEach((shape, i) => {
+    let shapeInStage = stage.find(shape);
+    shapeInStage.each(function (object) {
+      if(!object.attrs.shapeType.includes("shadow") && object.attrs.createdAtLevel === currentStep){
+        console.log(object);
+        object.destroy();
+      }
+    });
+  });
+
+  layer.draw();
+
+  currentStep--;
+}
+
+function getElementsFromCanvas(){
+  let shapes = ["Image", "Circle"];
+  let elements = [];
+
+  shapes.forEach((shape, i) => {
+    let shapeInStage = stage.find(shape);
+    shapeInStage.each(function (object) {
+      if(isNotObjectShadow(object.attrs.shapeType.toLowerCase())) {
+        elements.push(createObject(object));
+      }
+    });
+  });
+
+  return elements
+}
+
+function drawObjects(objects, userGen=false){
+  let generationType = userGen ? "user" : "simulation";
+  objects.forEach((object, i) => {
+    if(object.constructor.name.toLowerCase() === 'ball'){
+      let imgFilePath = hideResults ? 'img/square.png' : ('img/' + ((object.color === 1) ? 'white' : 'black') + '.png');
+      let objectType = ((object.color === 1) ? 'white' : 'black') + 'Ball';
+
+      console.log("Current level in drawObjects: " + currentStep);
+      newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, imgFilePath, objectType, generationType, 'circle', hideResults, currentStep);
+    } else if(object.constructor.name.toLowerCase() === 'mist'){
+      if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
+        newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType, 'rectangle', hideResults, currentStep);
+      } else {
+        newGate(object.x, object.y, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', generationType, 'rectangle', hideResults, currentStep);
+      }
+    } else {
+      console.log("Something went wrong: " + object.toString());
+      return null;
+    }
+    stage.add(layer);
+  });
+};

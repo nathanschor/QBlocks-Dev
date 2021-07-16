@@ -4,57 +4,57 @@ let gateX = 4;
 let gateY = 4;
 
 function createPETE_Gate(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'img/pete.png', 'peteGate', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'img/pete.png', 'peteGate', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
 function createSWAP_Gate(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/swap.png', 'swapGate', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/swap.png', 'swapGate', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
 function createCSWAP_Gate(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 6, 2, layer, stage, 'img/cswap.png', 'cswapGate', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 6, 2, layer, stage, 'img/cswap.png', 'cswapGate', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
 function createCCSWAP_Gate(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 8, 2, layer, stage, 'img/ccswap.png', 'ccswapGate', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 8, 2, layer, stage, 'img/ccswap.png', 'ccswapGate', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
 function createCNOT_Gate(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/cnot.png', 'cnotGate', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/cnot.png', 'cnotGate', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
 function createNOT_Gate(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'img/not.png', 'notGate', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'img/not.png', 'notGate', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
 function createPIPE_Gate(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'img/pipe.png', 'pipeGate', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'img/pipe.png', 'pipeGate', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
 function createBLACK_BALL(){
-  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'blackBall', 'user', 'circle');
+  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'blackBall', 'user', 'circle', false, currentLevel);
   stage.add(layer);
 }
 
 function createWHITE_BALL(){
-  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle');
+  newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle', false, currentLevel);
   stage.add(layer);
 }
 
 function createWBMist(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
 function createWNegBMist(){
-  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user');
+  newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentLevel);
   stage.add(layer);
 }
 
@@ -84,7 +84,7 @@ function goBack(){
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
 
-  //getShapes();
+  undoLastSimulation();
 
   $(".loader-wrapper").fadeOut("fast");
 }
@@ -94,7 +94,6 @@ function clearSimulation(){
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
 
-  showUsergenerated();
   clearSimulations();
 
   $(".loader-wrapper").fadeOut("fast");
@@ -105,7 +104,6 @@ function clearAllBallsAndMists(){
   $('#loading-sign').removeClass('hidden');
   $(".loader-wrapper").fadeIn("fast");
 
-  showUsergenerated();
   clearBallsAndMists();
 
   $(".loader-wrapper").fadeOut("fast");
