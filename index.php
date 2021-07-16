@@ -561,27 +561,10 @@
     <!-- ############################################################################################################ -->
     <!-- ############################################################################################################ -->
     <!-- ############################################################################################################ -->
-    <?php
-    /**
-     *  Given a file, i.e. /css/base.css, replaces it with a string containing the
-     *  file's mtime, i.e. /css/base.1221534296.css.
-     *
-     *  @param $file  The file to be loaded.  Must be an absolute path (i.e.
-     *                starting with slash).
-     */
 
-    function auto_version($file)
-    {
-        if(strpos($file, '/') !== 0 || !file_exists($_SERVER['DOCUMENT_ROOT'] . $file))
-            return $file;
-
-        $mtime = filemtime($_SERVER['DOCUMENT_ROOT'] . $file);
-        return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);
-    }
-    ?>
-<!--    <link rel="stylesheet" href="css/custom.css?v=--><?//=filemtime("./css/custom.css")?><!--"/>-->
-<!--    <script src="js/custom.js?v=--><?//=filemtime("js/custom.js")?><!--"></script>-->
-
+    <!--    <link rel="stylesheet" href="css/custom.css?v=--><?//=filemtime("./css/custom.css")?><!--"/>-->
+    <!--    <script src="js/custom.js?v=--><?//=filemtime("js/custom.js")?><!--"></script>-->
+    
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/button.css?v=<?=filemtime('css/button.css'); ?>" type="text/css" />
