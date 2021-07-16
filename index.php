@@ -894,7 +894,7 @@
                                             <p class="">Tutorials</p>
                                         </a>
                                         <div class="vertical-spacer"></div>
-                                        <a class="button-2-5x1 left-space gray right-space" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
+                                        <a class="button-2-5x1 left-space gray right-space" href="https://quantumcurious.org/feedback/" target="_blank" rel="noopener noreferrer">
                                             <p class="">Comments/Feedback</p>
                                         </a>
                                         <div class="vertical-spacer"></div>
@@ -911,7 +911,6 @@
 
                 <!-- Script Imports -->
 
-                <script src="js/loadJSON.js?v=<?=filemtime('js/loadJSON.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Ball.js?v=<?=filemtime('js/GatesAndParticles/Ball.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Not.js?v=<?=filemtime('js/GatesAndParticles/Not.js'); ?>"></script>
                 <script src="js/GatesAndParticles/CNot.js?v=<?=filemtime('js/GatesAndParticles/CNot.js'); ?>"></script>
@@ -921,7 +920,9 @@
                 <script src="js/GatesAndParticles/Pete.js?v=<?=filemtime('js/GatesAndParticles/Pete.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Mist.js?v=<?=filemtime('js/GatesAndParticles/Mist.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Pipe.js?v=<?=filemtime('js/GatesAndParticles/Pipe.js'); ?>"></script>
-                <script src="js/main.js?v=<?=filemtime('js/main.js'); ?>"></script>
+                <script src="js/app/canvas.js?v=<?=filemtime('js/app/canvas.js'); ?>"></script>
+                <script src="js/app/canvas.js?v=<?=filemtime('js/app/canvas-ops.js'); ?>"></script>
+                <script src="js/app/canvas.js?v=<?=filemtime('js/app/simulate.js'); ?>"></script>
                 <script src="js/buttons.js?v=<?=filemtime('js/buttons.js'); ?>"></script>
                 <script src="js/center-canvas.js?v=<?=filemtime('js/center-canvas.js'); ?>"></script>
                 <script src="js/tooltips.js?v=<?=filemtime('js/tooltips.js'); ?>"></script>
