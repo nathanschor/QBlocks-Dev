@@ -766,10 +766,10 @@
                                                 <a id="drag-pipe" onmouseenter="over('Pipe Gate')">
                                                     <img class="button-img" src="img/pipe.png" draggable="true">
                                                 </a>
-                                                <a id="drag-wbmist" onmouseenter="over('White/Back Mist')">
+                                                <a id="drag-wbmist" onmouseenter="over('WB Mist')">
                                                     <img class="button-img" src="img/wb.png" draggable="true">
                                                 </a>
-                                                <a id="drag-wnegbmist" onmouseenter="over('White/-Back Mist')">
+                                                <a id="drag-wnegbmist" onmouseenter="over('WNB Mist')">
                                                     <img class="button-img" src="img/wnegb.png" draggable="true">
                                                 </a>
                                             </div>

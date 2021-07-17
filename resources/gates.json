@@ -45,12 +45,12 @@
     "description": "White ball which represents 0."
   },
   {
-    "name": "White/Back Gate",
+    "name": "WB Mist",
     "title": "White/Back Mist",
     "description": "Constructive Misty State."
   },
   {
-    "name": "White/-Back Gate",
+    "name": "WNB Mist",
     "title": "White/-Back Mist",
     "description": "Destructive Misty State."
   },
