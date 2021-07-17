@@ -565,6 +565,16 @@ function isNotObjectShadow(objectType){
   return !objectType.includes("shadow");
 }
 
+function isIn(string, array){
+  array.forEach((element) => {
+    console.log("String: " + string + " | element: " + element + " | String(string) === String(element): " + String(string) === String(element));
+    if(String(string) === String(element) ){
+      return true;
+    }
+  });
+  return false;
+}
+
 function clearSoonToBeDuplicateObjects(simulationOutcome){
   // select shapes by name
 
@@ -574,20 +584,47 @@ function clearSoonToBeDuplicateObjects(simulationOutcome){
 
   simulationOutcome.forEach((element, i) => {
     if( !(element.getTopLeftCoordinates() in dictOfObjectsByCoordinates) ){
-      dictOfObjectsByCoordinates[element.getTopLeftCoordinates()] = true;
+      dictOfObjectsByCoordinates[element.getTopLeftCoordinates()] = element.id;
     }
   });
 
   var objects = stage.find('#simulation');
 
-  objects.each(function (object) {
+  // let idArray = [];
+  objects.forEach((object, i) => {
     let x = parseInt(object.attrs.x);
     let y = parseInt(object.attrs.y);
 
     if([x, y] in dictOfObjectsByCoordinates){
+      // idArray.push(dictOfObjectsByCoordinates[[x, y]]);
+      // console.log("IN REMOVE ");
       object.destroy();
     }
   });
+
+  // idArray = [...new Set(idArray)];
+  //
+  //
+  //
+  // let returnArr = [];
+  //
+  // simulationOutcome.forEach((outcome, i) => {
+  //   let deleteBoolean = false;
+  //   console.log("ID: " + idArray + " | Outcome.id: " + outcome.id + " | (outcome.id in idArray): " + (outcome.id in idArray));
+  //   if(isIn(outcome.id, idArray)){
+  //     deleteBoolean = true;
+  //   }
+  //
+  //   if(!deleteBoolean){
+  //     returnArr.push(outcome);
+  //   }
+  // });
+  //
+  // returnArr = [...new Set(returnArr)];
+  //
+  // console.log(idArray);
+  // console.log(simulationOutcome);
+  // console.log(returnArr);
 
   layer.draw();
 };

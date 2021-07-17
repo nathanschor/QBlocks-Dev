@@ -94,7 +94,6 @@ div.scrollmenu {
 
 .elements-box{
     display: block;
-    text-decoration: underline;
     text-align: center;
     font-weight: bold;
     font-size: 120%;
@@ -124,6 +123,8 @@ a{
     border: 5px solid green;
     padding: 2px;
     border-radius:5px;
+
+    border-style: dotted;
 }
 
 .frame-around-gates{
