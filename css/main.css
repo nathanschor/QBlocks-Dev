@@ -43,10 +43,15 @@
     bottom: 0%;
 }
 
-.title{
+.heading{
     font-size: 120%;
     font-weight: bold;
     text-decoration: underline;
+}
+
+.title{
+    font-size: 100%;
+    font-weight: bold;
 }
 
 .description{
@@ -137,4 +142,12 @@ a{
     border: 5px solid dodgerblue;
     padding: 2px;
     border-radius:5px;
+}
+
+.tool-tips{
+    position: absolute;
+    bottom: 110px;
+    width: 17%;
+    height: 50px;
+    word-wrap: normal;
 }

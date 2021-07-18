@@ -403,21 +403,16 @@ function undoLastSimulation(){
   let lastLevel = '' + currentStep;
   console.log("lastLevel: " + lastLevel);
 
-  let shapes = ["Image", "Rect", "Circle", "Mist"];
+  let objects = stage.find('#simulation');
 
-  shapes.forEach((shape, i) => {
-    let shapeInStage = stage.find(shape);
-    shapeInStage.each(function (object) {
-      if(!object.attrs.shapeType.includes("shadow") && object.attrs.createdAtLevel === currentStep){
-        console.log(object);
-        object.destroy();
-      }
-    });
+  objects.each(function (object) {
+    if(object.attrs.createdAtLevel === currentStep){
+      object.destroy();
+      layer.draw();
+    }
   });
 
-  layer.draw();
-
-  currentStep--;
+  currentStep = (currentStep > 0) ? currentStep - 1 : 1;
 }
 
 function getElementsFromCanvas(){
@@ -457,7 +452,9 @@ function drawObjects(objects, userGen=false){
     }
     stage.add(layer);
   });
-};
+
+
+}
 
 /*############################################################################*/
 /*####################### Canvas Operations ##################################*/
@@ -473,7 +470,7 @@ function run(allLevels = false) {
   let elements = getElementsFromCanvas();
 
   if(elements.length === 0){
-    return ;
+    return false;
   }
 
   do {
@@ -489,17 +486,24 @@ function run(allLevels = false) {
     matchedObjects = removeSingleObjects(matchedObjects);
 
     if (matchedObjects.length === 0) {
-      return;
+      return false;
     }
 
     let simulationOutcome = simulate(matchedObjects);
 
-    clearSoonToBeDuplicateObjects(simulationOutcome);
+    simulationOutcome = preventDuplicateElementsOnCanvas(simulationOutcome);
+
+    if (simulationOutcome.length !== 0) {
+      currentStep++;
+    }
 
     drawObjects(simulationOutcome);
 
     elements.push(...simulationOutcome);
+
   }while(allLevels && (elements.length !== 0));
+
+  return true;
 }
 
 function makeid(length) {
@@ -565,20 +569,17 @@ function isNotObjectShadow(objectType){
   return !objectType.includes("shadow");
 }
 
-function isIn(string, array){
-  array.forEach((element) => {
-    console.log("String: " + string + " | element: " + element + " | String(string) === String(element): " + String(string) === String(element));
-    if(String(string) === String(element) ){
+function isIn(checkIfIn, arrayToCheck){
+  for (var i = 0; i < arrayToCheck.length; i++) {
+    if( String(checkIfIn.id) === String(arrayToCheck[i]) ){
       return true;
     }
-  });
+  }
   return false;
 }
 
-function clearSoonToBeDuplicateObjects(simulationOutcome){
+function preventDuplicateElementsOnCanvas(simulationOutcome){
   // select shapes by name
-
-  //let shapes = ["Image", "Square", "Circle", "Rect"]
 
   let dictOfObjectsByCoordinates = {};
 
@@ -588,46 +589,39 @@ function clearSoonToBeDuplicateObjects(simulationOutcome){
     }
   });
 
+  console.log(simulationOutcome);
+
   var objects = stage.find('#simulation');
 
-  // let idArray = [];
+  let idArray = [];
   objects.forEach((object, i) => {
     let x = parseInt(object.attrs.x);
     let y = parseInt(object.attrs.y);
 
     if([x, y] in dictOfObjectsByCoordinates){
-      // idArray.push(dictOfObjectsByCoordinates[[x, y]]);
-      // console.log("IN REMOVE ");
-      object.destroy();
+
+      let idKey = String(dictOfObjectsByCoordinates[[x, y]]);
+      idArray.push(idKey);
+      //object.destroy();
     }
   });
 
-  // idArray = [...new Set(idArray)];
-  //
-  //
-  //
-  // let returnArr = [];
-  //
-  // simulationOutcome.forEach((outcome, i) => {
-  //   let deleteBoolean = false;
-  //   console.log("ID: " + idArray + " | Outcome.id: " + outcome.id + " | (outcome.id in idArray): " + (outcome.id in idArray));
-  //   if(isIn(outcome.id, idArray)){
-  //     deleteBoolean = true;
-  //   }
-  //
-  //   if(!deleteBoolean){
-  //     returnArr.push(outcome);
-  //   }
-  // });
-  //
-  // returnArr = [...new Set(returnArr)];
-  //
-  // console.log(idArray);
-  // console.log(simulationOutcome);
-  // console.log(returnArr);
+  idArray = [...new Set(idArray)];
 
-  layer.draw();
-};
+  let returnArr = [];
+
+  simulationOutcome.forEach((outcome) => {
+    if(!isIn(outcome, idArray)){
+      returnArr.push(outcome);
+    }
+  });
+
+  returnArr = [...new Set(returnArr)];
+
+  //layer.draw();
+
+  return returnArr;
+}
 
 /**/
 
@@ -750,7 +744,6 @@ function simulate(matchedObjects){
     }
   }
 
-  currentStep++;
   return newObjects;
 }
 

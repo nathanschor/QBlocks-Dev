@@ -93,5 +93,10 @@
     "name": "Hide output",
     "title": "Hide output",
     "description": "Hides the generated output behind a blue square."
+  },
+  {
+    "name": "Tool-Tips",
+    "title": "",
+    "description": "Hover over a gate for more information."
   }
 ]

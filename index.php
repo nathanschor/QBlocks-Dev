@@ -578,6 +578,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="https://unpkg.com/konva@7.2.5/konva.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -723,10 +724,10 @@
                                                 Balls
                                             </div>
                                             <div class="center-elements">
-                                                <a id="drag-white" onmouseenter="over('White Ball')">
+                                                <a id="drag-white" onmouseenter="over('White Ball')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/white.png" draggable="true">
                                                 </a>
-                                                <a id="drag-black" onmouseenter="over('Black Ball')">
+                                                <a id="drag-black" onmouseenter="over('Black Ball')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/black.png" draggable="true">
                                                 </a>
                                             </div>
@@ -736,20 +737,20 @@
                                                 Classical Gates
                                             </div>
                                             <div class="center-elements">
-                                                <a id="drag-not" onmouseenter="over('Not Gate')">
+                                                <a id="drag-not" onmouseenter="over('Not Gate')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/not.png" draggable="true">
                                                 </a>
-                                                <a id="drag-swap" onmouseenter="over('Swap Gate')">
+                                                <a id="drag-swap" onmouseenter="over('Swap Gate')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/swap.png" draggable="true">
                                                 </a>
-                                                <a id="drag-cnot" onmouseenter="over('CNot Gate')">
+                                                <a id="drag-cnot" onmouseenter="over('CNot Gate')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/cnot.png" draggable="true">
                                                 </a>
-                                                <a id="drag-cswap" onmouseenter="over('CSwap Gate')">
+                                                <a id="drag-cswap" onmouseenter="over('CSwap Gate')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/cswap.png" draggable="true">
                                                 </a>
 
-                                                <a id="drag-ccswap" onmouseenter="over('CCSwap Gate')">
+                                                <a id="drag-ccswap" onmouseenter="over('CCSwap Gate')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/ccswap.png" draggable="true">
                                                 </a>
                                             </div>
@@ -760,23 +761,24 @@
                                                 Misty States
                                             </div>
                                             <div class="center-elements">
-                                                <a id="drag-pete" onmouseenter="over('Pete Gate')">
+                                                <a id="drag-pete" onmouseenter="over('Pete Gate')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/pete.png" draggable="true">
                                                 </a>
-                                                <a id="drag-pipe" onmouseenter="over('Pipe Gate')">
+                                                <a id="drag-pipe" onmouseenter="over('Pipe Gate')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/pipe.png" draggable="true">
                                                 </a>
-                                                <a id="drag-wbmist" onmouseenter="over('WB Mist')">
+                                                <a id="drag-wbmist" onmouseenter="over('WB Mist')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/wb.png" draggable="true">
                                                 </a>
-                                                <a id="drag-wnegbmist" onmouseenter="over('WNB Mist')">
+                                                <a id="drag-wnegbmist" onmouseenter="over('WNB Mist')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/wnegb.png" draggable="true">
                                                 </a>
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <h3 id="title" class="title">Hint</h3>
+                                        <div class="row tool-tips">
+                                            <h2 class="heading">Hints</h2>
+                                            <h3 id="title" class="title"></h3>
                                             <p id="description" class="description">Hover over a gate for more information.</p>
                                             <!----><!----><!---->
                                         </div>
@@ -792,44 +794,44 @@
                                         <div class="elements-box-mobile ">
                                             Balls
                                         </div>
-                                        <a id="drag-white-mobile" onclick="createWHITE_BALL()" onmouseenter="over('White Ball')">
+                                        <a id="drag-white-mobile" onclick="createWHITE_BALL()">
                                             <img class="button-img-mobile" src="img/white.png" draggable="true">
                                         </a>
-                                        <a id="drag-black-mobile" onclick="createBLACK_BALL()" onmouseenter="over('Black Ball')">
+                                        <a id="drag-black-mobile" onclick="createBLACK_BALL()">
                                             <img class="button-img-mobile" src="img/black.png" draggable="true">
                                         </a>
                                         <div class="left-space elements-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
                                             Classical Gates
                                         </div>
-                                        <a id="drag-not-mobile" onclick="createNOT_Gate()" onmouseenter="over('Not Gate')">
+                                        <a id="drag-not-mobile" onclick="createNOT_Gate()">
                                             <img class="button-img" src="img/not.png" draggable="true">
                                         </a>
-                                        <a id="drag-swap-mobile" onclick="createSWAP_Gate()" onmouseenter="over('Swap Gate')">
+                                        <a id="drag-swap-mobile" onclick="createSWAP_Gate()">
                                             <img class="button-img" src="img/swap.png" draggable="true">
                                         </a>
-                                        <a id="drag-cnot-mobile" onclick="createCNOT_Gate()" onmouseenter="over('CNot Gate')">
+                                        <a id="drag-cnot-mobile" onclick="createCNOT_Gate()">
                                             <img class="button-img" src="img/cnot.png" draggable="true">
                                         </a>
-                                        <a id="drag-cswap-mobile" onclick="createCSWAP_Gate()" onmouseenter="over('CSwap Gate')">
+                                        <a id="drag-cswap-mobile" onclick="createCSWAP_Gate()">
                                             <img class="button-img" src="img/cswap.png" draggable="true">
                                         </a>
 
-                                        <a id="drag-ccswap-mobile" class="right-space" onclick="createCCSWAP_Gate()" onmouseenter="over('CCSwap Gate')">
+                                        <a id="drag-ccswap-mobile" class="right-space" onclick="createCCSWAP_Gate()">
                                             <img class="button-img" src="img/ccswap.png" draggable="true">
                                         </a>
                                         <div class="elements-box-mobile border-left" style="padding-left: 20px; padding-right: 10px">
                                             Misty States
                                         </div>
-                                        <a id="drag-pete-mobile" onclick="createPETE_Gate()" onmouseenter="over('Pete Gate')">
+                                        <a id="drag-pete-mobile" onclick="createPETE_Gate()">
                                             <img class="button-img" src="img/pete.png" draggable="true">
                                         </a>
-                                        <a id="drag-pipe-mobile" onclick="createPIPE_Gate()" onmouseenter="over('Pipe Gate')">
+                                        <a id="drag-pipe-mobile" onclick="createPIPE_Gate()">
                                             <img class="button-img" src="img/pipe.png" draggable="true">
                                         </a>
-                                        <a id="drag-wbmist-mobile" onclick="createWBMist()" onmouseenter="over('White/Back Mist')">
+                                        <a id="drag-wbmist-mobile" onclick="createWBMist()">
                                             <img class="button-img" src="img/wb.png" draggable="true">
                                         </a>
-                                        <a id="drag-wnegbmist-mobile" onclick="createWNegBMist()" onmouseenter="over('White/-Back Mist')">
+                                        <a id="drag-wnegbmist-mobile" onclick="createWNegBMist()">
                                             <img class="button-img" src="img/wnegb.png" draggable="true">
                                         </a>
                                     </div>
@@ -845,35 +847,36 @@
                                     <div class="row left-space scrollmenu" id="controlStrip">
 
                                         <div class="vertical-spacer"></div>
-                                        <div class="left-space controlls-box-mobile ">Create:</div>
-                                        <a class="button-1x1 left-space green" onclick = "goBack()" onmouseenter="over('Go Back')">
-                                            <p class="">Undo</p>
-                                        </a>
-                                        <a class="button-1x1 left-space green" onclick = "runNext()" onmouseenter="over('Run')" id="playButton">
+                                        <div class="left-space controlls-box-mobile ">Process:</div>
+
+                                        <a class="button-1x1 left-space green" onclick = "runNext()" onmouseenter="over('Run')" onmouseleave="over('Tool-Tips')" id="playButton">
                                             <p class="">Run</p>
                                         </a>
-                                        <a class="button-1x1 left-space green border-right right-space" onclick = "runAll()" onmouseenter="over('Forward')">
+                                        <a class="button-1x1 left-space green border-right" onclick = "runAll()" onmouseenter="over('Forward')" onmouseleave="over('Tool-Tips')">
                                             <p class="">Run All</p>
+                                        </a>
+                                        <a class="button-1x1 left-space green right-space" onclick = "goBack()" onmouseenter="over('Go Back')" onmouseleave="over('Tool-Tips')">
+                                            <p class="">Undo</p>
                                         </a>
 
                                         <div class="vertical-spacer"></div>
                                         <div class="left-space controlls-box-mobile ">Clear:</div>
-                                        <a class="button-1x1 left-space orange" onclick = "clearSimulation()" onmouseenter="over('Remove Output')">
+                                        <a class="button-1x1 left-space orange" onclick = "clearSimulation()" onmouseenter="over('Remove Output')" onmouseleave="over('Tool-Tips')">
                                             <p class="">Output</p>
                                         </a>
-                                        <a class="button-1x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')">
+                                        <a class="button-1x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')" onmouseleave="over('Tool-Tips')">
                                             <p class="">Balls</p>
                                         </a>
-                                        <a class="button-1x1 left-space orange right-space" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')">
+                                        <a class="button-1x1 left-space orange right-space" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')" onmouseleave="over('Tool-Tips')">
                                             <p class="">Canvas</p>
                                         </a>
                                         <div class="vertical-spacer"></div>
-                                        <label class="checkbox_container left-space space-top right-space" onmouseenter="over('Hide output')">Hide output
+                                        <label class="checkbox_container left-space space-top right-space" onmouseenter="over('Hide output')" onmouseleave="over('Tool-Tips')">Hide output
                                             <input type="checkbox" class="red-line" id="checkIfHidden" onclick="toggleHideOutput();">
                                             <span class="checkmark"></span>
                                         </label>
                                         <div class="vertical-spacer"></div>
-                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-1x1 blue left-space right-space" id="tutorials-button" onmouseenter="over('Tutorials')">
+                                        <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-1-5x1 blue left-space right-space" id="tutorials-button" onmouseenter="over('Tutorials')" onmouseleave="over('Tool-Tips')">
                                             <p class="">Tutorials</p>
                                         </a>
                                         <div class="vertical-spacer"></div>
@@ -887,7 +890,7 @@
 
                     </div>
                     <br style="clear: both">
-                    <p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a>, <a href="https://julianbeaulieu.com/" target="_blank">Julian Beaulieu</a>, and <a href="https://sunilsingh.me/" target="_blank">Sunil Singh</a> </p>
+                    <p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a> and <a href="https://sunilsingh.me/" target="_blank">Sunil Singh</a>.</p>
 
                 </div>
 

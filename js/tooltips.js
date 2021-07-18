@@ -10,10 +10,12 @@ $(document).ready(function(){
 });
 
 function over(buttonName){
-    let gate = window.list_of_gates[0].find(e => e.name === buttonName);
+    try{
+        let gate = window.list_of_gates[0].find(e => e.name === buttonName);
 
-    if (gate != null) {
-        document.getElementById("title").innerHTML= gate.title;
-        document.getElementById("description").innerHTML= gate.description;
-    }
+        if (gate != null) {
+            document.getElementById("title").innerHTML= gate.title;
+            document.getElementById("description").innerHTML= gate.description;
+        }
+    } catch (e) {}
 }
