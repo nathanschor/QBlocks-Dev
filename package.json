@@ -1,6 +1,6 @@
 {
   "name": "mistystates",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "description": "An animated beginner-friendly canvas for learning about the basic gates used in both classical and quantum computing, and also how to combine those gates into algorithms.",
   "main": "index.php",
   "scripts": {
