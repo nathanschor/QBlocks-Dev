@@ -1,15 +1,36 @@
-QGates: Learning Quantum Computing Using Misty States (beta)
-===
-A quantum computing gate simulator for high-school and college students wanting to get into quantum computing.
 
-Quantum Gate Simulator is currently being developed by [Julian Beaulieu](https://github.com/julianbeaulieu) and is being created for [Quantum Curious](https://quantumcurious.org/).
+# Misty States – A Graphical Approach To Learning Quantum Computing
 
-You can check out the current version [here](https://quantumcurious.org/misty-states.html).
+An animated beginner-friendly canvas (with instructional video) for learning about the basic gates used in both classical and quantum computing, and also how to combine those gates into algorithms.
 
-<img src="img/ui.png" alt="drawing" width="75%%"/>
+![GitHub package.json version](https://img.shields.io/github/package-json/v/nathanschor/QBlocks)
+![License](https://img.shields.io/github/license/nathanschor/QBlocks)
 
-### Contribution
-Feel free to reach out if you would like to contribute.
 
-### Technologies Used
-Currently the simulator is using [Konva.JS](https://quantumcurious.org/misty-states.html) to draw and animate the gates.
+## Authors
+
+Misty States is currently being developed by [Nathan Schor](https://www.linkedin.com/in/nathanschor), [Sunil Singh](https://sunilsingh.me/), and [Julian Beaulieu](https://julianbeaulieu.com/).
+  
+## Demo
+
+Find out more at [Quantum Curious](https://quantumcurious.org/) or try out the current version [here](https://quantumcurious.org/misty-states/index.html).
+
+
+  
+## Tech Stack
+
+**Client:** Konva.js, Bootstrap, jQuery, SweetAlert.js
+
+**Server:** Apache HTTP Server, PHP
+
+  
+## License
+
+[MIT](https://github.com/nathanschor/QBlocks/blob/main/LICENSE)
+
+  
+## Feedback
+
+If you have any feedback, please reach out to us [here](https://quantumcurious.org/feedback/).
+
+  
