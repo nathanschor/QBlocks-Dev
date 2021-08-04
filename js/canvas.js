@@ -239,34 +239,52 @@ con.addEventListener('drop', function (e) {
     }
   }
 
-  console.log("gateX: " + gateX + " | gateY: " + gateY);
+  let overlapping = false;
+  let shapes = ["Image", "Rect", "Circle"];
 
-  if(type === 'cnot'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/cnot.png', 'cnotGate', 'user', 'rectangle', false, currentStep);
-  } else if(type === 'not'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/not.png', 'notGate', 'user', 'rectangle', false, currentStep);
-  } else if(type === 'ccswap'){
-    newGate(gateX,  gateY, 8, 2, layer, stage, 'img/ccswap.png', 'ccswapGate', 'user', 'rectangle', false, currentStep);
-  } else if(type === 'cswap'){
-    newGate(gateX,  gateY, 6, 2, layer, stage, 'img/cswap.png', 'cswapGate', 'user', 'rectangle', false, currentStep);
-  } else if(type === 'swap'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/swap.png', 'swapGate', 'user', 'rectangle', false, currentStep);
-  } else if(type === 'pete'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pete.png', 'peteGate', 'user', 'rectangle', false, currentStep);
-  } else if(type === 'pipe'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/pipe.png', 'pipeGate', 'user', 'rectangle', false, currentStep);
-  } else if(type === 'white'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle', false, currentStep);
-  } else if(type === 'black'){
-    newGate(gateX,  gateY, 2, 2, layer, stage, 'img/black.png', 'blackBalls', 'user', 'circle', false, currentStep);
-  } else if(type === 'wbmist'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
-  } else if(type === 'wnegbmist'){
-    newGate(gateX,  gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentStep);
+  shapes.forEach((shape, i) => {
+    let shapeInStage = stage.find(shape);
+    shapeInStage.each(function (object) {
+      if( !(object.attrs.shapeType.includes("shadow"))){
+        let new_x = parseInt(object.attrs.x);
+        let new_y = parseInt(object.attrs.y);
+
+        overlapping = (((new_x|0) === (gateX|0)) && ((new_y|0) === (gateY|0)));
+      }
+    });
+  });
+
+
+  console.log("gateX: " + gateX + " | gateY: " + gateY + " | overlapping: " + overlapping);
+
+  if(!overlapping) {
+    if (type === 'cnot') {
+      newGate(gateX, gateY, 4, 2, layer, stage, 'img/cnot.png', 'cnotGate', 'user', 'rectangle', false, currentStep);
+    } else if (type === 'not') {
+      newGate(gateX, gateY, 2, 2, layer, stage, 'img/not.png', 'notGate', 'user', 'rectangle', false, currentStep);
+    } else if (type === 'ccswap') {
+      newGate(gateX, gateY, 8, 2, layer, stage, 'img/ccswap.png', 'ccswapGate', 'user', 'rectangle', false, currentStep);
+    } else if (type === 'cswap') {
+      newGate(gateX, gateY, 6, 2, layer, stage, 'img/cswap.png', 'cswapGate', 'user', 'rectangle', false, currentStep);
+    } else if (type === 'swap') {
+      newGate(gateX, gateY, 4, 2, layer, stage, 'img/swap.png', 'swapGate', 'user', 'rectangle', false, currentStep);
+    } else if (type === 'pete') {
+      newGate(gateX, gateY, 2, 2, layer, stage, 'img/pete.png', 'peteGate', 'user', 'rectangle', false, currentStep);
+    } else if (type === 'pipe') {
+      newGate(gateX, gateY, 2, 2, layer, stage, 'img/pipe.png', 'pipeGate', 'user', 'rectangle', false, currentStep);
+    } else if (type === 'white') {
+      newGate(gateX, gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle', false, currentStep);
+    } else if (type === 'black') {
+      newGate(gateX, gateY, 2, 2, layer, stage, 'img/black.png', 'blackBalls', 'user', 'circle', false, currentStep);
+    } else if (type === 'wbmist') {
+      newGate(gateX, gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
+    } else if (type === 'wnegbmist') {
+      newGate(gateX, gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentStep);
+    }
+
+    stage.add(layer);
+    type = '';
   }
-
-  stage.add(layer);
-  type = '';
 });
 
 /*############################################################################*/
