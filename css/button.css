@@ -194,8 +194,13 @@
 .space-top{
 	margin-top: 22px;
 }
+
 .space-bottom{
 	margin-bottom: 10px;
+}
+
+.space-bottom-2x{
+	margin-bottom: 30px;
 }
 
 .left-space{

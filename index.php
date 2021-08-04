@@ -719,7 +719,7 @@
                             <main>
                                 <aside class="left standardControlls">
                                         <!--  Gates Go Here-->
-                                        <div class="row frame-around-balls">
+                                        <div class="row frame-around-balls space-bottom-2x">
                                             <div class="elements-box space-bottom">
                                                 Balls
                                             </div>
