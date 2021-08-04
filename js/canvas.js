@@ -589,20 +589,19 @@ function preventDuplicateElementsOnCanvas(simulationOutcome){
     }
   });
 
-  console.log(simulationOutcome);
-
   var objects = stage.find('#simulation');
 
   let idArray = [];
   objects.forEach((object, i) => {
-    let x = parseInt(object.attrs.x);
-    let y = parseInt(object.attrs.y);
+    if( !(object.attrs.shapeType.includes("shadow"))){
+      let x = parseInt(object.attrs.x);
+      let y = parseInt(object.attrs.y);
 
-    if([x, y] in dictOfObjectsByCoordinates){
+      if([x, y] in dictOfObjectsByCoordinates){
 
-      let idKey = String(dictOfObjectsByCoordinates[[x, y]]);
-      idArray.push(idKey);
-      //object.destroy();
+        let idKey = String(dictOfObjectsByCoordinates[[x, y]]);
+        idArray.push(idKey);
+      }
     }
   });
 
@@ -617,8 +616,6 @@ function preventDuplicateElementsOnCanvas(simulationOutcome){
   });
 
   returnArr = [...new Set(returnArr)];
-
-  //layer.draw();
 
   return returnArr;
 }
