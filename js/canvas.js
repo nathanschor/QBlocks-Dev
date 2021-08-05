@@ -239,21 +239,7 @@ con.addEventListener('drop', function (e) {
     }
   }
 
-  let overlapping = false;
-  let shapes = ["Image", "Rect", "Circle"];
-
-  shapes.forEach((shape, i) => {
-    let shapeInStage = stage.find(shape);
-    shapeInStage.each(function (object) {
-      if( !(object.attrs.shapeType.includes("shadow"))){
-        let new_x = parseInt(object.attrs.x);
-        let new_y = parseInt(object.attrs.y);
-
-        overlapping = (((new_x|0) === (gateX|0)) && ((new_y|0) === (gateY|0)));
-      }
-    });
-  });
-
+  let overlapping = willOverlap(gateX, gateY);
 
   console.log("gateX: " + gateX + " | gateY: " + gateY + " | overlapping: " + overlapping);
 
@@ -287,6 +273,43 @@ con.addEventListener('drop', function (e) {
     type = '';
   }
 });
+
+function willOverlap(gateX, gateY) {
+  let overlapping = false;
+  let shapes = ["Image", "Rect", "Circle"];
+
+  shapes.forEach((shape, i) => {
+    let shapeInStage = stage.find(shape);
+    shapeInStage.each(function (object) {
+      if( !(object.attrs.shapeType.includes("shadow"))){
+        let coordinates = [[parseInt(object.attrs.x), parseInt(object.attrs.y)]];
+        let objectType = object.attrs.type;
+
+        if(objectType.includes("ccswap")){
+          coordinates.push([parseInt(object.attrs.x + 60), parseInt(object.attrs.y)]);
+          coordinates.push([parseInt(object.attrs.x + 120), parseInt(object.attrs.y)]);
+          coordinates.push([parseInt(object.attrs.x + 180), parseInt(object.attrs.y)]);
+        } else if(objectType.includes("cswap")){
+          coordinates.push([parseInt(object.attrs.x + 60), parseInt(object.attrs.y)]);
+          coordinates.push([parseInt(object.attrs.x + 120), parseInt(object.attrs.y)]);
+        } else if(objectType.includes("swap") || objectType.includes("cnot")){
+          coordinates.push([parseInt(object.attrs.x + 60), parseInt(object.attrs.y)]);
+        }
+
+        for(var i = 0; i < coordinates.length; i++ && !overlapping) {
+          let coordinate = coordinates[i];
+          let tempBool = (((coordinate[0]|0) === (gateX|0)) && ((coordinate[1]|0) === (gateY|0)));
+
+          if (tempBool){
+            overlapping = true;
+          }
+        }
+      }
+    });
+  });
+
+  return overlapping;
+}
 
 /*############################################################################*/
 /*####################### Colision Detection #################################*/
