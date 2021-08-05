@@ -828,10 +828,10 @@
                                         <a id="drag-pipe-mobile" onclick="createPIPE_Gate()">
                                             <img class="button-img" src="img/pipe.png" draggable="true">
                                         </a>
-                                        <a id="drag-wbmist-mobile" onclick="createWBMist()">
+                                        <a id="drag-wbmist-mobile">
                                             <img class="button-img" src="img/wb.png" draggable="true">
                                         </a>
-                                        <a id="drag-wnegbmist-mobile" onclick="createWNegBMist()">
+                                        <a id="drag-wnegbmist-mobile">
                                             <img class="button-img" src="img/wnegb.png" draggable="true">
                                         </a>
                                     </div>
@@ -847,31 +847,19 @@
                                     <div class="row left-space scrollmenu" id="controlStrip">
 
                                         <div class="vertical-spacer"></div>
-                                        <div class="left-space controlls-box-mobile ">Process:</div>
 
                                         <a class="button-1x1 left-space green" onclick = "runNext()" onmouseenter="over('Run')" onmouseleave="over('Tool-Tips')" id="playButton">
                                             <p class="">Run</p>
                                         </a>
-                                        <a class="button-1x1 left-space green border-right" onclick = "runAll()" onmouseenter="over('Forward')" onmouseleave="over('Tool-Tips')">
-                                            <p class="">Run All</p>
-                                        </a>
-                                        <a class="button-1x1 left-space green right-space" onclick = "goBack()" onmouseenter="over('Go Back')" onmouseleave="over('Tool-Tips')">
-                                            <p class="">Undo</p>
-                                        </a>
 
-                                        <div class="vertical-spacer"></div>
-                                        <div class="left-space controlls-box-mobile ">Clear:</div>
-                                        <a class="button-1x1 left-space orange" onclick = "clearSimulation()" onmouseenter="over('Remove Output')" onmouseleave="over('Tool-Tips')">
-                                            <p class="">Output</p>
+                                        <a class="button-2x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')" onmouseleave="over('Tool-Tips')">
+                                            <p class="">Clear Balls</p>
                                         </a>
-                                        <a class="button-1x1 left-space orange" onclick = "clearAllBallsAndMists()" onmouseenter="over('Remove All Balls')" onmouseleave="over('Tool-Tips')">
-                                            <p class="">Balls</p>
-                                        </a>
-                                        <a class="button-1x1 left-space orange right-space" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')" onmouseleave="over('Tool-Tips')">
-                                            <p class="">Canvas</p>
+                                        <a class="button-2x1 left-space orange right-space" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')" onmouseleave="over('Tool-Tips')">
+                                            <p class="">Clear Canvas</p>
                                         </a>
                                         <div class="vertical-spacer"></div>
-                                        <label class="checkbox_container left-space space-top right-space" onmouseenter="over('Hide output')" onmouseleave="over('Tool-Tips')">Hide output
+                                        <label class="checkbox_container left-space space-top right-space hand-mouse" onmouseenter="over('Hide output')" onmouseleave="over('Tool-Tips')">Hide output
                                             <input type="checkbox" class="red-line" id="checkIfHidden" onclick="toggleHideOutput();">
                                             <span class="checkmark"></span>
                                         </label>

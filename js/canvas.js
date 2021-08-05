@@ -276,11 +276,12 @@ con.addEventListener('drop', function (e) {
       newGate(gateX, gateY, 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle', false, currentStep);
     } else if (type === 'black') {
       newGate(gateX, gateY, 2, 2, layer, stage, 'img/black.png', 'blackBalls', 'user', 'circle', false, currentStep);
-    } else if (type === 'wbmist') {
-      newGate(gateX, gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
-    } else if (type === 'wnegbmist') {
-      newGate(gateX, gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentStep);
     }
+    // else if (type === 'wbmist') {
+    //   newGate(gateX, gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
+    // } else if (type === 'wnegbmist') {
+    //   newGate(gateX, gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentStep);
+    // }
 
     stage.add(layer);
     type = '';

@@ -10,14 +10,14 @@
 	font-weight: bold;
 	box-shadow: 2px 2px 3px #999;
 	vertical-align: top;
-	cursor: default;
+	cursor: pointer;
 }
 
 .vertical-spacer{
 	display: inline-block;
 	text-align: center;
 	vertical-align: top;
-	cursor: default;
+	cursor: pointer;
 	width:2px;
 	height:60px;
 	border-left: 2px solid black;
@@ -105,7 +105,7 @@
 	display: inline-block;
 	text-align: center;
 	vertical-align: top;
-	cursor: default;
+	cursor: pointer;
 }
 
 .button-img:hover{
@@ -222,6 +222,10 @@
 	cursor: pointer;
 	height: 0;
 	width: 0;
+}
+
+.hand-mouse {
+	cursor: pointer;
 }
 
 /*hide div on all screens with 700 and higher width*/
