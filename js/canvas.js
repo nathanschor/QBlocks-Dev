@@ -89,6 +89,7 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
     // do something else on right click
     rectangle.on('contextmenu', (e) => {
       rectangle.destroy();
+      shadowRectangle.destroy();
       layer.draw();
       if(hidden){
         let color = (type.includes("white")) ? 'white' : 'black';
@@ -321,20 +322,20 @@ function haveIntersection(r1, r2) {
     return false;
   }
 
-  y1 = r1.attrs.y
-  h1 = r1.attrs.height;
-  x1 = r1.attrs.x
-  w1 = r1.attrs.width
+  let y1 = r1.attrs.y;
+  let h1 = r1.attrs.height;
+  let x1 = r1.attrs.x;
+  let w1 = r1.attrs.width
 
-  x2 = r2.attrs.x
-  w2 = r2.attrs.width
-  y2 = r2.attrs.y
-  h2 = r2.attrs.height;
+  let x2 = r2.attrs.x;
+  let w2 = r2.attrs.width;
+  let y2 = r2.attrs.y;
+  let h2 = r2.attrs.height;
 
 
   let colision = !(
-    x2 > x1 + w1/2 ||
-    x2 + w2/2 < x1 ||
+    x2 > x1 + w1 ||
+    x2 + w2 < x1 ||
     y2 > y1 + h1/2 ||
     y2 + h2/2 < y1
   )
@@ -342,7 +343,73 @@ function haveIntersection(r1, r2) {
   return colision;
 }
 
-function calcNewY(r1, r2){
+function hasLeftCanvas(r1) {
+
+  if(r1.attrs.shapeType.includes('shadow') ){
+    return false;
+  }
+
+  let y1 = r1.attrs.y;
+  let h1 = r1.attrs.height;
+  let x1 = r1.attrs.x;
+  let w1 = r1.attrs.width;
+
+  let left = 0;
+  let right = width;
+  let top = 0;
+  let bottom = height;
+
+  // console.log("y1 < top\n" + y1 + " < " + top +
+  //             "\ny1 + h1 > bottom\n" + (y1 + h1) + " > " + bottom +
+  //             "\nx1 < left\n" + x1 + " < " + left +
+  //             "\ny1 < top\n" + (x1 + w1) + " > " + right);
+
+  let colision = (
+      y1 < top ||
+      y1 + h1 > bottom ||
+      x1 < left ||
+      x1 + w1 > right
+  )
+
+  return colision;
+}
+
+function calcNewDepartureFromCanvasY(r1){
+  y1 = r1.attrs.y
+  h1 = r1.attrs.height;
+
+  let top = 0;
+  let bottom = height;
+
+  console.log("y1 < top\n" + y1 + " < " + top +
+              "\ny1 + h1 > bottom\n" + (y1 + h1) + " > " + bottom);
+
+  if (y1 < top){
+    return top;
+  } else if((y1+h1) > bottom) {
+    return (bottom - h1);
+  } else {
+    return y1;
+  }
+}
+
+function calcNewDepartureFromCanvasX(r1){
+  x1 = r1.attrs.x
+  w1 = r1.attrs.width;
+
+  let left = 0;
+  let right = width;
+
+  if (x1 < left){
+    return left;
+  } else if((x1+w1) > right) {
+    return (right - w1);
+  } else {
+    return x1;
+  }
+}
+
+function calcNewCollisionY(r1, r2){
   y1 = r1.attrs.y
   h1 = r1.attrs.height;
 
@@ -356,7 +423,7 @@ function calcNewY(r1, r2){
   }
 }
 
-function calcNewX(r1, r2){
+function calcNewCollisionX(r1, r2){
   x1 = r1.attrs.x
   w1 = r1.attrs.width;
 
@@ -379,11 +446,19 @@ layer.on('dragmove', function (e) {
 
   layer.children.each(function (shape) {
     // do not check intersection with itself
-    if (shape === target) {
+
+    if (hasLeftCanvas(target)){
+      newX = calcNewDepartureFromCanvasX(target)
+      newY = calcNewDepartureFromCanvasY(target)
+      target.position({
+        x: newX,
+        y: newY
+      });
+    } else if (shape === target) {
       return;
     } else if (haveIntersection(shape, target)) {
-      newX = calcNewX(shape, target)
-      newY = calcNewY(shape, target)
+      newX = calcNewCollisionX(shape, target)
+      newY = calcNewCollisionY(shape, target)
       target.position({
         x: newX,
         y: newY
@@ -400,7 +475,9 @@ function clearBallsAndMists() {
 
   shapes.forEach((shape, i) => {
     let shapeInStage = stage.find(shape);
+    console.log(shapeInStage.length);
     shapeInStage.each(function (object) {
+      console.log(object);
       if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
           isBallMistOrBoth(object.attrs.type.toLowerCase())){
         object.destroy();
@@ -631,11 +708,12 @@ function preventDuplicateElementsOnCanvas(simulationOutcome){
     }
   });
 
-  var objects = stage.find('#simulation');
+  var objects = stage.find('Image');
 
   let idArray = [];
   objects.forEach((object, i) => {
-    if( !(object.attrs.shapeType.includes("shadow"))){
+    if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
+        isBallMistOrBoth(object.attrs.type.toLowerCase())){
       let x = parseInt(object.attrs.x);
       let y = parseInt(object.attrs.y);
 
