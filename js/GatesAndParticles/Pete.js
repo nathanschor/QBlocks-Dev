@@ -15,6 +15,8 @@ function Pete(x, y, width, height, id = 0){
     if(this.alreadyRan){
       return [this.center];
     } else if(this.center.elementType === 'Ball'){
+      // *****TEST
+      console.log("THis is the pete gate");
       this.center.color = Math.floor(Math.random() * 2); //creates either a random 1 or 0
       this.center.y += ((this.y + (multiplicity * this.height/2)) - this.center.y);
 

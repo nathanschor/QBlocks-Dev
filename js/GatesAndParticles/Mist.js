@@ -6,7 +6,7 @@ function Mist(colorLeft=0, signLeft='+', colorRight=0, signRight='+', x, y, widt
   this.width = width;
   this.height = height;
   this.id = id;
-
+ 
   this.colorRight = colorRight;
   this.signRight = signRight;
 
