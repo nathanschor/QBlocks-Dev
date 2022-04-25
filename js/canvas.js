@@ -1,6 +1,8 @@
 shadowOffset = 20;
-let blockSnapSize = 30;
-let gridSnapSize = 60;
+let blockSnapSize = 25;
+
+// double blockSnapSize
+let gridSnapSize = blockSnapSize * 2;
 let timeout;
 let lastTap = 0;
 let hideResults = false;
@@ -264,9 +266,11 @@ con.addEventListener('drop', function (e) {
     } else if (type === 'black') {
       newGate(gateX, gateY, 2, 2, layer, stage, 'img/black.png', 'blackBalls', 'user', 'circle', false, currentStep);
     }else if (type === 'wbmist') {
-      newGate(gateX, gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
+      // TODO changing size of mists
+      newGate(gateX, gateY, 2, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
     } else if (type === 'wnegbmist') {
-      newGate(gateX, gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentStep);
+      // this one too
+      newGate(gateX, gateY, 2, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentStep);
     }
 
     stage.add(layer);
@@ -541,11 +545,12 @@ function getElementsFromCanvas(){
     let shapeInStage = stage.find(shape);
     shapeInStage.each(function (object) {
       if(isNotObjectShadow(object.attrs.shapeType.toLowerCase())) {
+        // retrieves all elements from canvas and pushes onto an array
         elements.push(createObject(object));
       }
     });
   });
-
+  // returns the array
   return elements
 }
 
@@ -586,24 +591,31 @@ function toggleHideOutput() {
 function run(allLevels = false) {
 
   let elements = getElementsFromCanvas();
+  // elements is an array of all objects on canvas
 
   if(elements.length === 0){
+    // if there are no things on canvas return false
     return false;
   }
 
+  
   do {
 
     let levels = splitElementsIntoGroupsByElementLevel(elements);
-
+    console.log("run 1 here", levels);
     let returnedVals = removeDisconectedLevels(levels);
-
     elements = returnedVals[1];
+    console.log("run 2", returnedVals)
 
     let matchedObjects = matchLevels(returnedVals[0]);
 
+    console.log("run3", matchedObjects);
+
     matchedObjects = removeSingleObjects(matchedObjects);
+     // TODO figure out what remove single objects even means and what we gave as an input to it
 
     if (matchedObjects.length === 0) {
+      console.log("here is the problem")
       return false;
     }
 
@@ -636,6 +648,7 @@ function makeid(length) {
 }
 
 function createObject(object) {
+  console.log("in create object func", object.attrs.type.toLowerCase());
   if(object.attrs.type.toLowerCase().includes("ccswap")){
     return new CCSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cswap")){
@@ -657,7 +670,7 @@ function createObject(object) {
   } else if(object.attrs.type.toLowerCase().includes("wb")){
     return new Mist(1, '+', 0, '+', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("w-b")){
-    return new Mist(1, '+', 0, '1', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
+    return new Mist(1, '+', 0, '-', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else {
     console.log("Something went wrong while creating the objects");
     return null;
@@ -758,7 +771,7 @@ function splitElementsIntoGroupsByElementLevel(elements){
 function matchLevels(levels) {
   let keys = Object.keys(levels);
   let aboveRow = levels[keys[0]];
-
+  // TODO
   for (let i = 1; i < keys.length; i++) {
     aboveRow = matchElements(aboveRow, levels[keys[i]]);
   }
@@ -770,11 +783,13 @@ function matchElements(aboveRow, belowRow){
   let matchedObjects = [];
   let ids = [];
   let idDict = {};
+  console.log("matchElements1");
 
   aboveRow.forEach((element, i) => {
     idDict[element.id] = element;
   });
 
+  console.log("matchElements2");
   belowRow.forEach((element, i) => {
     let temp = matchElement(element, aboveRow);
     aboveRow = temp[1];
@@ -795,7 +810,7 @@ function matchElements(aboveRow, belowRow){
 }
 
 function matchElement (element, aboveRow) {
-
+  console.log("matchElement");
   aboveRow.forEach((elementAbove, i) => { //Loops through above elements
     elementAbove.getCenterCoordinates().forEach((centerCoordinates, j) => { //loops through all of the centers of the elements.
 
@@ -814,9 +829,13 @@ function removeSingleObjects(objects) {
   let convertedObjects = [];
 
   for (let i = 0; i < objects.length; i++) {
-    if(objects[i].isComplete()){
-      convertedObjects.push(objects[i]);
-    }
+    console.log("this happens");
+    // if(objects[i].isComplete()){
+    //   console.log("but this never does");
+    //   convertedObjects.push(objects[i]);
+    // }
+
+    convertedObjects.push(objects[i]);
   }
 
   return convertedObjects;
@@ -825,11 +844,14 @@ function removeSingleObjects(objects) {
 function removeDisconectedLevels(levels){
   let convertedObjects = {};
   let keys = Object.keys(levels);
+  console.log("keys and levs" , keys, levels);
   let prevKey = parseInt(keys[0]);
   convertedObjects[prevKey] = levels[prevKey];
   let unusedObjects = [];
 
   for (let i = 1; i < keys.length; i++) {
+    console.log("keys", keys[i], prevKey, gridSnapSize);
+    console.log((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize))));
     if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
       convertedObjects[keys[i]] = levels[keys[i]];
     } else {
@@ -848,6 +870,7 @@ function simulate(matchedObjects){
   for (let i = 0; i < matchedObjects.length; i++) {
 
     try {
+      console.log("inside run", matchedObjects[i]);
       let elementList = matchedObjects[i].run();
 
       elementList.forEach((item, i) => {

@@ -12,18 +12,38 @@ function Pete(x, y, width, height, id = 0){
   this.id = id;
 
   this.run = function pete(multiplicity = 3){
+    console.log("This is the pete gate" + this.center);
     if(this.alreadyRan){
       return [this.center];
     } else if(this.center.elementType === 'Ball'){
       // *****TEST
-      console.log("THis is the pete gate");
-      this.center.color = Math.floor(Math.random() * 2); //creates either a random 1 or 0
-      this.center.y += ((this.y + (multiplicity * this.height/2)) - this.center.y);
+      //this.center.color = Math.floor(Math.random() * 2); //creates either a random 1 or 0
 
+      // need to create a mist state
+      // this.center.y += ((this.y + (multiplicity * this.height/2)) - this.center.y);
+      if(this.center.color == 1){
+        // if input ball is white
+        newGate(x, this.center.y + ((this.y + (multiplicity * this.height/3)) - this.center.y), 2, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
+      }else{
+        // if input ball is black
+        newGate(x, this.center.y + ((this.y + (multiplicity * this.height/3)) - this.center.y), 2, 2, layer, stage, 'img/wnegb.png', 'wnegbMist', 'user', 'rectangle', false, currentStep);
+      }
+
+      
       this.center.updateLevel();
       this.alreadyRan = true;
       return [this.center];
     } else if(this.center.elementType === 'Mist'){
+      // not even able to execute this
+      console.log("THIS IS A MIST");
+      if(this.center.signRight === '+'){
+        newGate(x, this.center.y + ((this.y + (multiplicity * this.height/3)) - this.center.y), 2, 2, layer, stage, 'img/white.png', 'whiteBall', 'user', 'circle', false, currentStep);
+      }else{
+        newGate(x, this.center.y + ((this.y + (multiplicity * this.height/3)) - this.center.y), 2, 2, layer, stage, 'img/black.png', 'blackBalls', 'user', 'circle', false, currentStep);
+      }
+
+      this.center.updateLevel();
+      this.alreadyRan = true;
       // TODO: handle mist
       return [this.center];
     } else { //In this case we have a Gate
@@ -55,6 +75,9 @@ function Pete(x, y, width, height, id = 0){
     let y1 = parseInt(this.y - this.height);
     let y2 = parseInt(this.y);
 
+    console.log(x1, x2, y1, y2);
+    console.log(otherX, otherY);
+    console.log((x1 <= otherX) && (otherX <= x2) && (y1 <= otherY) && (otherY <= y2));
     return (x1 <= otherX) && (otherX <= x2) && (y1 <= otherY) && (otherY <= y2);
   }
 

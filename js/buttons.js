@@ -68,14 +68,14 @@ function createWHITE_BALL(){
 
 function createWBMist(){
   if(!willOverlap(blockSnapSize * gateX, blockSnapSize * gateY)) {
-    newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, 0);
+    newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, 0);
     stage.add(layer);
   }
 }
 
 function createWNegBMist(){
   if(!willOverlap(blockSnapSize * gateX, blockSnapSize * gateY)) {
-    newGate(blockSnapSize * gateX, blockSnapSize * gateY, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, 0);
+    newGate(blockSnapSize * gateX, blockSnapSize * gateY, 2, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, 0);
     stage.add(layer);
   }
 }
@@ -91,6 +91,7 @@ function runNext(){
   $(".loader-wrapper").fadeOut("fast");
 
   if(!success){
+    // TODO this prevents a misty state from being an input
     processingError();
   }
 }
