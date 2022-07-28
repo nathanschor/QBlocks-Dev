@@ -581,6 +581,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="https://unpkg.com/konva@7.2.5/konva.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <!-- ############################################################################################################ -->
@@ -878,7 +879,7 @@
 
                     </div>
                     <br style="clear: both">
-                    <p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a> and <a href="https://sunilsingh.me/" target="_blank">Sunil Singh</a>.</p>
+                    <p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a> and <a href="https://www.linkedin.com/in/sarvesh-raghuraman-077045217/" target="_blank">Sarvesh Raghuraman</a>.</p>
 
                 </div>
 
@@ -894,6 +895,8 @@
                 <script src="js/GatesAndParticles/Pete.js?v=<?=filemtime('js/GatesAndParticles/Pete.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Mist.js?v=<?=filemtime('js/GatesAndParticles/Mist.js'); ?>"></script>
                 <script src="js/GatesAndParticles/Pipe.js?v=<?=filemtime('js/GatesAndParticles/Pipe.js'); ?>"></script>
+                <script src="js/GatesAndParticles/Cell.js?v=<?=filemtime('js/GatesAndParticles/Cell.js'); ?>"></script>
+
                 <script src="js/canvas.js?v=<?=filemtime('js/canvas.js'); ?>"></script>
                 <script src="js/buttons.js?v=<?=filemtime('js/buttons.js'); ?>"></script>
                 <script src="js/center-canvas.js?v=<?=filemtime('js/center-canvas.js'); ?>"></script>
