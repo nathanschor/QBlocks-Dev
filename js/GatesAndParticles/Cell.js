@@ -5,6 +5,7 @@ class Cell{
 
     code = -1;
     output = "?";
+    
     /*
         id is the numerical id used for behind the scenes
         ouput is the vector to be outputted in the CELL BENEATH

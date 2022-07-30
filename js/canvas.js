@@ -1035,6 +1035,3 @@ function printGrid(){
 function resetGrid(){
   pseudoGrid = Array(gridY).fill(new Cell("-", -1, -1, -1)).map(x => Array(gridX).fill(new Cell("-", -1, -1, -1)));
 }
-
-
-
