@@ -746,7 +746,7 @@ function createObject(object) {
   let yCoord = object.attrs.y / gridSnapSize;
 
   let code = "-1";
-  let gate = false;
+  let gatePorts = 0;
 
   let input = [];
 
@@ -754,31 +754,52 @@ function createObject(object) {
   console.log(yCoord + " " + xCoord);
   if(object.attrs.type.toLowerCase().includes("ccswap")){
     code = "1";
-    gate = true;
+    gatePorts = 4
+    input.push(pseudoGrid[yCoord - 1][xCoord].output);
+    input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
+    input.push(pseudoGrid[yCoord - 1][xCoord + 2].output);
+    input.push(pseudoGrid[yCoord - 1][xCoord + 3].output);
+    pseudoGrid[yCoord][xCoord + 1] = new Cell("1.1", input);
+    pseudoGrid[yCoord][xCoord + 2] = new Cell("1.2", input);
+    pseudoGrid[yCoord][xCoord + 3] = new Cell("1.3", input)
     //return new CCSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cswap")){
     code = "2";
-    gate = true;
+    gatePorts = 3;
+    input.push(pseudoGrid[yCoord - 1][xCoord].output);
+    input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
+    input.push(pseudoGrid[yCoord - 1][xCoord + 2].output);
+    pseudoGrid[yCoord][xCoord + 1] = new Cell("2.1", input);
+    pseudoGrid[yCoord][xCoord + 2] = new Cell("2.2", input);
     //return new CSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cnot")){
     code = "3";
-    gate = true;
+    gatePorts = 2
+    input.push(pseudoGrid[yCoord - 1][xCoord].output);
+    input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
+    pseudoGrid[yCoord][xCoord + 1] = new Cell("3.1", input);
     //return new CNot(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("swap")){
     code = "4";
-    gate = true;
+    gatePorts = 2
+    input.push(pseudoGrid[yCoord - 1][xCoord].output);
+    input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
+    pseudoGrid[yCoord][xCoord + 1] = new Cell("4.1", input);
+
     //return new Swap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("not")){
     code = "5";
-    gate = true;
+    gatePorts = 1
     input.push(pseudoGrid[yCoord - 1][xCoord].output);
     //return new Not(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("pipe")){
     code = "6";
+    input.push(pseudoGrid[yCoord - 1][xCoord].output);
+    gatePorts = 1;
     //return new Pipe(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("pete")){
     code = "7";
-    gate = true;
+    gatePorts = 1;
     input.push(pseudoGrid[yCoord - 1][xCoord].output);
     //return new Pete(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("black")){
@@ -798,11 +819,13 @@ function createObject(object) {
     //return null;
   }
   pseudoGrid[yCoord][xCoord] = new Cell(code, input);
-  if(gate){
+  // takes care of the output ports
+  for(let i = 0; i < gatePorts; i++){
     input = [];
-    input.push(pseudoGrid[yCoord][xCoord].output);
-    pseudoGrid[yCoord + 1][xCoord] = new Cell("0", input);
+    input.push(pseudoGrid[yCoord][xCoord + i].output);
+    pseudoGrid[yCoord + 1][xCoord + i] = new Cell("0", input);
   }
+  
   // saves the coords if the object is a gate
   if(code > 7){
     yCoord = -1;
