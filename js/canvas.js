@@ -4,7 +4,8 @@ let gridY = 20//7
 let gridX = 20//14
 // TODO see why new Cell isnt being recognized
 //temp = new Cell("blank", -1, -1, -1);
-let pseudoGrid = Array(gridY).fill(new Cell("-", -1, -1, -1)).map(x => Array(gridX).fill(new Cell("-", -1, -1, -1)));
+let pseudoGrid = Array(gridY).fill(new Cell("-")).map(x => Array(gridX).fill(new Cell("-")));
+let cellsToCalc = [];
 
 
 // double blockSnapSize
@@ -546,49 +547,22 @@ function undoLastSimulation(){
 
 function getElementsFromCanvas(){
   let shapes = ["Image", "Circle", "Rectangle", "Square"];
-  let elements = [];
 
   shapes.forEach((shape, i) => {
     let shapeInStage = stage.find(shape);
     shapeInStage.each(function (object) {
       if(isNotObjectShadow(object.attrs.shapeType.toLowerCase())) {
         // retrieves all elements from canvas and pushes onto an array
-        elements.push(createObject(object));
+        cellsToCalc.push(createObject(object));
       }
     });
   });
   // returns the array of coords containing gates that need to be run
-  return elements
 }
 
-// function drawObjects(objects, userGen=false){
-//   let generationType = userGen ? "user" : "simulation";
-//   objects.forEach((object, i) => {
-//     if(object.constructor.name.toLowerCase() === 'ball'){
-//       let imgFilePath = hideResults ? 'img/square.png' : ('img/' + ((object.color === 1) ? 'white' : 'black') + '.png');
-//       let objectType = ((object.color === 1) ? 'white' : 'black') + 'Ball';
 
-//       console.log("Current level in drawObjects: " + currentStep);
-//       newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, imgFilePath, objectType, generationType, 'circle', hideResults, currentStep);
-//     } else if(object.constructor.name.toLowerCase() === 'mist'){
-//       if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
-//         newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType, 'rectangle', hideResults, currentStep);
-//       } else {
-//         newGate(object.x, object.y, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', generationType, 'rectangle', hideResults, currentStep);
-//       }
-//     } else {
-//       console.log("Something went wrong: " + object.toString());
-//       return null;
-//     }
-//     stage.add(layer);
-//   });
-
-
-// }
-
-function drawObjects(userGen=false){
+function drawObjects(){
   console.log("drawing new objects");
-  let generationType = userGen ? "user" : "simulation";
   for(let i = 0; i < gridY; i++){
     for(let j = 0; j < gridX; j++){
       // if a cell is blank but has an input, display
@@ -598,7 +572,7 @@ function drawObjects(userGen=false){
         let objectType = ((pseudoGrid === "9") ? 'white' : 'black') + 'Ball';
   
         console.log("Current x in draw obj " + j + " curr y in draw obj" + i);
-        newGate(j * 2 * blockSnapSize + .5, i * 2 * blockSnapSize, 2, 2, layer, stage, imgFilePath, objectType, generationType, 'circle', hideResults, currentStep);
+        newGate(j * 2 * blockSnapSize + .5, i * 2 * blockSnapSize, 2, 2, layer, stage, imgFilePath, objectType, "simulation", 'circle', hideResults, currentStep);
       }else if(pseudoGrid[i][j].code === "a" || pseudoGrid[i][j].code === "b"){
         let imgFilePath = "";
         if(pseudoGrid[i][j].code === "a"){
@@ -608,59 +582,13 @@ function drawObjects(userGen=false){
           imgFilePath = "img/wnegb.png";
           objectType = 'w-bMist';
         }
-        newGate(j * 2 * blockSnapSize + .5, i * 2 * blockSnapSize, 2, 2, layer, stage, imgFilePath, objectType, "user", 'rectangle', hideResults, currentStep);
-
-
-        //newGate(gateX, gateY, 2, 2, layer, stage, 'img/wb.png', 'wbMist', 'user', 'rectangle', false, currentStep);
-        //newGate(gateX, gateY, 2, 2, layer, stage, 'img/wnegb.png', 'w-bMist', 'user', 'rectangle', false, currentStep);
-
+        newGate(j * 2 * blockSnapSize + .5, i * 2 * blockSnapSize, 2, 2, layer, stage, imgFilePath, objectType, "simulation", 'rectangle', hideResults, currentStep);
       }
       stage.add(layer);
   }
-      // if(pseudoGrid[i][j].type = "blank"){
-      //   if(object.constructor.name.toLowerCase() === 'ball'){
-      //     let imgFilePath = hideResults ? 'img/square.png' : ('img/' + ((object.color === 1) ? 'white' : 'black') + '.png');
-      //     let objectType = ((object.color === 1) ? 'white' : 'black') + 'Ball';
-    
-      //     console.log("Current level in drawObjects: " + currentStep);
-      //     newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, imgFilePath, objectType, generationType, 'circle', hideResults, currentStep);
-      //   } else if(object.constructor.name.toLowerCase() === 'mist'){
-      //     if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
-      //       newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType, 'rectangle', hideResults, currentStep);
-      //     } else {
-      //       newGate(object.x, object.y, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', generationType, 'rectangle', hideResults, currentStep);
-      //     }
-      //   } else {
-      //     console.log("Something went wrong: " + object.toString());
-      //     return null;
-      //   }
-      //   stage.add(layer);
-      // }
       
   }
 }
-  
-  // objects.forEach((object, i) => {
-  //   if(object.constructor.name.toLowerCase() === 'ball'){
-  //     let imgFilePath = hideResults ? 'img/square.png' : ('img/' + ((object.color === 1) ? 'white' : 'black') + '.png');
-  //     let objectType = ((object.color === 1) ? 'white' : 'black') + 'Ball';
-
-  //     console.log("Current level in drawObjects: " + currentStep);
-  //     newGate(object.x - object.radius, object.y - object.radius, 2, 2, layer, stage, imgFilePath, objectType, generationType, 'circle', hideResults, currentStep);
-  //   } else if(object.constructor.name.toLowerCase() === 'mist'){
-  //     if(object.colorLeft === 1 && object.colorRight === 0 && object.signLeft === '+' && object.signRight === '+'){
-  //       newGate(object.x, object.y, 4, 2, layer, stage, 'img/wb.png', 'wbMist', generationType, 'rectangle', hideResults, currentStep);
-  //     } else {
-  //       newGate(object.x, object.y, 4, 2, layer, stage, 'img/wnegb.png', 'w-bMist', generationType, 'rectangle', hideResults, currentStep);
-  //     }
-  //   } else {
-  //     console.log("Something went wrong: " + object.toString());
-  //     return null;
-  //   }
-  //   stage.add(layer);
-  // });
-
-
 
 // TODO split up from here
 
@@ -675,54 +603,13 @@ function toggleHideOutput() {
 
 function run(allLevels = false) {
   resetGrid();
-  let elements = getElementsFromCanvas();
+  getElementsFromCanvas();
   // elements is an array of all objects on canvas
 
-  if(elements.length === 0){
-    // if there are no things on canvas return false
-    return false;
-  }
 
-  
-  //do {
-      // level is row
-
-      // MESSING WITH SOMETHING HERE TODO
-    // let levels = splitElementsIntoGroupsByElementLevel(elements);
-    // console.log("run 1 here", levels);
-    // let returnedVals = removeDisconectedLevels(levels);
-    // elements = returnedVals[1];
-    // console.log("run 2", returnedVals)
-
-    // let matchedObjects = matchLevels(returnedVals[0]);
-
-    // console.log("run3", matchedObjects);
-
-    // matchedObjects =  removeSingleObjects(matchedObjects);
-    //  // TODO figure out what remove single objects even means and what we gave as an input to it
-
-    // if (matchedObjects.length === 0) {
-    //   console.log("here is the problem")
-    //   return false;
-    // }
-
-    // // instead of running the canvas whatever way it is right now, I want to be able to go from left to right and scan the grid for any ball, and allow it to fall through it next grate
-    // let simulationOutcome = simulate(matchedObjects);
-
-    // simulationOutcome = preventDuplicateElementsOnCanvas(simulationOutcome);
-
-    // if (simulationOutcome.length !== 0) {
-    //   currentStep++;
-    // }
-    // check to see if this is where the objects are actually represented on the gri
-    //drawObjects(simulationOutcome);
-
-    //elements.push(...simulationOutcome);
-
-  //}while(allLevels && (elements.length !== 0));
   printGrid();
-  //runGrid();
-  drawObjects(elements);
+  calcGrid();
+  drawObjects();
   printGrid();
   console.log(pseudoGrid[0][0].code);
   return true;
@@ -748,59 +635,44 @@ function createObject(object) {
   let code = "-1";
   let gatePorts = 0;
 
-  let input = [];
 
   console.log("in create object func", object.attrs.type.toLowerCase());
   console.log(yCoord + " " + xCoord);
   if(object.attrs.type.toLowerCase().includes("ccswap")){
     code = "1";
     gatePorts = 4
-    input.push(pseudoGrid[yCoord - 1][xCoord].output);
-    input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
-    input.push(pseudoGrid[yCoord - 1][xCoord + 2].output);
-    input.push(pseudoGrid[yCoord - 1][xCoord + 3].output);
-    pseudoGrid[yCoord][xCoord + 1] = new Cell("1.1", input);
-    pseudoGrid[yCoord][xCoord + 2] = new Cell("1.2", input);
-    pseudoGrid[yCoord][xCoord + 3] = new Cell("1.3", input)
+    pseudoGrid[yCoord][xCoord + 1] = new Cell("1.1");
+    pseudoGrid[yCoord][xCoord + 2] = new Cell("1.2");
+    pseudoGrid[yCoord][xCoord + 3] = new Cell("1.3")
     //return new CCSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cswap")){
     code = "2";
     gatePorts = 3;
-    input.push(pseudoGrid[yCoord - 1][xCoord].output);
-    input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
-    input.push(pseudoGrid[yCoord - 1][xCoord + 2].output);
-    pseudoGrid[yCoord][xCoord + 1] = new Cell("2.1", input);
-    pseudoGrid[yCoord][xCoord + 2] = new Cell("2.2", input);
+    pseudoGrid[yCoord][xCoord + 1] = new Cell("2.1");
+    pseudoGrid[yCoord][xCoord + 2] = new Cell("2.2");
     //return new CSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cnot")){
     code = "3";
     gatePorts = 2
-    input.push(pseudoGrid[yCoord - 1][xCoord].output);
-    input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
-    pseudoGrid[yCoord][xCoord + 1] = new Cell("3.1", input);
+    pseudoGrid[yCoord][xCoord + 1] = new Cell("3.1");
     //return new CNot(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("swap")){
     code = "4";
     gatePorts = 2
-    input.push(pseudoGrid[yCoord - 1][xCoord].output);
-    input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
-    pseudoGrid[yCoord][xCoord + 1] = new Cell("4.1", input);
+    pseudoGrid[yCoord][xCoord + 1] = new Cell("4.1");
 
     //return new Swap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("not")){
     code = "5";
     gatePorts = 1
-    input.push(pseudoGrid[yCoord - 1][xCoord].output);
     //return new Not(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("pipe")){
     code = "6";
-    input.push(pseudoGrid[yCoord - 1][xCoord].output);
     gatePorts = 1;
     //return new Pipe(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("pete")){
     code = "7";
     gatePorts = 1;
-    input.push(pseudoGrid[yCoord - 1][xCoord].output);
     //return new Pete(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("black")){
     code = "8";
@@ -818,21 +690,106 @@ function createObject(object) {
     console.log("Something went wrong while creating the objects");
     //return null;
   }
-  pseudoGrid[yCoord][xCoord] = new Cell(code, input);
+  pseudoGrid[yCoord][xCoord] = new Cell(code);
   // takes care of the output ports
   for(let i = 0; i < gatePorts; i++){
-    input = [];
-    input.push(pseudoGrid[yCoord][xCoord + i].output);
-    pseudoGrid[yCoord + 1][xCoord + i] = new Cell("0", input);
+    pseudoGrid[yCoord + 1][xCoord + i] = new Cell("0");
   }
-  
   // saves the coords if the object is a gate
-  if(code > 7){
-    yCoord = -1;
-    xCoord = -1;
-  }
-  return new Array(yCoord, xCoord);
+  // if(gatePorts != 0){
+  //   yCoord = -1;
+  //   xCoord = -1;
+  // }
+  return [yCoord, xCoord];
 }
+
+function calcGrid(){
+  // TODO check if this sorts based on lowest Y val
+  let gatePorts = 0;
+  cellsToCalc.sort(function(cell1, cell2){
+    return cell1[0] > cell2[0];
+  });
+  //just go to the grid cells with a gate 
+
+  cellsToCalc.sort();
+
+  for(let cells = 0; cells < cellsToCalc.length; cells++){
+    yCoord = cellsToCalc[cells][0];
+    xCoord = cellsToCalc[cells][1];
+    if(yCoord < 0){
+      continue;
+    }
+
+    gatePorts = 0;
+    let input = [];
+    let currCode = pseudoGrid[yCoord][xCoord].code;
+    console.log("calculating these coords" + yCoord + " " + xCoord);
+    console.log("curr Code " + currCode);
+
+
+    if(currCode === "1"){
+      code = "1";
+      gatePorts = 4
+      input.push(pseudoGrid[yCoord - 1][xCoord].output);
+      input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
+      input.push(pseudoGrid[yCoord - 1][xCoord + 2].output);
+      input.push(pseudoGrid[yCoord - 1][xCoord + 3].output);
+      pseudoGrid[yCoord][xCoord + 1].run(input);
+      pseudoGrid[yCoord][xCoord + 2].run(input);
+      pseudoGrid[yCoord][xCoord + 3].run(input);
+    } else if(currCode === "2"){
+      code = "2";
+      gatePorts = 3;
+      input.push(pseudoGrid[yCoord - 1][xCoord].output);
+      input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
+      input.push(pseudoGrid[yCoord - 1][xCoord + 2].output);
+      pseudoGrid[yCoord][xCoord + 1].run(input);
+      pseudoGrid[yCoord][xCoord + 2].run(input);
+      //return new CSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
+    } else if(currCode == "3"){
+      code = "3";
+      gatePorts = 2
+      input.push(pseudoGrid[yCoord - 1][xCoord].output);
+      input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
+      pseudoGrid[yCoord][xCoord + 1].run(input);
+      //return new CNot(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
+    } else if(currCode == "4"){
+      code = "4";
+      gatePorts = 2
+      input.push(pseudoGrid[yCoord - 1][xCoord].output);
+      input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
+      pseudoGrid[yCoord][xCoord + 1].run(input);
+
+      //return new Swap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
+    } else if(currCode == "5"){
+      code = "5";
+      gatePorts = 1
+      input.push(pseudoGrid[yCoord - 1][xCoord].output);
+      //return new Not(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
+    } else if(currCode == "6"){
+      code = "6";
+      input.push(pseudoGrid[yCoord - 1][xCoord].output);
+      gatePorts = 1;
+      //return new Pipe(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
+    } else if(currCode == "7"){
+      code = "7";
+      gatePorts = 1;
+      input.push(pseudoGrid[yCoord - 1][xCoord].output);
+    }else {
+      console.log("Something went wrong while calculating objects");
+      //return null;
+    }
+    pseudoGrid[yCoord][xCoord].run(input);
+    // takes care of the output ports
+    for(let i = 0; i < gatePorts; i++){
+      input = [];
+      input.push(pseudoGrid[yCoord][xCoord + i].output);
+      pseudoGrid[yCoord + 1][xCoord + i].run(input);
+    }
+  }
+}
+
+
 
 /**
  * Function returns boolean value depending on if the entered object type is a ball or mist
@@ -1056,5 +1013,5 @@ function printGrid(){
 }
 
 function resetGrid(){
-  pseudoGrid = Array(gridY).fill(new Cell("-", -1, -1, -1)).map(x => Array(gridX).fill(new Cell("-", -1, -1, -1)));
+  pseudoGrid = Array(gridY).fill(new Cell("-")).map(x => Array(gridX).fill(new Cell("-")));
 }

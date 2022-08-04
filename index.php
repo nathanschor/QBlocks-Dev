@@ -938,7 +938,7 @@
                     <div class="col-md-6"></div>
 
                     <div class="col-md-3 col-md-pull-9">
-                        <div class="footer-site-info">© Copyright 2021 - Quantum Curious | All Rights Reserved</div>
+                        <div class="footer-site-info">© Copyright 2022 - Quantum Curious | All Rights Reserved</div>
                     </div>
 
                 </div>
