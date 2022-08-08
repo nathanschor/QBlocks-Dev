@@ -15,7 +15,7 @@ class Cell{
         this.code = id;
     }
     
-    run(relCel){ 
+    run(relCel){
         const notGate = math.matrix([[0, 1], [1, 0]]);
         if(this.code === "0"){
             // what to display in a blank cell if output is coming from above gate
@@ -52,10 +52,7 @@ class Cell{
                 }else if(toDisp === JSON.stringify(math.matrix([[1], [0]]))){
                     this.code = "9";
                 }else{
-                    console.log("didnt pas thorugh anything");
-                    console.log("this is the matrix" + toDisp)
-                    console.log("this is what it should be" + globPhaseCmpMin)
-
+                    console.log("Error")
                 }
             }
         }else if(this.code === "5"){
@@ -118,7 +115,6 @@ class Cell{
             this.output = math.matrix([[Math.SQRT1_2], [Math.SQRT1_2]]);
         }else if(this.code === "b"){
             // - state
-            console.log("ALJDFHJ");
             this.output = math.matrix([[Math.SQRT1_2], [-1 * Math.SQRT1_2]]);
         }
         

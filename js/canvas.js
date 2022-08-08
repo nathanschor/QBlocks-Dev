@@ -227,7 +227,6 @@ con.addEventListener('drop', function (e) {
   // is not registered by Konva.Stage
   // we can register it manually:
   stage.setPointersPositions(e);
-  console.log("TYPE OF DROP: " + type);
   let x = stage.getPointerPosition().x;
   let y = stage.getPointerPosition().y;
   let gateY = 0;
@@ -250,7 +249,6 @@ con.addEventListener('drop', function (e) {
   }
 
   let overlapping = willOverlap(gateX, gateY);
-  console.log("HEREEEEE");
 
   console.log("gateX: " + gateX + " | gateY: " + gateY + " | overlapping: " + overlapping);
 
@@ -370,11 +368,6 @@ function hasLeftCanvas(r1) {
   let top = 0;
   let bottom = height;
 
-  // console.log("y1 < top\n" + y1 + " < " + top +
-  //             "\ny1 + h1 > bottom\n" + (y1 + h1) + " > " + bottom +
-  //             "\nx1 < left\n" + x1 + " < " + left +
-  //             "\ny1 < top\n" + (x1 + w1) + " > " + right);
-
   let colision = (
       y1 < top ||
       y1 + h1 > bottom ||
@@ -486,9 +479,7 @@ function clearBallsAndMists() {
 
   shapes.forEach((shape, i) => {
     let shapeInStage = stage.find(shape);
-    console.log(shapeInStage.length);
     shapeInStage.each(function (object) {
-      console.log(object);
       if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
           isBallMistOrBoth(object.attrs.type.toLowerCase())){
         object.destroy();
@@ -563,11 +554,14 @@ function getElementsFromCanvas(){
 
 function drawObjects(){
   console.log("drawing new objects");
-  clearAllBallsAndMists();
+  //clearAllBallsAndMists();
   for(let i = 0; i < gridY; i++){
     for(let j = 0; j < gridX; j++){
       // if a cell is blank but has an input, display
       //console.log("Curr Y" + )
+      if(i === 0 || pseudoGrid[i - 1][j].code === "-" || pseudoGrid[i - 1][j].code === "0"){
+        continue;
+      }
       if(pseudoGrid[i][j].code === "8" || pseudoGrid[i][j].code === "9"){
         let imgFilePath = hideResults ? 'img/square.png' : ('img/' + ((pseudoGrid[i][j].code === "9") ? 'white' : 'black') + '.png');
         let objectType = ((pseudoGrid === "9") ? 'white' : 'black') + 'Ball';
@@ -606,17 +600,21 @@ function run(allLevels = false) {
   resetGrid();
   getElementsFromCanvas();
   // elements is an array of all objects on canvas
-
+  let success = false;
 
   printGrid();
   try{
     calcGrid();
+    success = true;
   }catch(error){
+    resetGrid()
     swal("Oops, something is wrong.", "It's likely one or more inputs to a gate has not been given. Please check and try again.");
   }
-  drawObjects();
+  if(success){
+    drawObjects();
+  }
   printGrid();
-  console.log(pseudoGrid[0][0].code);
+
   return true;
 }
 
@@ -639,8 +637,10 @@ function createObject(object) {
 
   let code = "-1";
   let gatePorts = 0;
-
-
+  if(object.attrs.id === "simulation"){
+    return [yCoord, xCoord];
+  }
+  console.log("here is the object id" + object.attrs.id);
   console.log("in create object func", object.attrs.type.toLowerCase());
   console.log(yCoord + " " + xCoord);
   if(object.attrs.type.toLowerCase().includes("ccswap")){
@@ -649,48 +649,39 @@ function createObject(object) {
     pseudoGrid[yCoord][xCoord + 1] = new Cell("1.1");
     pseudoGrid[yCoord][xCoord + 2] = new Cell("1.2");
     pseudoGrid[yCoord][xCoord + 3] = new Cell("1.3")
-    //return new CCSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cswap")){
     code = "2";
     gatePorts = 3;
     pseudoGrid[yCoord][xCoord + 1] = new Cell("2.1");
     pseudoGrid[yCoord][xCoord + 2] = new Cell("2.2");
-    //return new CSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("cnot")){
     code = "3";
     gatePorts = 2
     pseudoGrid[yCoord][xCoord + 1] = new Cell("3.1");
-    //return new CNot(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("swap")){
     code = "4";
     gatePorts = 2
     pseudoGrid[yCoord][xCoord + 1] = new Cell("4.1");
 
-    //return new Swap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("not")){
     code = "5";
     gatePorts = 1
-    //return new Not(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("pipe")){
     code = "6";
     gatePorts = 1;
-    //return new Pipe(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("pete")){
     code = "7";
     gatePorts = 1;
-    //return new Pete(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("black")){
     code = "8";
-    //return new Ball(0, '+', object.attrs.x + object.attrs.height/2, object.attrs.y + object.attrs.height/2, object.attrs.height/2, makeid(10));
+    console.log("this section was activated");
   } else if(object.attrs.type.toLowerCase().includes("white")){
     code = "9";
-    //return new Ball(1, '+', object.attrs.x + object.attrs.height/2, object.attrs.y + object.attrs.height/2, object.attrs.height/2, makeid(10));
+    console.log("expected section was activated");
   } else if(object.attrs.type.toLowerCase().includes("wb")){
     code = "a";
-    //return new Mist(1, '+', 0, '+', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else if(object.attrs.type.toLowerCase().includes("w-b")){
     code = "b"
-    //return new Mist(1, '+', 0, '-', object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
   } else {
     console.log("Something went wrong while creating the objects");
     //return null;
@@ -778,7 +769,7 @@ function calcGrid(){
       gatePorts = 1;
       input.push(pseudoGrid[yCoord - 1][xCoord].output);
     }else {
-      console.log("Something went wrong while calculating objects");
+      console.log("Something could have gone wrong while calculating objects. this was the currCode" + currCode);
       //return null;
     }
     pseudoGrid[yCoord][xCoord].run(input);
@@ -823,109 +814,8 @@ function isIn(checkIfIn, arrayToCheck){
   return false;
 }
 
-function preventDuplicateElementsOnCanvas(simulationOutcome){
-  // select shapes by name
-
-  let dictOfObjectsByCoordinates = {};
-
-  simulationOutcome.forEach((element, i) => {
-    if( !(element.getTopLeftCoordinates() in dictOfObjectsByCoordinates) ){
-      dictOfObjectsByCoordinates[element.getTopLeftCoordinates()] = element.id;
-    }
-  });
-
-  var objects = stage.find('Image');
-
-  let idArray = [];
-  objects.forEach((object, i) => {
-    if(isNotObjectShadow(object.attrs.shapeType.toLowerCase()) &&
-        isBallMistOrBoth(object.attrs.type.toLowerCase())){
-      let x = parseInt(object.attrs.x);
-      let y = parseInt(object.attrs.y);
-
-      if([x, y] in dictOfObjectsByCoordinates){
-
-        let idKey = String(dictOfObjectsByCoordinates[[x, y]]);
-        idArray.push(idKey);
-      }
-    }
-  });
-
-  idArray = [...new Set(idArray)];
-
-  let returnArr = [];
-
-  simulationOutcome.forEach((outcome) => {
-    if(!isIn(outcome, idArray)){
-      returnArr.push(outcome);
-    }
-  });
-
-  returnArr = [...new Set(returnArr)];
-
-  return returnArr;
-}
-
-/**/
-
-function splitElementsIntoGroupsByElementLevel(elements){
-  console.log("these are the elements" + elements);
-  let levels = {};
-
-  elements.forEach((gate, i) => {
-    if(gate.level in levels){
-      levels[gate.level].push(gate);
-    } else {
-      levels[gate.level] = [gate];
-    }
-  });
-
-  return levels;
-}
-
-function matchLevels(levels) {
-  let keys = Object.keys(levels);
-  let aboveRow = levels[keys[0]];
-  // TODO
-  for (let i = 1; i < keys.length; i++) {
-    aboveRow = matchElements(aboveRow, levels[keys[i]]);
-  }
-
-  return aboveRow;
-}
-
-function matchElements(aboveRow, belowRow){
-  let matchedObjects = [];
-  let ids = [];
-  let idDict = {};
-  console.log("matchElements1");
-
-  aboveRow.forEach((element, i) => {
-    idDict[element.id] = element;
-  });
-
-  console.log("matchElements2");
-  belowRow.forEach((element, i) => {
-    let temp = matchElement(element, aboveRow);
-    aboveRow = temp[1];
-    matchedObjects.push(temp[0]);
-    ids = Array.from(new Set(ids.concat(temp[0].getID())));
-  });
-
-  Object.keys(idDict).forEach((key, i) => {
-    if( !(ids.includes(key)) ){
-      matchedObjects.push(idDict[key]);
-    }
-  });
-
-
-  matchedObjects = Array.from(new Set(matchedObjects));
-
-  return matchedObjects;
-}
 
 function matchElement (element, aboveRow) {
-  console.log("matchElement");
   aboveRow.forEach((elementAbove, i) => { //Loops through above elements
     elementAbove.getCenterCoordinates().forEach((centerCoordinates, j) => { //loops through all of the centers of the elements.
 
@@ -944,7 +834,6 @@ function removeSingleObjects(objects) {
   let convertedObjects = [];
 
   for (let i = 0; i < objects.length; i++) {
-    console.log("this happens");
     convertedObjects.push(objects[i]);
   }
 
@@ -954,14 +843,11 @@ function removeSingleObjects(objects) {
 function removeDisconectedLevels(levels){
   let convertedObjects = {};
   let keys = Object.keys(levels);
-  console.log("keys and levs" , keys, levels);
   let prevKey = parseInt(keys[0]);
   convertedObjects[prevKey] = levels[prevKey];
   let unusedObjects = [];
 
   for (let i = 1; i < keys.length; i++) {
-    console.log("keys", keys[i], prevKey, gridSnapSize);
-    console.log((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize))));
     if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
       convertedObjects[keys[i]] = levels[keys[i]];
     } else {
@@ -989,7 +875,6 @@ function simulate(matchedObjects){
       });
     }
     catch (e) {
-      console.log("There was an error while trying to run a gate");
     }
   }
 
@@ -1011,4 +896,5 @@ function printGrid(){
 
 function resetGrid(){
   pseudoGrid = Array(gridY).fill(new Cell("-")).map(x => Array(gridX).fill(new Cell("-")));
+  cellsToCalc = [];
 }
