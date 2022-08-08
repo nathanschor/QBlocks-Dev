@@ -608,7 +608,11 @@ function run(allLevels = false) {
 
 
   printGrid();
-  calcGrid();
+  try{
+    calcGrid();
+  }catch(error){
+    swal("Oops, something is wrong.", "It's likely one or more inputs to a gate has not been given. Please check and try again.");
+  }
   drawObjects();
   printGrid();
   console.log(pseudoGrid[0][0].code);
@@ -745,14 +749,12 @@ function calcGrid(){
       input.push(pseudoGrid[yCoord - 1][xCoord + 2].output);
       pseudoGrid[yCoord][xCoord + 1].run(input);
       pseudoGrid[yCoord][xCoord + 2].run(input);
-      //return new CSwap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
     } else if(currCode == "3"){
       code = "3";
       gatePorts = 2
       input.push(pseudoGrid[yCoord - 1][xCoord].output);
       input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
       pseudoGrid[yCoord][xCoord + 1].run(input);
-      //return new CNot(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
     } else if(currCode == "4"){
       code = "4";
       gatePorts = 2
@@ -760,7 +762,6 @@ function calcGrid(){
       input.push(pseudoGrid[yCoord - 1][xCoord + 1].output);
       pseudoGrid[yCoord][xCoord + 1].run(input);
 
-      //return new Swap(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
     } else if(currCode == "5"){
       code = "5";
       gatePorts = 1
@@ -943,11 +944,6 @@ function removeSingleObjects(objects) {
 
   for (let i = 0; i < objects.length; i++) {
     console.log("this happens");
-    // if(objects[i].isComplete()){
-    //   console.log("but this never does");
-    //   convertedObjects.push(objects[i]);
-    // }
-
     convertedObjects.push(objects[i]);
   }
 
