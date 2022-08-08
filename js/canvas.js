@@ -563,6 +563,7 @@ function getElementsFromCanvas(){
 
 function drawObjects(){
   console.log("drawing new objects");
+  clearAllBallsAndMists();
   for(let i = 0; i < gridY; i++){
     for(let j = 0; j < gridX; j++){
       // if a cell is blank but has an input, display
