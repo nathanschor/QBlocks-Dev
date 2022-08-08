@@ -39,18 +39,13 @@ class Cell{
             });
 
             let toCmpMin = JSON.stringify(minState);
-
+            let globPhaseCmpMin = JSON.stringify(math.multiply(-1, minState));
             if(toDisp === toCmpPlus){
                 this.code = "a";
-            }else if(toDisp === toCmpMin){
+            }else if(toDisp === toCmpMin || toDisp === globPhaseCmpMin){
                 this.code = "b";
             }else{
                 
-                // let temp = relCel[0];
-                // temp = temp.map(function(each_element){
-                //     return Number(each_element.toFixed(15));
-                // });
-                // toDisp = JSON.stringify(temp);
 
                 if(toDisp === JSON.stringify(math.matrix([[0], [1]]))){
                     this.code = "8";
@@ -58,6 +53,9 @@ class Cell{
                     this.code = "9";
                 }else{
                     console.log("didnt pas thorugh anything");
+                    console.log("this is the matrix" + toDisp)
+                    console.log("this is what it should be" + globPhaseCmpMin)
+
                 }
             }
         }else if(this.code === "5"){
