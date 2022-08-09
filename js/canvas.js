@@ -818,9 +818,9 @@ function isBallMistOrBoth(objectType, operationType=2) {
   }
 }
 
-// function isNotObjectShadow(objectType){
-//   return !objectType.includes("shadow");
-// }
+function isNotObjectShadow(objectType){
+  return !objectType.includes("shadow");
+}
 
 // function isIn(checkIfIn, arrayToCheck){
 //   for (var i = 0; i < arrayToCheck.length; i++) {
