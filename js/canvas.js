@@ -1,9 +1,9 @@
 shadowOffset = 20;
 let blockSnapSize = 30;
-let gridY = 20//7
-let gridX = 20//14
-// TODO see why new Cell isnt being recognized
-//temp = new Cell("blank", -1, -1, -1);
+let gridY = 25
+let gridX = 25
+
+// creates an empty canvas for the computer to perform calculations
 let pseudoGrid = Array(gridY).fill(new Cell("-")).map(x => Array(gridX).fill(new Cell("-")));
 let cellsToCalc = [];
 
@@ -536,6 +536,7 @@ function undoLastSimulation(){
   currentStep = (currentStep > 0) ? currentStep - 1 : 1;
 }
 
+// retrieve elements from canvas GUI and create the object in pseudoGrid
 function getElementsFromCanvas(){
   let shapes = ["Image", "Circle", "Rectangle", "Square"];
 
@@ -552,13 +553,17 @@ function getElementsFromCanvas(){
 }
 
 
+// makes the GUI canvas display what is shown on the pseudoGrid (after simulation has run)
 function drawObjects(){
   console.log("drawing new objects");
+  //TODO
   //clearAllBallsAndMists();
   for(let i = 0; i < gridY; i++){
     for(let j = 0; j < gridX; j++){
       // if a cell is blank but has an input, display
       //console.log("Curr Y" + )
+
+      // if the cell is not below a gate do not udraw it again
       if(i === 0 || pseudoGrid[i - 1][j].code === "-" || pseudoGrid[i - 1][j].code === "0"){
         continue;
       }
@@ -592,24 +597,32 @@ function drawObjects(){
 /*############################################################################*/
 
 function toggleHideOutput() {
+  //TODO
   let checkBox = document.getElementById("checkIfHidden");
   hideResults = (checkBox.checked === true);
 }
 
+
+// function that is called when run button is clicked
 function run(allLevels = false) {
   resetGrid();
+
+  // retrieves elements from canvas and puts on pseudoGrid
   getElementsFromCanvas();
   // elements is an array of all objects on canvas
   let success = false;
 
   printGrid();
+
+  // throws popup if error occurs
   try{
     calcGrid();
     success = true;
   }catch(error){
-    resetGrid()
+    resetGrid();
     swal("Oops, something is wrong.", "It's likely one or more inputs to a gate has not been given. Please check and try again.");
   }
+
   if(success){
     drawObjects();
   }
@@ -630,19 +643,26 @@ function makeid(length) {
 }
 
 
+// take in an object (ball, mist or gate) and put in pesudoGrid
 function createObject(object) {
-  //TODO
+
+  // takes pixel coords and calculates grid coords
   let xCoord = (object.attrs.x - .5) / gridSnapSize;
   let yCoord = object.attrs.y / gridSnapSize;
 
   let code = "-1";
   let gatePorts = 0;
+
   if(object.attrs.id === "simulation"){
     return [yCoord, xCoord];
   }
+
+  //debugging
   console.log("here is the object id" + object.attrs.id);
   console.log("in create object func", object.attrs.type.toLowerCase());
   console.log(yCoord + " " + xCoord);
+
+  // goes through each possible object (can swith to switch case)
   if(object.attrs.type.toLowerCase().includes("ccswap")){
     code = "1";
     gatePorts = 4
@@ -674,28 +694,25 @@ function createObject(object) {
     gatePorts = 1;
   } else if(object.attrs.type.toLowerCase().includes("black")){
     code = "8";
-    console.log("this section was activated");
   } else if(object.attrs.type.toLowerCase().includes("white")){
     code = "9";
-    console.log("expected section was activated");
   } else if(object.attrs.type.toLowerCase().includes("wb")){
     code = "a";
   } else if(object.attrs.type.toLowerCase().includes("w-b")){
     code = "b"
   } else {
-    console.log("Something went wrong while creating the objects");
+    console.log("Unexpected outcome")
     //return null;
   }
+  //initializes new cell at the locaton of the coords
   pseudoGrid[yCoord][xCoord] = new Cell(code);
-  // takes care of the output ports
+
+  // initializes new cell for each additional input the cell takes
   for(let i = 0; i < gatePorts; i++){
     pseudoGrid[yCoord + 1][xCoord + i] = new Cell("0");
   }
-  // saves the coords if the object is a gate
-  // if(gatePorts != 0){
-  //   yCoord = -1;
-  //   xCoord = -1;
-  // }
+ 
+  // returns the coordinates to be passed on to the calculation function
   return [yCoord, xCoord];
 }
 
@@ -801,86 +818,87 @@ function isBallMistOrBoth(objectType, operationType=2) {
   }
 }
 
-function isNotObjectShadow(objectType){
-  return !objectType.includes("shadow");
-}
+// function isNotObjectShadow(objectType){
+//   return !objectType.includes("shadow");
+// }
 
-function isIn(checkIfIn, arrayToCheck){
-  for (var i = 0; i < arrayToCheck.length; i++) {
-    if( String(checkIfIn.id) === String(arrayToCheck[i]) ){
-      return true;
-    }
-  }
-  return false;
-}
+// function isIn(checkIfIn, arrayToCheck){
+//   for (var i = 0; i < arrayToCheck.length; i++) {
+//     if( String(checkIfIn.id) === String(arrayToCheck[i]) ){
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 
 
-function matchElement (element, aboveRow) {
-  aboveRow.forEach((elementAbove, i) => { //Loops through above elements
-    elementAbove.getCenterCoordinates().forEach((centerCoordinates, j) => { //loops through all of the centers of the elements.
+// function matchElement (element, aboveRow) {
+//   aboveRow.forEach((elementAbove, i) => { //Loops through above elements
+//     elementAbove.getCenterCoordinates().forEach((centerCoordinates, j) => { //loops through all of the centers of the elements.
 
-      if(element.isBelow(centerCoordinates[0], centerCoordinates[1])){
-        element.addCenter(centerCoordinates[0], centerCoordinates[1], elementAbove,
-            elementAbove.getCenterPosition(centerCoordinates[0], centerCoordinates[1]));
-      }
+//       if(element.isBelow(centerCoordinates[0], centerCoordinates[1])){
+//         element.addCenter(centerCoordinates[0], centerCoordinates[1], elementAbove,
+//             elementAbove.getCenterPosition(centerCoordinates[0], centerCoordinates[1]));
+//       }
 
-    });
-  });
+//     });
+//   });
 
-  return [element, aboveRow];
-}
+//   return [element, aboveRow];
+// }
 
-function removeSingleObjects(objects) {
-  let convertedObjects = [];
+// function removeSingleObjects(objects) {
+//   let convertedObjects = [];
 
-  for (let i = 0; i < objects.length; i++) {
-    convertedObjects.push(objects[i]);
-  }
+//   for (let i = 0; i < objects.length; i++) {
+//     convertedObjects.push(objects[i]);
+//   }
 
-  return convertedObjects;
-}
+//   return convertedObjects;
+// }
 
-function removeDisconectedLevels(levels){
-  let convertedObjects = {};
-  let keys = Object.keys(levels);
-  let prevKey = parseInt(keys[0]);
-  convertedObjects[prevKey] = levels[prevKey];
-  let unusedObjects = [];
+// function removeDisconectedLevels(levels){
+//   let convertedObjects = {};
+//   let keys = Object.keys(levels);
+//   let prevKey = parseInt(keys[0]);
+//   convertedObjects[prevKey] = levels[prevKey];
+//   let unusedObjects = [];
 
-  for (let i = 1; i < keys.length; i++) {
-    if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
-      convertedObjects[keys[i]] = levels[keys[i]];
-    } else {
-      unusedObjects.push(...levels[keys[i]]);
-    }
+//   for (let i = 1; i < keys.length; i++) {
+//     if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
+//       convertedObjects[keys[i]] = levels[keys[i]];
+//     } else {
+//       unusedObjects.push(...levels[keys[i]]);
+//     }
 
-    prevKey = keys[i];
-  }
+//     prevKey = keys[i];
+//   }
 
-  return [convertedObjects, unusedObjects];
-}
+//   return [convertedObjects, unusedObjects];
+// }
 
-function simulate(matchedObjects){
-  let newObjects = [];
+// function simulate(matchedObjects){
+//   let newObjects = [];
 
-  for (let i = 0; i < matchedObjects.length; i++) {
+//   for (let i = 0; i < matchedObjects.length; i++) {
 
-    try {
-      console.log("inside run", matchedObjects[i]);
-      let elementList = matchedObjects[i].run();
+//     try {
+//       console.log("inside run", matchedObjects[i]);
+//       let elementList = matchedObjects[i].run();
 
-      elementList.forEach((item, i) => {
-        newObjects.push(item);
+//       elementList.forEach((item, i) => {
+//         newObjects.push(item);
 
-      });
-    }
-    catch (e) {
-    }
-  }
+//       });
+//     }
+//     catch (e) {
+//     }
+//   }
 
-  return newObjects;
-}
+//   return newObjects;
+// }
 
+// displays pseudoGrid in console, for debugging purposes
 function printGrid(){
   var gridRow;
   // TODO pring out the grid
@@ -894,6 +912,7 @@ function printGrid(){
   console.log("done");
 }
 
+// resets pseudoGrid to all blanks and resets the cells to calculate
 function resetGrid(){
   pseudoGrid = Array(gridY).fill(new Cell("-")).map(x => Array(gridX).fill(new Cell("-")));
   cellsToCalc = [];
