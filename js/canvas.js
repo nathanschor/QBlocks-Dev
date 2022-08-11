@@ -82,6 +82,7 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
       });
       stage.batchDraw();
       shadowRectangle.hide();
+      console.log("THIS IS CALLED")
     });
 
     rectangle.on('dragmove', (e) => {
@@ -90,6 +91,7 @@ function newGate(x, y, width, height, layer, stage, filepath, type, createdBy, s
         y: Math.round(rectangle.y() / gridSnapSize) * gridSnapSize
       });
       stage.batchDraw();
+      console.log("THIS IS CALLED")
     });
 
     layer.add(rectangle);
@@ -451,6 +453,7 @@ layer.on('dragmove', function (e) {
   layer.children.each(function (shape) {
     // do not check intersection with itself
 
+    // checks if image has left grid
     if (hasLeftCanvas(target)){
       newX = calcNewDepartureFromCanvasX(target)
       newY = calcNewDepartureFromCanvasY(target)
@@ -557,7 +560,7 @@ function getElementsFromCanvas(){
 function drawObjects(){
   console.log("drawing new objects");
   //TODO
-  //clearAllBallsAndMists();
+  clearSimulations();
   for(let i = 0; i < gridY; i++){
     for(let j = 0; j < gridX; j++){
       // if a cell is blank but has an input, display

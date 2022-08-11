@@ -121,4 +121,8 @@ class Cell{
         
     }
     // instead of currGrid, ill pass in any necessary thing as a cell object in an array
+
+     mistControlPop(){
+
+    }
 }
