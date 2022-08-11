@@ -643,15 +643,15 @@ function makeid(length) {
         charactersLength));
   }
   return result;
-}
+} 
 
 
 // take in an object (ball, mist or gate) and put in pesudoGrid
 function createObject(object) {
 
   // takes pixel coords and calculates grid coords
-  let xCoord = (object.attrs.x - .5) / gridSnapSize;
-  let yCoord = object.attrs.y / gridSnapSize;
+  let xCoord = Math.round((object.attrs.x - .5) / gridSnapSize);
+  let yCoord = Math.round(object.attrs.y / gridSnapSize);
 
   let code = "-1";
   let gatePorts = 0;
@@ -719,17 +719,18 @@ function createObject(object) {
   return [yCoord, xCoord];
 }
 
+function customSort(a, b){
+  return a[0] - b[0];
+}
+
 function calcGrid(){
   // TODO check if this sorts based on lowest Y val
   let gatePorts = 0;
-  cellsToCalc.sort(function(cell1, cell2){
-    return cell1[0] > cell2[0];
-  });
-  //just go to the grid cells with a gate 
 
-  cellsToCalc.sort();
+  cellsToCalc.sort(customSort);
 
   for(let cells = 0; cells < cellsToCalc.length; cells++){
+    console.log("this is cells to calc" + cellsToCalc);
     yCoord = cellsToCalc[cells][0];
     xCoord = cellsToCalc[cells][1];
     if(yCoord < 0){
@@ -777,13 +778,12 @@ function calcGrid(){
     } else if(currCode == "5"){
       code = "5";
       gatePorts = 1
+      console.log("this is from cell above" + pseudoGrid[yCoord - 1][xCoord].output);
       input.push(pseudoGrid[yCoord - 1][xCoord].output);
-      //return new Not(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
     } else if(currCode == "6"){
       code = "6";
       input.push(pseudoGrid[yCoord - 1][xCoord].output);
       gatePorts = 1;
-      //return new Pipe(object.attrs.x, object.attrs.y, object.attrs.width, object.attrs.height, makeid(10));
     } else if(currCode == "7"){
       code = "7";
       gatePorts = 1;
@@ -825,81 +825,6 @@ function isNotObjectShadow(objectType){
   return !objectType.includes("shadow");
 }
 
-// function isIn(checkIfIn, arrayToCheck){
-//   for (var i = 0; i < arrayToCheck.length; i++) {
-//     if( String(checkIfIn.id) === String(arrayToCheck[i]) ){
-//       return true;
-//     }
-//   }
-//   return false;
-// }
-
-
-// function matchElement (element, aboveRow) {
-//   aboveRow.forEach((elementAbove, i) => { //Loops through above elements
-//     elementAbove.getCenterCoordinates().forEach((centerCoordinates, j) => { //loops through all of the centers of the elements.
-
-//       if(element.isBelow(centerCoordinates[0], centerCoordinates[1])){
-//         element.addCenter(centerCoordinates[0], centerCoordinates[1], elementAbove,
-//             elementAbove.getCenterPosition(centerCoordinates[0], centerCoordinates[1]));
-//       }
-
-//     });
-//   });
-
-//   return [element, aboveRow];
-// }
-
-// function removeSingleObjects(objects) {
-//   let convertedObjects = [];
-
-//   for (let i = 0; i < objects.length; i++) {
-//     convertedObjects.push(objects[i]);
-//   }
-
-//   return convertedObjects;
-// }
-
-// function removeDisconectedLevels(levels){
-//   let convertedObjects = {};
-//   let keys = Object.keys(levels);
-//   let prevKey = parseInt(keys[0]);
-//   convertedObjects[prevKey] = levels[prevKey];
-//   let unusedObjects = [];
-
-//   for (let i = 1; i < keys.length; i++) {
-//     if((parseInt(keys[i]) === parseInt(parseInt(prevKey) + parseInt(gridSnapSize)))){
-//       convertedObjects[keys[i]] = levels[keys[i]];
-//     } else {
-//       unusedObjects.push(...levels[keys[i]]);
-//     }
-
-//     prevKey = keys[i];
-//   }
-
-//   return [convertedObjects, unusedObjects];
-// }
-
-// function simulate(matchedObjects){
-//   let newObjects = [];
-
-//   for (let i = 0; i < matchedObjects.length; i++) {
-
-//     try {
-//       console.log("inside run", matchedObjects[i]);
-//       let elementList = matchedObjects[i].run();
-
-//       elementList.forEach((item, i) => {
-//         newObjects.push(item);
-
-//       });
-//     }
-//     catch (e) {
-//     }
-//   }
-
-//   return newObjects;
-// }
 
 // displays pseudoGrid in console, for debugging purposes
 function printGrid(){
@@ -920,3 +845,4 @@ function resetGrid(){
   pseudoGrid = Array(gridY).fill(new Cell("-")).map(x => Array(gridX).fill(new Cell("-")));
   cellsToCalc = [];
 }
+

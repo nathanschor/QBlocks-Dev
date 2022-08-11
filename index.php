@@ -859,11 +859,11 @@
                                         <a class="button-2x1 left-space orange right-space" onclick = "clearCanvas()" onmouseenter="over('Clear Canvas')" onmouseleave="over('Tool-Tips')">
                                             <p class="">Clear Canvas</p>
                                         </a>
-                                        <div class="vertical-spacer"></div>
+                                        <!-- <div class="vertical-spacer"></div>
                                         <label class="checkbox_container left-space space-top right-space hand-mouse" onmouseenter="over('Hide output')" onmouseleave="over('Tool-Tips')">Hide output
                                             <input type="checkbox" class="red-line" id="checkIfHidden" onclick="toggleHideOutput();">
                                             <span class="checkmark"></span>
-                                        </label>
+                                        </label> -->
                                         <div class="vertical-spacer"></div>
                                         <a href="https://www.youtube.com/channel/UCpB6QhTV4t1bVyiJ5niGvzQ" target="_blank" rel="noopener noreferrer" class="button-1-5x1 blue left-space right-space" id="tutorials-button" onmouseenter="over('Tutorials')" onmouseleave="over('Tool-Tips')">
                                             <p class="">Tutorials</p>

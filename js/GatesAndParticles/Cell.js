@@ -18,6 +18,7 @@ class Cell{
     run(relCel){
         const notGate = math.matrix([[0, 1], [1, 0]]);
         if(this.code === "0"){
+
             // what to display in a blank cell if output is coming from above gate
             let temp = relCel[0];
                 temp = temp.map(function(each_element){
@@ -45,8 +46,6 @@ class Cell{
             }else if(toDisp === toCmpMin || toDisp === globPhaseCmpMin){
                 this.code = "b";
             }else{
-                
-
                 if(toDisp === JSON.stringify(math.matrix([[0], [1]]))){
                     this.code = "8";
                 }else if(toDisp === JSON.stringify(math.matrix([[1], [0]]))){
@@ -57,6 +56,7 @@ class Cell{
             }
         }else if(this.code === "5"){
             this.output = math.multiply(notGate, relCel[0]);
+            console.log("but DID I GET HERE");
         }else if(this.code === "1"){
             this.output = relCel[0];
         }else if(this.code === "1.1"){
@@ -110,6 +110,7 @@ class Cell{
         }else if(this.code === "9"){
             // white ball
             this.output = math.matrix([[1], [0]]);
+            console.log("correct output for white ball");
         }else if(this.code === "a"){
             // + state
             this.output = math.matrix([[Math.SQRT1_2], [Math.SQRT1_2]]);

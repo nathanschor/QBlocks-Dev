@@ -256,6 +256,7 @@
 }
 
 /*hide div on all screens with 700 and lower width*/
+
 @media only screen and (max-width: 1200px) {
 	/* The container */
 	.checkbox_container {
