@@ -3,8 +3,6 @@ class Cell{
     // currGrid is the grid that we have currently
     // input is the input(s) to the gate
 
-
-
     /*
         id is the numerical id used for behind the scenes
         ouput is the vector to be outputted in the CELL BENEATH
@@ -56,7 +54,6 @@ class Cell{
             }
         }else if(this.code === "5"){
             this.output = math.multiply(notGate, relCel[0]);
-            console.log("but DID I GET HERE");
         }else if(this.code === "1"){
             this.output = relCel[0];
         }else if(this.code === "1.1"){
