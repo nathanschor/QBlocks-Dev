@@ -18,6 +18,7 @@
     .center{
         width: 78%;
         height: 75vh;
+        /*75*/
     }
 }
 
@@ -29,12 +30,12 @@
 
     .left{
         width: 15%;
-        height: 90vh;
+        height: 135vh;
     }
 
     .center{
         width: 78%;
-        height: 80vh;
+        height: 120vh;
     }
 }
 

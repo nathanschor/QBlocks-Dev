@@ -939,6 +939,8 @@
 
                     <div class="col-md-3 col-md-pull-9">
                         <div class="footer-site-info">© Copyright 2022 - Quantum Curious | All Rights Reserved</div>
+                        <!--p class="built-by-note">Created by <a href="https://www.linkedin.com/in/nathanschor" target="_blank">Nathan Schor</a> and <a href="https://www.linkedin.com/in/sarvesh-raghuraman-077045217/" target="_blank">Sarvesh Raghuraman</a>.</p-->
+
                     </div>
 
                 </div>
