@@ -30,12 +30,12 @@
 
     .left{
         width: 15%;
-        height: 135vh;
+        height: 115vh;
     }
 
     .center{
         width: 78%;
-        height: 120vh;
+        height: 90vh;
     }
 }
 
@@ -148,7 +148,7 @@ a{
 
 .tool-tips{
     position: absolute;
-    bottom: 100px;
+    top: 635px;
     width: 17%;
     height: 50px;
     word-wrap: normal;

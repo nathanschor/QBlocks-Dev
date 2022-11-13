@@ -707,7 +707,7 @@ function createObject(object) {
     console.log("Unexpected outcome")
     //return null;
   }
-  //initializes new cell at the locaton of the coords
+  //initializes new cell at the location of the coords
   pseudoGrid[yCoord][xCoord] = new Cell(code);
 
   // initializes new cell for each additional input the cell takes
@@ -724,7 +724,6 @@ function customSort(a, b){
 }
 
 function calcGrid(){
-  // TODO check if this sorts based on lowest Y val
   let gatePorts = 0;
 
   cellsToCalc.sort(customSort);

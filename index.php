@@ -762,18 +762,19 @@
                                                 Misty States
                                             </div>
                                             <div class="center-elements">
-                                                <a id="drag-pete" onmouseenter="over('Pete Gate')" onmouseleave="over('Tool-Tips')">
-                                                    <img class="button-img" src="img/pete.png" draggable="true">
-                                                </a>
-                                                <a id="drag-pipe" onmouseenter="over('Pipe Gate')" onmouseleave="over('Tool-Tips')">
-                                                    <img class="button-img" src="img/pipe.png" draggable="true">
-                                                </a>
                                                 <a id="drag-wbmist" onmouseenter="over('WB Mist')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/wb.png" draggable="true">
                                                 </a>
                                                 <a id="drag-wnegbmist" onmouseenter="over('WNB Mist')" onmouseleave="over('Tool-Tips')">
                                                     <img class="button-img" src="img/wnegb.png" draggable="true">
                                                 </a>
+                                                <a id="drag-pete" onmouseenter="over('Pete Gate')" onmouseleave="over('Tool-Tips')">
+                                                    <img class="button-img" src="img/pete.png" draggable="true">
+                                                </a>
+                                                <a id="drag-pipe" onmouseenter="over('Pipe Gate')" onmouseleave="over('Tool-Tips')">
+                                                    <img class="button-img" src="img/pipe.png" draggable="true">
+                                                </a>
+                                                
                                             </div>
                                         </div>
 
